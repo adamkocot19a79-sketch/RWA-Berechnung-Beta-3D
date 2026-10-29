@@ -47,10 +47,32 @@ h2{font-size:1.05rem;font-weight:600}
 @media (max-width:900px){.cols{grid-template-columns:minmax(0,1fr)}}
 .cols>*{min-width:0}
 .stick{position:sticky;top:calc(12px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:14px}
+.inputs{display:flex;flex-direction:column;gap:14px;min-width:0}
 @media (max-width:900px){.stick{position:static}}
+@media (max-width:900px){.cols{display:flex;flex-direction:column;gap:14px}.cols>.stick,.cols>.inputs{display:contents}#reqPanel{order:-1}.cols>.stick>*,.cols>.inputs>*{min-width:0;max-width:100%}}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .panel h2{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .panel h3.subh{font-size:.95rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.profwrap{display:flex;flex-direction:column;gap:14px}
+.profsk{margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px 8px 8px;display:flex;flex-direction:column;gap:6px}
+.profsk svg{display:block;width:100%;max-width:380px;height:auto;margin:0 auto}
+.profsk figcaption{font-size:.75rem;color:var(--muted);text-align:center}
+.sk .sk-frame{fill:url(#skh);stroke:var(--fg);stroke-width:1}
+.sk .skh-bg{fill:var(--surface-2)}.sk .skh-l{stroke:var(--wall-hatch);stroke-width:1}
+.sk .sk-sash{fill:var(--glass);stroke:var(--fg);stroke-width:1.2}
+.sk .sk-glass{fill:var(--fg)}
+.sk .sk-break{fill:none;stroke:var(--muted);stroke-width:1}
+.sk .sk-hinge{fill:var(--surface);stroke:var(--fg);stroke-width:1.2}.sk .sk-hx{stroke:var(--fg);stroke-width:1}
+.sk .sk-lab{font-family:var(--f-body);font-size:10px;fill:var(--muted)}
+.sk .sk-arrow{fill:none;stroke:var(--muted);stroke-width:1.2}
+.sk .ex{stroke:var(--muted);stroke-width:.7}
+.sk .dl,.sk .tk{stroke:var(--fg);stroke-width:1}
+.sk .dt{font-family:var(--f-mono);font-size:10.5px;font-weight:500;fill:var(--fg);paint-order:stroke;stroke:var(--surface-2);stroke-width:3px;stroke-linejoin:round}
+.sk .dim.hl .dl,.sk .dim.hl .tk,.sk .dim.hl .ex{stroke:var(--accent);stroke-width:1.8}
+.sk .dim.hl .dt{fill:var(--accent);font-weight:700}
+.sk .dim.hl .sk-hinge,.sk .dim.hl .sk-hx{stroke:var(--accent);stroke-width:1.8}
+label.f .code{display:inline-block;min-width:2.1em;font-family:var(--f-mono);font-weight:600;color:var(--accent);margin-right:2px}
+@media (prefers-reduced-motion:no-preference){.sk .dim *{transition:stroke .15s,fill .15s}}
 .panel h3.subh button{font-family:var(--f-body);font-size:.8rem;padding:5px 10px}
 .panel h2 small{font-family:var(--f-mono);font-size:.7rem;color:var(--muted);font-weight:400;letter-spacing:.04em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
@@ -145,6 +167,7 @@ img{max-width:100%}[hidden]{display:none!important}
   #app{display:none!important}
   #printSheet{display:block}
   #printSheet img{display:block;width:297mm;height:210mm;max-width:none}
+  #printSheet img+img{break-before:page;page-break-before:always}
 }
 </style>
 </head>
@@ -195,20 +218,16 @@ img{max-width:100%}[hidden]{display:none!important}
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
-      <section class="panel">
-        <h2>Zeichnung ausgeben <small>A4 quer</small></h2>
+    <div class="inputs">
+      <section class="panel" id="reqPanel">
+        <h2>Anforderung und Fensteranzahl <small>Start der Eingabe</small></h2>
         <div class="grid">
-          <label class="f"><span>Projekt</span><input id="proj" data-k="proj" type="text" class="txt" placeholder="z. B. Neubau Schule"></label>
-          <label class="f"><span>Position</span><input id="posn" data-k="posn" type="text" class="txt" placeholder="z. B. RA-Fenster TH 1, 3. OG"></label>
-          <label class="f"><span>Bearbeiter</span><input id="bearb" data-k="bearb" type="text" class="txt"></label>
+          <label class="f"><span>Gefordertes A<sub>g</sub> <b>[m²]</b></span><input id="soll" data-k="soll" type="text" inputmode="decimal" placeholder="optional"></label>
+          <label class="f"><span>Anzahl Fenster n</span><input id="n" data-k="n" type="text" inputmode="numeric"></label>
+          <label class="f"><span>Abstand a zwischen Fenstern</span><input id="a" data-k="a" type="text" inputmode="decimal" placeholder="mm"></label>
+          <label class="f"><span>Abzug Einbauten <b>[%]</b></span><input id="ded" data-k="ded" type="text" inputmode="decimal" placeholder="z. B. Insektenschutz"></label>
         </div>
-        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap">
-          <button type="button" id="dlPrint" class="primary">Drucken</button>
-          <button type="button" id="dlPdf">Als PDF</button>
-          <button type="button" id="dlSvg">Als SVG (Vektor)</button>
-        </div>
-        <p class="hint" id="dlState">Das Blatt im Format A4 quer enthält den Vertikalschnitt im Maßstab, alle Eingaben, den Rechenweg und die Hinweise. Auf iPhone und iPad öffnet „Als PDF“ das Teilen-Menü zum Sichern oder Weitergeben.</p>
+        <p class="hint">Mehrere identische Fenster: bei a ≤ ½ b gekoppelt, sonst einzeln gerechnet. Der Abzug erfasst Einbauten wie Insektenschutz oder Absturzsicherung.</p>
       </section>
 
       <section class="panel">
@@ -237,16 +256,22 @@ img{max-width:100%}[hidden]{display:none!important}
         </div>
         <div class="msg info" id="frameInfo"></div>
         <h3 class="subh"><span>Profildetails</span><button type="button" id="profDef">Standardwerte laden</button></h3>
-        <div class="grid">
-          <label class="f"><span>Abzugswert Ab</span><input id="ab" data-k="ab" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Rahmenprofiltiefe T1</span><input id="dr" data-k="dr" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Flügelprofiltiefe T2</span><input id="df" data-k="df" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Überschlag ü</span><input id="v" data-k="v" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Platz auf dem Rahmen R (oberhalb des Flügels)</span><input id="r" data-k="r" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Band: Abstand von Flügelkante By</span><input id="by" data-k="by" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Band: Abstand von Rahmenebene Bx</span><input id="bx" data-k="bx" type="text" inputmode="decimal"></label>
-          <label class="f"><span>i-Maß i</span><input id="im" data-k="im" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Platz auf dem Flügel S</span><input id="sf" data-k="sf" type="text" inputmode="decimal"></label>
+        <div class="profwrap">
+          <figure class="profsk">
+            <svg class="sk" viewBox="0 0 380 420" role="img" aria-labelledby="skTitle"><title id="skTitle">Profilskizze mit Maßen (schematisch, nicht maßstäblich)</title><defs><pattern id="skh" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="skh-bg" width="6" height="6"/><line class="skh-l" x1="0" y1="0" x2="0" y2="6"/></pattern></defs><rect class="sk-frame" x="190" y="40" width="140" height="80"/><path class="sk-sash" d="M168,95 H190 V120 H330 V170 H168 Z"/><rect class="sk-glass" x="245" y="170" width="8" height="80"/><rect class="sk-glass" x="275" y="170" width="8" height="80"/><path class="sk-break" d="M236,205 l10,-6 l10,12 l10,-12 l10,12 l10,-12 l10,6"/><path class="sk-sash" d="M168,250 H330 V300 H190 V325 H168 Z"/><rect class="sk-frame" x="190" y="300" width="140" height="70"/><g class="dim" data-dim="hinge"><circle class="sk-hinge" cx="150" cy="343" r="8"/><line class="sk-hx" x1="138" y1="343" x2="162" y2="343"/><line class="sk-hx" x1="150" y1="331" x2="150" y2="355"/></g><text class="sk-lab" x="260" y="86" text-anchor="middle">Rahmen</text><text class="sk-lab" x="260" y="150" text-anchor="middle">Flügel</text><text class="sk-lab" x="260" y="281" text-anchor="middle">Flügel</text><text class="sk-lab" x="260" y="342" text-anchor="middle">Rahmen</text><text class="sk-lab" x="150" y="372" text-anchor="middle">Band</text><path class="sk-arrow" d="M58,212 H18 M18,212 l8,-5 M18,212 l8,5"/><text class="sk-lab" x="38" y="230" text-anchor="middle">innen</text><text class="sk-lab" x="365" y="196" text-anchor="end">außen</text><g class="dim" data-dim="v"><line class="ex" x1="168" y1="95" x2="168" y2="21"/><line class="ex" x1="190" y1="40" x2="190" y2="21"/><line class="dl" x1="163" y1="26" x2="195" y2="26"/><line class="tk" x1="164.5" y1="29.5" x2="171.5" y2="22.5"/><line class="tk" x1="186.5" y1="29.5" x2="193.5" y2="22.5"/><text class="dt" id="sk-v" x="197" y="23" text-anchor="start"></text></g><g class="dim" data-dim="r"><line class="ex" x1="190" y1="40" x2="145" y2="40"/><line class="ex" x1="168" y1="95" x2="145" y2="95"/><line class="dl" x1="150" y1="35" x2="150" y2="100"/><line class="tk" x1="146.5" y1="43.5" x2="153.5" y2="36.5"/><line class="tk" x1="146.5" y1="98.5" x2="153.5" y2="91.5"/><text class="dt" id="sk-r" x="142" y="67.5" text-anchor="middle" transform="rotate(-90 142 67.5)"></text></g><g class="dim" data-dim="sf"><line class="ex" x1="168" y1="95" x2="119" y2="95"/><line class="ex" x1="168" y1="170" x2="119" y2="170"/><line class="dl" x1="124" y1="90" x2="124" y2="175"/><line class="tk" x1="120.5" y1="98.5" x2="127.5" y2="91.5"/><line class="tk" x1="120.5" y1="173.5" x2="127.5" y2="166.5"/><text class="dt" id="sk-sf" x="116" y="132.5" text-anchor="middle" transform="rotate(-90 116 132.5)"></text></g><g class="dim" data-dim="im"><line class="ex" x1="168" y1="250" x2="168" y2="207"/><line class="ex" x1="245" y1="250" x2="245" y2="207"/><line class="dl" x1="163" y1="212" x2="250" y2="212"/><line class="tk" x1="164.5" y1="215.5" x2="171.5" y2="208.5"/><line class="tk" x1="241.5" y1="215.5" x2="248.5" y2="208.5"/><text class="dt" id="sk-im" x="206" y="207" text-anchor="middle"></text></g><g class="dim" data-dim="df"><line class="ex" x1="330" y1="250" x2="330" y2="229"/><line class="dl" x1="163" y1="234" x2="335" y2="234"/><line class="tk" x1="164.5" y1="237.5" x2="171.5" y2="230.5"/><line class="tk" x1="326.5" y1="237.5" x2="333.5" y2="230.5"/><text class="dt" id="sk-df" x="206" y="229" text-anchor="middle"></text></g><g class="dim" data-dim="ab"><line class="ex" x1="190" y1="300" x2="119" y2="300"/><line class="ex" x1="168" y1="325" x2="119" y2="325"/><line class="dl" x1="124" y1="295" x2="124" y2="330"/><line class="tk" x1="120.5" y1="303.5" x2="127.5" y2="296.5"/><line class="tk" x1="120.5" y1="328.5" x2="127.5" y2="321.5"/><text class="dt" id="sk-ab" x="116" y="312.5" text-anchor="middle" transform="rotate(-90 116 312.5)"></text></g><g class="dim" data-dim="by"><line class="ex" x1="168" y1="325" x2="91" y2="325"/><line class="ex" x1="142" y1="343" x2="91" y2="343"/><line class="dl" x1="96" y1="320" x2="96" y2="348"/><line class="tk" x1="92.5" y1="328.5" x2="99.5" y2="321.5"/><line class="tk" x1="92.5" y1="346.5" x2="99.5" y2="339.5"/><text class="dt" id="sk-by" x="88" y="334.0" text-anchor="middle" transform="rotate(-90 88 334.0)"></text></g><g class="dim" data-dim="bx"><line class="ex" x1="150" y1="351" x2="150" y2="401"/><line class="ex" x1="190" y1="370" x2="190" y2="401"/><line class="dl" x1="145" y1="396" x2="195" y2="396"/><line class="tk" x1="146.5" y1="399.5" x2="153.5" y2="392.5"/><line class="tk" x1="186.5" y1="399.5" x2="193.5" y2="392.5"/><text class="dt" id="sk-bx" x="144" y="400" text-anchor="end"></text></g><g class="dim" data-dim="dr"><line class="ex" x1="330" y1="370" x2="330" y2="401"/><line class="dl" x1="185" y1="396" x2="335" y2="396"/><line class="tk" x1="186.5" y1="399.5" x2="193.5" y2="392.5"/><line class="tk" x1="326.5" y1="399.5" x2="333.5" y2="392.5"/><text class="dt" id="sk-dr" x="260" y="391" text-anchor="middle"></text></g></svg>
+            <figcaption>Schematisch, nicht maßstäblich. Die Werte kommen aus den Eingaben, das gerade bearbeitete Maß ist hervorgehoben.</figcaption>
+          </figure>
+          <div class="grid" id="profGrid">
+            <label class="f"><span><b class="code">Ab</b>Abzugswert</span><input id="ab" data-k="ab" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">T1</b>Rahmenprofiltiefe</span><input id="dr" data-k="dr" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">T2</b>Flügelprofiltiefe</span><input id="df" data-k="df" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">ü</b>Überschlag</span><input id="v" data-k="v" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">R</b>Platz auf dem Rahmen (oberhalb des Flügels)</span><input id="r" data-k="r" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">S</b>Platz auf dem Flügel</span><input id="sf" data-k="sf" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">By</b>Band: Abstand von Flügelkante</span><input id="by" data-k="by" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">Bx</b>Band: Abstand von Rahmenebene</span><input id="bx" data-k="bx" type="text" inputmode="decimal"></label>
+            <label class="f"><span><b class="code">i</b>i-Maß</span><input id="im" data-k="im" type="text" inputmode="decimal"></label>
+          </div>
         </div>
         <p class="hint">Standardwerte (Hersteller „Individuell“): Ab 60, T1 70, T2 80, ü 10, R 50, By 10, Bx 10, i 57, S 45. Alle Werte lassen sich ändern und wirken direkt auf Berechnung und Zeichnung. Lichte Öffnung = Flügelaußenmaß − Ab. Der Flügel überdeckt den Rahmen je Seite um Ab/2 und steht um den Überschlag ü vor der Rahmenebene. R ist der Platz auf dem Rahmen oberhalb des Flügels, die Rahmenansicht ergibt sich zu Ab/2 + R. Die Drehachse liegt Bx vor der Rahmenebene und By außerhalb der Flügelkante. i-Maß und Platz auf dem Flügel werden für die Antriebsmontage dokumentiert und gehen nicht in den Querschnitt ein.</p>
       </section>
@@ -256,11 +281,16 @@ img{max-width:100%}[hidden]{display:none!important}
         <div class="grid">
           <label class="f"><span>Laibungstiefe innen</span><input id="ti" data-k="ti" type="text" inputmode="decimal"></label>
           <label class="f"><span>Laibungstiefe außen</span><input id="ta" data-k="ta" type="text" inputmode="decimal"></label>
-          <label class="f"><span>Decke: UK über OK lichte Öffnung</span><input id="c" data-k="c" type="text" inputmode="decimal" placeholder="leer = keine Decke"></label>
-          <label class="f"><span>Vordach außen: UK über OK lichte Öffnung</span><input id="ca" data-k="ca" type="text" inputmode="decimal" placeholder="leer = kein Vordach"></label>
+          <label class="f"><span>Decke: UK über Flügeloberkante</span><input id="c" data-k="c" type="text" inputmode="decimal" placeholder="leer = keine Decke"></label>
+          <label class="f"><span>Vordach außen: UK über Flügeloberkante</span><input id="ca" data-k="ca" type="text" inputmode="decimal" placeholder="leer = kein Vordach"></label>
           <label class="f"><span>Vordach Auskragung</span><input id="cl" data-k="cl" type="text" inputmode="decimal"></label>
         </div>
-        <p class="hint">Laibungstiefe gemessen von der Rahmenfläche bis zur Wandoberfläche. Die Decke liegt raumseitig, das Vordach außen. Sturz und Brüstung ergeben sich aus der Ansichtsbreite des Rahmens.</p>
+        <div class="row" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" id="ceilFlush">Decke bündig mit Laibung</button>
+          <button type="button" id="ovFlush">Vordach bündig mit Laibung</button>
+        </div>
+        <p class="hint" id="ceilHint"></p>
+        <p class="hint">Laibungstiefe gemessen von der Rahmenfläche bis zur Wandoberfläche. Die Decke liegt raumseitig, das Vordach außen. Sturz und Brüstung ergeben sich aus der Rahmenansicht (Ab/2 + R).</p>
       </section>
 
       <section class="panel">
@@ -278,14 +308,18 @@ img{max-width:100%}[hidden]{display:none!important}
       </section>
 
       <section class="panel">
-        <h2>Anforderung und Kopplung</h2>
+        <h2>Zeichnung ausgeben <small>A4 quer</small></h2>
         <div class="grid">
-          <label class="f"><span>Gefordertes A<sub>g</sub> <b>[m²]</b></span><input id="soll" data-k="soll" type="text" inputmode="decimal" placeholder="optional"></label>
-          <label class="f"><span>Anzahl Fenster n</span><input id="n" data-k="n" type="text" inputmode="numeric"></label>
-          <label class="f"><span>Abstand a zwischen Fenstern</span><input id="a" data-k="a" type="text" inputmode="decimal" placeholder="mm"></label>
-          <label class="f"><span>Abzug Einbauten <b>[%]</b></span><input id="ded" data-k="ded" type="text" inputmode="decimal" placeholder="z. B. Insektenschutz"></label>
+          <label class="f"><span>Projekt</span><input id="proj" data-k="proj" type="text" class="txt" placeholder="z. B. Neubau Schule"></label>
+          <label class="f"><span>Position</span><input id="posn" data-k="posn" type="text" class="txt" placeholder="z. B. RA-Fenster TH 1, 3. OG"></label>
+          <label class="f"><span>Bearbeiter</span><input id="bearb" data-k="bearb" type="text" class="txt"></label>
         </div>
-        <p class="hint">Mehrere identische Fenster: bei a ≤ ½ b gekoppelt, sonst einzeln gerechnet. Der Abzug erfasst Einbauten wie Insektenschutz oder Absturzsicherung.</p>
+        <div class="row" style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" id="dlPrint" class="primary">Drucken</button>
+          <button type="button" id="dlPdf">Als PDF</button>
+          <button type="button" id="dlSvg">Als SVG (Vektor)</button>
+        </div>
+        <p class="hint" id="dlState">Ausdruck und PDF haben zwei Blätter im Format A4 quer: Blatt 1 mit Vertikalschnitt im Maßstab, Eingaben, Rechenweg und Hinweisen, Blatt 2 mit dem 3D-Modell von innen, außen und seitlich. Die SVG-Datei enthält Blatt 1. Auf iPhone und iPad öffnet „Als PDF“ das Teilen-Menü zum Sichern oder Weitergeben.</p>
       </section>
 
       <section class="panel">
@@ -303,13 +337,13 @@ img{max-width:100%}[hidden]{display:none!important}
   </div>
 </div>
 
-<div id="printSheet" aria-hidden="true"><img id="printImg" alt=""></div>
+<div id="printSheet" aria-hidden="true"><img id="printImg" alt=""><img id="printImg2" alt=""></div>
 <script>
 (function(){
 const KEY='ra-fluegelsim-v1';
-const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',sf:'45',ti:'150',ta:'100',c:'200',ca:'',cl:'800',soll:'1,0',n:'1',a:'',ded:''};
+const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',sf:'45',ti:'150',ta:'100',c:'170',ca:'',cRef:'fok',cl:'800',soll:'1,0',n:'1',a:'',ded:''};
 let S=Object.assign({},DEF);
-try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){delete r.u;delete r.hf;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';S=Object.assign({},DEF,r)}}catch(e){}
+try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){delete r.u;delete r.hf;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';if(r.cRef!=='fok'){const d=(isNaN(num(r.ab))?60:num(r.ab))/2;['c','ca'].forEach(k=>{if(r[k]!==undefined&&!isNaN(num(r[k])))r[k]=String(Math.round(num(r[k])-d))});r.cRef='fok'}S=Object.assign({},DEF,r)}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const num=v=>{const s=String(v??'').trim().replace(/\s/g,'').replace(',','.');return s===''?NaN:Number(s)};
 const has=v=>!isNaN(num(v));
@@ -348,10 +382,10 @@ function params(){
   P.ue=P.ab/2;P.hf=P.fh;P.pr=P.r;P.u=P.ue+P.r;
   if(P.ue>0&&!(P.v>0))bad.push('v');
   if(!bad.includes('df')&&P.df-P.v<=1e-9)bad.push('df');
-  P.c=has(S.c)?m('c'):null; P.ca=has(S.ca)?m('ca'):null; P.cl=has(S.cl)?Math.max(0,m('cl')):0.8;
-  if(P.c!==null&&!(P.c>=P.u)){bad.push('c')}
-  if(P.ca!==null&&!(P.ca>=P.u)){bad.push('ca')}
-  if(!bad.includes('df')&&!bad.includes('dr')&&P.df-P.v>P.dr+1e-9)bad.push('df');
+  // Decke/Vordach are entered above the sash top edge; internally measured from the clear opening (+ Ab/2)
+  P.c=has(S.c)?m('c')+P.ue:null; P.ca=has(S.ca)?m('ca')+P.ue:null; P.cl=has(S.cl)?Math.max(0,m('cl')):0.8;
+  if(P.c!==null&&!(P.c>=P.u-1e-6)){bad.push('c')}else if(P.c!==null)P.c=Math.max(P.c,P.u)
+  if(P.ca!==null&&!(P.ca>=P.u-1e-6)){bad.push('ca')}else if(P.ca!==null)P.ca=Math.max(P.ca,P.u)
   if(P.v<0||P.v>P.ti+P.ta+P.dr)bad.push('v');
   P.n=Math.max(1,Math.round(num(S.n))||1);P.a=has(S.a)?m('a'):NaN;
   if(P.n>1&&isNaN(P.a))bad.push('a');
@@ -513,6 +547,8 @@ function drawChart(P,curve,aMax,aCur,aReq){
 const $=id=>document.getElementById(id);
 function update(){
   document.querySelectorAll('#modes button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===S.mode)));
+  {const Pq=params();$('ceilHint').textContent=isFinite(Pq.u)?`Decke und Vordach werden ab der Flügeloberkante gemessen. Die Laibungsoberkante liegt R = ${mm(Pq.pr)} mm darüber. Das ist der kleinste Wert; bei genau diesem Wert bilden Laibung und Decke eine Fläche.`:''}
+  updSketch();
   document.querySelectorAll('#dimMode button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dim===(S.dim==='licht'?'licht':'fa'))));$('gridFa').hidden=S.dim==='licht';$('gridLicht').hidden=S.dim!=='licht';
   document.querySelectorAll('#triSel button').forEach(b=>{const on=S[b.dataset.tri]!==false;b.setAttribute('aria-pressed',String(on));b.querySelector('small').textContent='Ansicht von innen · '+(on?'zählt mit':'nicht berücksichtigt')});
   document.querySelectorAll('#sides button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.side===(S.side==='merk'?'merk':'exakt'))));
@@ -523,7 +559,7 @@ function update(){
   $('alphaR').value=a;
   const msgs=[];
   if(P.bad.length){
-    const names={b:'Lichte Breite b',h:'Lichte Höhe h',fb:'Flügelaußenbreite FB (muss größer als Ab sein)',fh:'Flügelaußenhöhe FH (muss größer als Ab sein)',ab:'Abzugswert Ab (nicht negativ)',r:'Platz auf dem Rahmen R (nicht negativ)',df:'Flügelprofiltiefe T2 (muss größer als ü sein; T2 − ü darf nicht größer als T1 sein)',dr:'Rahmenprofiltiefe T1',v:'Überschlag ü (muss größer als 0 sein, damit der Flügel auf dem Rahmen aufliegt)',ti:'Laibung innen',ta:'Laibung außen',c:'Decke (muss ≥ Ansichtsbreite Rahmen sein)',ca:'Vordach (muss ≥ Ansichtsbreite Rahmen sein)',a:'Abstand a'};
+    const names={b:'Lichte Breite b',h:'Lichte Höhe h',fb:'Flügelaußenbreite FB (muss größer als Ab sein)',fh:'Flügelaußenhöhe FH (muss größer als Ab sein)',ab:'Abzugswert Ab (nicht negativ)',r:'Platz auf dem Rahmen R (nicht negativ)',df:'Flügelprofiltiefe T2 (muss größer als ü sein)',dr:'Rahmenprofiltiefe T1',v:'Überschlag ü (muss größer als 0 sein, damit der Flügel auf dem Rahmen aufliegt)',ti:'Laibung innen',ta:'Laibung außen',c:`Decke (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R, sonst läge sie unter der Laibungsoberkante)`,ca:`Vordach (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R)`,a:'Abstand a'};
     $('msgs').innerHTML=`<div class="msg bad">Bitte prüfen: ${P.bad.map(k=>names[k]||k).join(', ')}.</div>`;
     LAST=null;req3D();$('frameInfo').textContent='';$('kpis').innerHTML='';$('steps').textContent='';$('svgHost').innerHTML='';$('chartHost').innerHTML='';return}
   // scan angles
@@ -592,14 +628,18 @@ function boxFaces(x0,x1,y0,y1,z0,z1){const v=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[
 const sub3=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],dot3=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],
   cross3=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],
   norm3=a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/l,a[1]/l,a[2]/l]};
-function build3D(P,sc){
+function themeColors3D(){
   const C={wall:cssColor('--wall',[201,206,212]),frame:cssColor('--frame',[93,107,122]),glass:cssColor('--glass',[207,227,243]),
     ok:cssColor('--ok',[29,122,76]),muted:cssColor('--muted',[91,104,118]),blue:cssColor('--blue',[31,79,138]),bad:cssColor('--bad',[179,38,30]),fg:cssColor('--fg',[24,34,45])};
   const bgc=cssColor('--surface',[255,255,255]);if((bgc[0]*.3+bgc[1]*.59+bgc[2]*.11)<90){const lift=c=>c.map(x=>Math.min(255,Math.round(x*1.45+12)));C.wall=lift(C.wall);C.frame=lift(C.frame)}
+  return C}
+const PRINT3D={wall:[201,206,212],frame:[93,107,122],glass:[207,227,243],ok:[29,122,76],muted:[91,104,118],blue:[31,79,138],bad:[179,38,30],fg:[24,34,45]};
+function build3D(P,sc,Cin){
+  const C=Cin?Object.assign({},Cin):themeColors3D();
   const items=[];const solid=(faces,col,edge)=>faces.forEach(f=>items.push({pts:f,col,solid:true,edge}));
   const {b,h,u,dr,ue,v,df}=P;const xi=-P.ti,xa=dr+P.ta,m=0.3;
   const Z0=-u-m,Z1=b+u+m,Yb=-u-m;let Yt=h+u+m;
-  if(P.c!==null)Yt=Math.max(Yt,h+P.c+0.2);if(P.ca!==null)Yt=Math.max(Yt,h+P.ca+0.16);
+  if(P.c!==null)Yt=h+P.c+0.2;if(P.ca!==null)Yt=Math.max(Yt,h+P.ca+0.16);
   // wall around the opening
   // split at the frame so no hidden contact faces compete with the frame in the painter's sort
   // face order: 0 z0, 1 z1, 2 y0, 3 y1, 4 x0, 5 x1
@@ -640,20 +680,13 @@ function build3D(P,sc){
   for(const it of items)for(const q of it.pts)for(let k=0;k<3;k++){lo[k]=Math.min(lo[k],q[k]);hi[k]=Math.max(hi[k],q[k])}
   const target=[(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2];
   const size=Math.max(hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2])*0.92;
-  return{items,labels,hsk,blue:C.blue,target,size};
+  return{items,labels,hsk,C,blue:C.blue,target,size};
 }
 let raf3=0;function req3D(){if(VIEW!=='3d')return;if(!raf3)raf3=requestAnimationFrame(()=>{raf3=0;draw3D()})}
-function draw3D(){
-  const host=$('host3d');if(host.hidden)return;const cv=$('cv3d');const ctx=cv.getContext('2d');
-  const W=host.clientWidth||600,H=Math.round(Math.min(Math.max(W*0.78,300),560));const dpr=window.devicePixelRatio||1;
-  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
-  cv.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
-  ctx.fillStyle=`rgb(${cssColor('--surface',[255,255,255])})`;ctx.fillRect(0,0,W,H);
-  const muted=`rgb(${cssColor('--muted',[91,104,118])})`;
-  if(!LAST){ctx.fillStyle=muted;ctx.font='14px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText('Bitte die markierten Eingaben korrigieren.',W/2,H/2);return}
-  const M=build3D(LAST.P,LAST.sc);
-  const dist=M.size*2.1/CAM.zoom,cp=Math.cos(CAM.pitch);
-  const eye=[M.target[0]+dist*cp*Math.cos(CAM.yaw),M.target[1]+dist*Math.sin(CAM.pitch),M.target[2]+dist*cp*Math.sin(CAM.yaw)];
+function render3D(ctx,W,H,cam,Cin,bg,opt){opt=opt||{};const k=opt.k||1;
+  const M=build3D(LAST.P,LAST.sc,Cin);const muted=`rgb(${M.C.muted})`;
+  const dist=M.size*2.1/cam.zoom,cp=Math.cos(cam.pitch);
+  const eye=[M.target[0]+dist*cp*Math.cos(cam.yaw),M.target[1]+dist*Math.sin(cam.pitch),M.target[2]+dist*cp*Math.sin(cam.yaw)];
   const fw=norm3(sub3(M.target,eye)),rt=norm3(cross3(fw,[0,1,0])),up=cross3(rt,fw);const foc=Math.min(W,H)*1.15;
   const proj=q=>{const d=sub3(q,eye);const z=dot3(d,fw);return[W/2+foc*dot3(d,rt)/z,H/2-foc*dot3(d,up)/z,z]};
   const light=norm3([-0.35,0.85,0.4]);const polys=[];
@@ -674,19 +707,31 @@ function draw3D(){
   for(const pl of pr){
     ctx.beginPath();pl.sp.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.closePath();
     ctx.globalAlpha=pl.alpha;ctx.fillStyle=`rgb(${pl.col})`;ctx.fill();
-    if(pl.alpha===1){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=0.8;ctx.stroke()}
+    if(pl.alpha===1){ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=0.8*k;ctx.stroke()}
     if(!pl.ec)continue;
-    ctx.globalAlpha=pl.alpha===1?1:0.9;ctx.strokeStyle=`rgb(${pl.ec})`;ctx.lineWidth=pl.alpha===1?1:1.5;ctx.setLineDash(pl.dash?[5,4]:[]);
-    ctx.beginPath();for(let k=0;k<pl.sp.length;k++){if(!pl.edges[k])continue;const A=pl.sp[k],B=pl.sp[(k+1)%pl.sp.length];ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1])}
+    ctx.globalAlpha=pl.alpha===1?1:0.9;ctx.strokeStyle=`rgb(${pl.ec})`;ctx.lineWidth=(pl.alpha===1?1:1.5)*k;ctx.setLineDash(pl.dash?[5*k,4*k]:[]);
+    ctx.beginPath();for(let q=0;q<pl.sp.length;q++){if(!pl.edges[q])continue;const A=pl.sp[q],B=pl.sp[(q+1)%pl.sp.length];ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1])}
     ctx.stroke();ctx.setLineDash([]);
   }
-  ctx.globalAlpha=1;ctx.font='12px "IBM Plex Mono",ui-monospace,monospace';ctx.textAlign='center';
+  ctx.globalAlpha=1;ctx.font=`${12*k}px "IBM Plex Mono",ui-monospace,monospace`;ctx.textAlign='center';
   const inPoly=(x,y,P_)=>{let c=false;for(let i=0,j=P_.length-1;i<P_.length;j=i++){const a=P_[i],b_=P_[j];if((a[1]>y)!==(b_[1]>y)&&x<(b_[0]-a[0])*(y-a[1])/(b_[1]-a[1])+a[0])c=!c}return c};
   const hidden=sp=>pr.some(pl=>pl.alpha===1&&pl.z<sp[2]-0.03&&inPoly(sp[0],sp[1],pl.sp));
   const placed=[];
-  for(const [t,q,lc] of M.labels){const sp=proj(q);if(sp[2]<=0.02||hidden(sp))continue;if(placed.some(o=>Math.abs(o[0]-sp[0])<70&&Math.abs(o[1]-sp[1])<18))continue;placed.push(sp);ctx.fillStyle=`rgb(${cssColor('--surface',[255,255,255])})`;const w_=ctx.measureText(t).width+8;ctx.globalAlpha=.8;ctx.fillRect(sp[0]-w_/2,sp[1]-12,w_,16);ctx.globalAlpha=1;ctx.fillStyle=lc?`rgb(${lc})`:muted;ctx.fillText(t,sp[0],sp[1])}
-  ctx.textAlign='left';if(M.hsk){ctx.fillStyle=`rgb(${M.blue})`;ctx.fillText(M.hsk,10,H-28)}
-  ctx.fillStyle=muted;ctx.fillText(`α = ${f1(LAST.a)}°  ·  A_g = ${LAST.sc.hits.length?'–':f3(LAST.R.Ag)+' m²'}`,10,H-10);
+  for(const [t,q,lc] of M.labels){const sp=proj(q);if(sp[2]<=0.02||hidden(sp))continue;if(placed.some(o=>Math.abs(o[0]-sp[0])<70*k&&Math.abs(o[1]-sp[1])<18*k))continue;placed.push(sp);
+    ctx.fillStyle=`rgb(${bg})`;const w_=ctx.measureText(t).width+8*k;ctx.globalAlpha=.8;ctx.fillRect(sp[0]-w_/2,sp[1]-12*k,w_,16*k);ctx.globalAlpha=1;
+    ctx.fillStyle=lc?`rgb(${lc})`:muted;ctx.fillText(t,sp[0],sp[1])}
+  if(opt.hud!==false){ctx.textAlign='left';if(M.hsk){ctx.fillStyle=`rgb(${M.blue})`;ctx.fillText(M.hsk,10*k,H-28*k)}
+    ctx.fillStyle=muted;ctx.fillText(`α = ${f1(LAST.a)}°  ·  A_g = ${LAST.sc.hits.length?'–':f3(LAST.R.Ag)+' m²'}`,10*k,H-10*k)}
+  return M;
+}
+function draw3D(){
+  const host=$('host3d');if(host.hidden)return;const cv=$('cv3d');const ctx=cv.getContext('2d');
+  const W=host.clientWidth||600,H=Math.round(Math.min(Math.max(W*0.78,300),560));const dpr=window.devicePixelRatio||1;
+  if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+  cv.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+  const bg=cssColor('--surface',[255,255,255]);ctx.fillStyle=`rgb(${bg})`;ctx.fillRect(0,0,W,H);
+  if(!LAST){ctx.fillStyle=`rgb(${cssColor('--muted',[91,104,118])})`;ctx.font='14px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText('Bitte die markierten Eingaben korrigieren.',W/2,H/2);return}
+  render3D(ctx,W,H,CAM,null,bg,{});
 }
 function setView(v){VIEW=v;try{localStorage.setItem(KEY+'-view',v)}catch(e){}
   $('svgHost').hidden=v!=='2d';$('host3d').hidden=v!=='3d';
@@ -752,7 +797,7 @@ function sheetSVG(raster){
   o+=`<text x="${X0}" y="${y}" font-size="2.6" fill="#5b6876">Maßgebend: ${R.capped?'lichte Öffnung n · b · h':sc.limited?E(sc.S.name)+' (s ≤ w)':'Öffnungsweite w'} · Kollisionsgrenze ${aMax<90?f1(aMax)+'°':'keine bis 90°'}</text>`;y+=8;
   o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Eingaben</text>`;y+=5;
   const v=x=>has(x)?num(x).toLocaleString('de-DE')+' mm':'–';
-  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Platz auf dem Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über OK lichte Öffnung',has(S.c)?v(S.c):'keine'],['Vordach UK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
+  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Platz auf dem Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über Flügeloberkante',has(S.c)?v(S.c)+(Math.abs(num(S.c)/1000-P.pr)<1e-6?' (bündig mit Laibung)':''):'keine'],['Vordach UK über Flügel-OK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
   rows.forEach(([k,val],i)=>{if(i%2===0)o+=`<rect x="${X0}" y="${y-2.6}" width="116" height="3.3" fill="#f2f4f6"/>`;o+=`<text x="${X0+1}" y="${y}" font-size="2.3" fill="#5b6876">${E(k)}</text><text x="${X0+50}" y="${y}" font-size="2.3">${E(val)}</text>`;y+=3.3});
   y+=4;o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Rechenweg</text>`;y+=4.5;
   for(const l of wrapLines(st,76)){if(y>150)break;o+=`<text class="mono" x="${X0}" y="${y}" font-size="2.15" xml:space="preserve">${E(l)}</text>`;y+=3}
@@ -761,10 +806,40 @@ function sheetSVG(raster){
   // title block
   const tb=[['Projekt',S.proj||''],['Position',S.posn||''],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
   o+=`<rect x="163" y="172" width="124" height="28" fill="#ffffff" stroke="#18222d" stroke-width="0.4"/>`;
-  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – freier Querschnitt</text>`;
+  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – freier Querschnitt</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt 1 / 2</text>`;
   tb.forEach(([k,val],i)=>{const yy=183+i*4.6;o+=`<line x1="163" y1="${yy-3.4}" x2="287" y2="${yy-3.4}" stroke="#18222d" stroke-width="0.2"/><text x="166" y="${yy}" font-size="2.3" fill="#5b6876">${k}</text><text x="186" y="${yy}" font-size="2.8">${E(val)}</text>`});
   return o+'</svg>';
 }
+/* ---------- sheet 2: 3D views (A4 landscape) ---------- */
+const SHEET2_VIEWS=[['innen',14,29,176,141,'Von innen'],['aussen',194,29,89,68,'Von außen'],['seite',194,103,89,67,'Seitlich']];
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('Zeichnung konnte nicht gerendert werden'));i.src=src})}
+function sheet2SVG(raster){
+  const {P,sc,R,a}=LAST;const E=t=>esc(String(t)).replace(/"/g,'&quot;');const M=build3D(P,sc,PRINT3D);
+  let o=`<svg xmlns="http://www.w3.org/2000/svg" width="${raster?raster[0]:'297mm'}" height="${raster?raster[1]:'210mm'}" viewBox="0 0 297 210"><style>text{font-family:Arial,Helvetica,sans-serif;fill:#18222d}</style>`;
+  o+=`<rect width="297" height="210" fill="#ffffff"/><rect x="10" y="10" width="277" height="190" fill="none" stroke="#18222d" stroke-width="0.5"/>`;
+  o+=`<text x="14" y="17" font-size="4" font-weight="bold">3D-Ansicht</text>`;
+  o+=`<text x="14" y="22.5" font-size="2.6" fill="#5b6876">${E(MODES[P.mode])} · Öffnungswinkel α = ${f1(a)}° · nicht maßstäblich</text>`;
+  SHEET2_VIEWS.forEach(([,x,y,w,h,cap])=>{o+=`<text x="${x}" y="${y-1.3}" font-size="2.6" font-weight="bold" fill="#5b6876">${cap}</text>`});
+  let y=178;
+  o+=`<text x="14" y="${y}" font-size="3.2" font-weight="bold">${sc.hits.length?'Kollision – kein gültiger Querschnitt':'A_g = '+f3(R.Ag)+' m²'}</text>`;
+  if(M.hsk)o+=`<text x="60" y="${y}" font-size="2.6" fill="#1f4f8a">${E(M.hsk)}</text>`;
+  y+=6;
+  const lg=[['#1f4f8a',0.45,false,'Lüftungsfläche an der Hauptschließkante zum maßgebenden Bauteil'],['#1d7a4c',0.45,false,'Seitendreiecke außerhalb der Laibung'],['#5b6876',0.15,true,'abgewählt bzw. nicht maßgebend']];
+  lg.forEach(([c,op,dash,t],i)=>{const yy=y+i*4.4;o+=`<rect x="14" y="${yy-2.5}" width="6" height="3" fill="${c}" fill-opacity="${op}" stroke="${c}" stroke-width="0.3"${dash?' stroke-dasharray="0.8 0.6"':''}/><text x="22" y="${yy}" font-size="2.5">${E(t)}</text>`});
+  const tb=[['Projekt',S.proj||''],['Position',S.posn||''],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
+  o+=`<rect x="163" y="172" width="124" height="28" fill="#ffffff" stroke="#18222d" stroke-width="0.4"/>`;
+  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – 3D-Ansicht</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt 2 / 2</text>`;
+  tb.forEach(([kk,val],i)=>{const yy=183+i*4.6;o+=`<line x1="163" y1="${yy-3.4}" x2="287" y2="${yy-3.4}" stroke="#18222d" stroke-width="0.2"/><text x="166" y="${yy}" font-size="2.3" fill="#5b6876">${kk}</text><text x="186" y="${yy}" font-size="2.8">${E(val)}</text>`});
+  return o+'</svg>';
+}
+async function sheet2Canvas(W,H){const k=W/297;const cv=document.createElement('canvas');cv.width=W;cv.height=H;const cx=cv.getContext('2d');
+  cx.fillStyle='#fff';cx.fillRect(0,0,W,H);
+  cx.drawImage(await loadImg('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(sheet2SVG([W,H]))),0,0,W,H);
+  for(const [cam,x,y,w,h] of SHEET2_VIEWS){const c=document.createElement('canvas');c.width=Math.round(w*k);c.height=Math.round(h*k);
+    const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);
+    render3D(g,c.width,c.height,{yaw:CAMS[cam][0],pitch:cam==='innen'?0.2:CAMS[cam][1],zoom:cam==='innen'?1.05:0.92},PRINT3D,[255,255,255],{hud:false,k:Math.max(1,c.width/650)});
+    cx.drawImage(c,Math.round(x*k),Math.round(y*k));cx.strokeStyle='#d3d9e0';cx.lineWidth=Math.max(1,0.3*k);cx.strokeRect(Math.round(x*k),Math.round(y*k),c.width,c.height)}
+  return cv}
 const fileBase=()=>('RA-Querschnitt '+(S.posn||S.proj||'Position')+' '+new Date().toISOString().slice(0,10)).replace(/[\\/:*?"<>|]+/g,'-').trim();
 const coarse=()=>window.matchMedia&&matchMedia('(pointer:coarse)').matches;
 async function saveFile(name,blob){
@@ -776,19 +851,21 @@ async function saveFile(name,blob){
   return 'Gespeichert: '+name}
 function guard(){if(!LAST){$('dlState').textContent='Bitte zuerst die markierten Eingaben korrigieren.';return false}return true}
 const enc=new TextEncoder();
-function makePdf(jpeg,w,h,title){ // minimal one-page PDF, A4 landscape, image full page
+function makePdf(pages,title){ // minimal PDF, one A4 landscape page per JPEG image
   const parts=[];let len=0;const offs=[];
   const add=x=>{const u=typeof x==='string'?enc.encode(x):x;parts.push(u);len+=u.length};
-  const obj=(n,s)=>{offs[n]=len;add(`${n} 0 obj\n${s}\nendobj\n`)};
+  const obj=(n,s_)=>{offs[n]=len;add(`${n} 0 obj\n${s_}\nendobj\n`)};
   add('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+  const n=pages.length,pid=i=>3+3*i;
   obj(1,'<< /Type /Catalog /Pages 2 0 R >>');
-  obj(2,'<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
-  obj(3,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 841.89 595.28] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>');
-  offs[4]=len;add(`4 0 obj\n<< /Type /XObject /Subtype /Image /Width ${w} /Height ${h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpeg.length} >>\nstream\n`);add(jpeg);add('\nendstream\nendobj\n');
-  const cs='q 841.89 0 0 595.28 0 0 cm /Im0 Do Q';obj(5,`<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`);
-  const t=title.replace(/[\\()]/g,'').replace(/[^\x20-\x7E]/g,'_');obj(6,`<< /Title (${t}) /Creator (RA-Fluegelsimulation) >>`);
-  const xref=len;let x='xref\n0 7\n0000000000 65535 f \n';for(let i=1;i<=6;i++)x+=String(offs[i]).padStart(10,'0')+' 00000 n \n';
-  add(x+`trailer\n<< /Size 7 /Root 1 0 R /Info 6 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
+  obj(2,`<< /Type /Pages /Kids [${pages.map((_,i)=>pid(i)+' 0 R').join(' ')}] /Count ${n} >>`);
+  pages.forEach((pg,i)=>{const P_=pid(i),I_=P_+1,C_=P_+2;
+    obj(P_,`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 841.89 595.28] /Resources << /XObject << /Im0 ${I_} 0 R >> >> /Contents ${C_} 0 R >>`);
+    offs[I_]=len;add(`${I_} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${pg.w} /Height ${pg.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${pg.jpeg.length} >>\nstream\n`);add(pg.jpeg);add('\nendstream\nendobj\n');
+    const cs='q 841.89 0 0 595.28 0 0 cm /Im0 Do Q';obj(C_,`<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`)});
+  const info=3+3*n;const t=title.replace(/[\\()]/g,'').replace(/[^\x20-\x7E]/g,'_');obj(info,`<< /Title (${t}) /Creator (RA-Fluegelsimulation) >>`);
+  const size=info+1,xref=len;let x=`xref\n0 ${size}\n0000000000 65535 f \n`;for(let i=1;i<size;i++)x+=String(offs[i]).padStart(10,'0')+' 00000 n \n';
+  add(x+`trailer\n<< /Size ${size} /Root 1 0 R /Info ${info} 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
   return new Blob(parts,{type:'application/pdf'})}
 const svgUrl=svg=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 $('dlSvg').addEventListener('click',async()=>{if(!guard())return;
@@ -797,11 +874,16 @@ $('dlPdf').addEventListener('click',async()=>{if(!guard())return;const btn=$('dl
   try{const W=3508,H=2480;const img=new Image();
     await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(new Error('Zeichnung konnte nicht gerendert werden'));img.src=svgUrl(sheetSVG([W,H]))});
     const cv=document.createElement('canvas');cv.width=W;cv.height=H;const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,W,H);cx.drawImage(img,0,0,W,H);
-    const blob=await new Promise(r=>cv.toBlob(r,'image/jpeg',0.92));const jpeg=new Uint8Array(await blob.arrayBuffer());
-    $('dlState').textContent=await saveFile(fileBase()+'.pdf',makePdf(jpeg,W,H,fileBase()));
+    const toJ=async c=>new Uint8Array(await (await new Promise(r=>c.toBlob(r,'image/jpeg',0.92))).arrayBuffer());
+    $('dlState').textContent='3D-Ansicht wird erstellt …';const cv2=await sheet2Canvas(W,H);
+    $('dlState').textContent=await saveFile(fileBase()+'.pdf',makePdf([{jpeg:await toJ(cv),w:W,h:H},{jpeg:await toJ(cv2),w:W,h:H}],fileBase()));
   }catch(e){$('dlState').textContent='PDF konnte nicht erstellt werden: '+(e.message||e)}finally{btn.disabled=false}});
-$('dlPrint').addEventListener('click',()=>{if(!guard())return;const img=$('printImg');
-  const go=()=>{setTimeout(()=>window.print(),50)};img.onload=go;img.src=svgUrl(sheetSVG());if(img.complete&&img.naturalWidth)go()});
+const setSrc=(img,src)=>new Promise((res,rej)=>{img.onload=()=>res();img.onerror=()=>rej(new Error('Bild konnte nicht geladen werden'));img.src=src});
+$('dlPrint').addEventListener('click',async()=>{if(!guard())return;const btn=$('dlPrint');btn.disabled=true;$('dlState').textContent='Druckansicht wird erstellt …';
+  try{const c2=await sheet2Canvas(2339,1654);
+    await Promise.all([setSrc($('printImg'),svgUrl(sheetSVG())),setSrc($('printImg2'),c2.toDataURL('image/jpeg',0.92))]);
+    $('dlState').textContent='Druckansicht mit 2 Blättern geöffnet.';setTimeout(()=>window.print(),50)}
+  catch(e){$('dlState').textContent='Druckansicht konnte nicht erstellt werden: '+(e.message||e)}finally{btn.disabled=false}});
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
 /* ---------- wiring ---------- */
@@ -814,6 +896,16 @@ $('dimMode').addEventListener('click',e=>{const b=e.target.closest('[data-dim]')
   const P=params();if(!P.bad.length){if(to==='licht'){S.b=String(Math.round(P.b*1000));S.h=String(Math.round(P.h*1000))}else{S.fb=String(Math.round(P.fb*1000));S.fh=String(Math.round(P.fh*1000))}}
   S.dim=to;['b','h','fb','fh'].forEach(k=>{const i=$(k);if(i)i.value=S[k]??''});save();update()});
 $('profDef').addEventListener('click',()=>{['ab','dr','df','v','r','by','bx','im','sf'].forEach(k=>{S[k]=DEF[k];const i=$(k);if(i)i.value=DEF[k]});save();update()});
+function updSketch(){const val=k=>has(S[k])?num(S[k]).toLocaleString('de-DE'):'–';const set=(id,t)=>{const e=document.getElementById('sk-'+id);if(e)e.textContent=t};
+  set('v','ü = '+val('v'));set('r','R = '+val('r'));set('sf','S = '+val('sf'));set('im','i = '+val('im'));set('df','T2 = '+val('df'));set('dr','T1 = '+val('dr'));
+  set('ab','Ab/2 = '+(has(S.ab)?(num(S.ab)/2).toLocaleString('de-DE'):'–'));set('by','By = '+val('by'));set('bx','Bx = '+val('bx'))}
+function hlDim(k){document.querySelectorAll('.sk .dim').forEach(d=>d.classList.toggle('hl',!!k&&(d.dataset.dim===k||((k==='bx'||k==='by')&&d.dataset.dim==='hinge'))))}
+document.querySelectorAll('#profGrid label.f').forEach(l=>{const i=l.querySelector('input');const k=i.dataset.k;
+  i.addEventListener('focus',()=>hlDim(k));i.addEventListener('blur',()=>hlDim(null));
+  l.addEventListener('mouseenter',()=>hlDim(k));l.addEventListener('mouseleave',()=>{if(document.activeElement!==i)hlDim(null);else hlDim(k)})});
+function flushTo(k){const P=params();if(!isFinite(P.pr))return;S[k]=String(Math.round(P.pr*1000));$(k).value=S[k];save();update()}
+$('ceilFlush').addEventListener('click',()=>flushTo('c'));
+$('ovFlush').addEventListener('click',()=>flushTo('ca'));
 $('triSel').addEventListener('click',e=>{const b=e.target.closest('[data-tri]');if(!b)return;S[b.dataset.tri]=S[b.dataset.tri]===false;save();update()});
 $('sides').addEventListener('click',e=>{const b=e.target.closest('[data-side]');if(!b)return;S.side=b.dataset.side;save();update()});
 $('reset').addEventListener('click',()=>{S=Object.assign({},DEF);document.querySelectorAll('input[data-k]').forEach(i=>i.value=S[i.dataset.k]??'');save();update()});
