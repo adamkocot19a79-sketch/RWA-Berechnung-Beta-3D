@@ -1,5 +1,5 @@
 // Offline-Cache der RA-Flügelsimulation. Bei Änderungen an der App VERSION erhöhen.
-const VERSION = 'ra-fluegel-v21';
+const VERSION = 'ra-fluegel-v23';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
