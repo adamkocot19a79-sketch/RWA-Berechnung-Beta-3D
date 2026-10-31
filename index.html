@@ -103,8 +103,11 @@ button{font:inherit;cursor:pointer;border-radius:3px;border:1px solid var(--line
 #cv3d:active{cursor:grabbing}
 .v3d-bar{display:flex;flex-direction:column;gap:8px;padding:10px 16px;border-top:1px solid var(--line)}
 .v3d-bar button{padding:6px 10px;font-size:.85rem}
-.angle{display:grid;grid-template-columns:auto 1fr 96px;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);background:var(--surface-2)}
+.angle{display:grid;grid-template-columns:auto 1fr 96px auto;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);background:var(--surface-2)}
 .angle .lab{font-family:var(--f-display);font-weight:600}
+.btn-max{background:var(--accent);color:var(--surface);border-color:var(--accent);font-weight:700;white-space:nowrap;line-height:1.15;padding:6px 12px}.btn-max small{display:block;font-weight:500;font-size:.75rem;opacity:.9}
+.btn-max:hover{filter:brightness(1.12)}.btn-max:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+@media (max-width:560px){.angle{grid-template-columns:1fr 84px auto}.angle .lab{grid-column:1/-1}}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 @media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .kpi{background:var(--surface);padding:10px 12px;min-width:0}
@@ -152,11 +155,37 @@ svg text{font-family:var(--f-mono)}
 .s-drv{fill:#c6cacf;stroke:var(--fg);stroke-width:.9}.s-drv-in{fill:none;stroke:var(--fg);stroke-width:.5;opacity:.45}
 .s-cons{fill:#7d848e;stroke:var(--fg);stroke-width:.6}.s-brk{fill:#9aa1aa;stroke:var(--fg);stroke-width:.7}
 .s-link{fill:var(--sig);stroke:var(--fg);stroke-width:.35}.s-link.alt{fill:#a9440c}.s-lpin{fill:var(--fg)}
+.view-kp .inputs>section:not(#kpPanel),.view-kp .stick .angle,.view-kp .draw .angle,.view-kp #kpis,.view-kp #msgs,.view-kp .stick>.panel{display:none!important}
+@media (min-width:901px){.view-kp .cols{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
+body:not(.view-kp) #kpPanel{display:none!important}
+.view-out .inputs>section:not(#outPanel),.view-out .stick .angle,.view-out .draw .angle,.view-out #kpis,.view-out #msgs,.view-out .stick>.panel{display:none!important}
+body:not(.view-out) #outPanel{display:none!important}
+@media (min-width:901px){.view-out .cols{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}}
+.outhost h3{font-family:var(--f-display);font-size:1rem;margin:4px 0 6px}.outhost ol{margin:0 0 12px 20px;padding:0;font-size:.9rem;line-height:1.5}.outhost figure{margin:0 0 14px}.outhost img{display:block;width:100%;border:1px solid var(--line);background:#fff}.outhost figcaption{font-size:.8rem;color:var(--muted);margin-top:4px}
+.s-pl{fill:#1f4f8a;fill-opacity:.12;stroke:#1f4f8a;stroke-width:1;stroke-dasharray:4 2}.t-pl{font-family:var(--f-mono);font-size:10px;fill:#1f4f8a;paint-order:stroke;stroke:var(--surface);stroke-width:3px}
+.winbox{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:4px;padding:10px;background:var(--surface-2)}
+.winbox .wtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.winbox .wtop b{font-family:var(--f-display)}
+.winbox .tog[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent);font-weight:700}
+.wrow{display:grid;grid-template-columns:70px repeat(3,minmax(0,1fr)) auto;gap:8px;align-items:center;font-size:.85rem}.wrow select,.wrow input{min-width:0;padding:6px 8px}
+.wrow.mot{grid-template-columns:70px minmax(0,1fr) minmax(0,1fr)}.wrow .wn{font-weight:600}
+@media (max-width:560px){.wrow{grid-template-columns:1fr 1fr}.wrow .wn{grid-column:1/-1}}
+.wintabs{display:contents}.wintabs button .x{display:inline-block;margin-left:8px;padding:0 5px;border-radius:3px;color:var(--muted);font-weight:700}.wintabs button .x:hover{background:var(--bad-soft);color:var(--bad)}
+.viewtabs #addWin{font-weight:600;color:var(--blue)}#host3d{border-top:1px solid var(--line)}
+.wrow.per{grid-template-columns:40px minmax(0,1fr) 70px;row-gap:6px;padding-bottom:6px;border-bottom:1px solid var(--line)}.wrow.per label{display:flex;flex-direction:column;font-size:.72rem;color:var(--muted);gap:2px;min-width:0}
+.winbox .wtop small{font-weight:400}
+
+.kpeff{margin:0;font-weight:600;color:var(--brand)}.kpeff.auto{color:var(--warn)}
+.kphost{padding:10px;background:var(--surface);overflow:auto}.kphost svg{display:block;width:100%;height:auto;max-height:none;min-width:0;background:#fff;border:1px solid var(--line)}
+.kphost{padding:6px}@media (max-width:700px){.kphost svg{min-width:720px}}
+.kphost .kp-empty{padding:40px 16px;text-align:center;color:var(--muted)}
+#kpOut .chk{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) auto}
+.s-sch-brk{fill:#d6dade;stroke:var(--fg);stroke-width:.7}.s-sch-a1{fill:#9aa1aa;stroke:var(--fg);stroke-width:.8}.s-sch-a2{fill:#b9bfc6;stroke:var(--fg);stroke-width:.8}.s-sch-slv{fill:#3a4049;stroke:var(--fg);stroke-width:.6}.s-sch-pl{stroke:#8e96a0;stroke-width:.7}.s-sch-slot{fill:var(--surface);stroke:var(--fg);stroke-width:.5}.s-sch-scr{fill:#eef0f2;stroke:var(--fg);stroke-width:.6}.s-sch-x{stroke:var(--fg);stroke-width:.5;fill:none}.s-sch-pin{fill:#5b6876;stroke:var(--fg);stroke-width:.6}.s-sch-pin-i{fill:var(--fg)}.s-sch-dim{stroke:#3c4652;stroke-width:.7;fill:none}.s-sch-box{fill:var(--surface);fill-opacity:.94;stroke:#3c4652;stroke-width:.8}.s-sch-ctx{stroke:#5d6b7a;stroke-width:1.4}.s-sch-ctx.f{stroke-width:.6;stroke-dasharray:3 2}.s-sch-sash{fill:#aeb8c3;fill-opacity:.35;stroke:#18222d;stroke-width:.6}.t-sch{font-family:var(--f-mono);font-size:10px;fill:#3c4652;paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 .t-drv{font-family:var(--f-mono);font-size:10px;fill:var(--sig);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 .e-bg{fill:var(--bad-soft);stroke:var(--bad)}.e-ic{stroke:var(--bad)}.e-ic-t,.e-h{fill:var(--bad);font-family:var(--f-display)}.e-sub,.e-l{fill:var(--fg);font-family:var(--f-body)}.e-v{fill:var(--fg);font-family:var(--f-mono)}.e-f{fill:var(--muted);font-family:var(--f-body)}
 .chk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.2fr) auto;gap:6px 10px;align-items:center;font-size:.84rem;margin-top:4px}
 .chk .h{font-size:.72rem;color:var(--muted);font-family:var(--f-mono);letter-spacing:.03em}
 .chk .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:0}
+.wrow .st{font-family:var(--f-mono);font-size:.7rem;padding:2px 8px;border-radius:99px;white-space:nowrap}.wrow .st.ok{background:var(--ok-soft);color:var(--ok)}.wrow .st.bad{background:var(--bad-soft);color:var(--bad)}
 .chk .st{font-family:var(--f-mono);font-size:.7rem;padding:2px 8px;border-radius:99px;white-space:nowrap;justify-self:start}
 .chk .st.ok{background:var(--ok-soft);color:var(--ok)}.chk .st.bad{background:var(--bad-soft);color:var(--bad)}
 .chk .st.warn{background:var(--warn-soft);color:var(--warn)}.chk .st.info{background:var(--blue-soft);color:var(--blue)}
@@ -217,11 +246,20 @@ img{max-width:100%}[hidden]{display:none!important}
     <div class="stick">
       <div class="draw">
         <div class="viewtabs" id="viewTabs" role="group" aria-label="Darstellung">
-          <button type="button" data-view="2d" aria-pressed="true">Schnitt</button>
-          <button type="button" data-view="3d" aria-pressed="false">3D-Modell</button>
+          <span id="winTabs" class="wintabs"></span>
+          <button type="button" data-view="kp" aria-pressed="false" id="tabKp">Kabelplan</button>
+          <button type="button" data-view="out" aria-pressed="false" id="tabOut">Ausgabe</button>
           <div class="secopts" id="secOpts"><button type="button" data-sec="full">Ganzes Element</button><button type="button" data-sec="edge">Öffnungskante</button></div>
         </div>
+        <div id="kpHost" class="kphost" hidden></div>
+        <div id="outHost" class="kphost outhost" hidden></div>
         <div id="svgHost"></div>
+        <div class="angle">
+          <span class="lab">Öffnungswinkel α</span>
+          <input type="range" id="alphaR" min="0" max="90" step="0.5" aria-label="Öffnungswinkel">
+          <input type="text" id="alphaN" inputmode="decimal" aria-label="Öffnungswinkel in Grad">
+          <button type="button" id="maxBtn" class="btn-max" title="Flügel auf den größten zulässigen Öffnungswinkel stellen">Max. Hub<small id="maxBtnV"></small></button>
+        </div>
         <div id="host3d" hidden>
           <canvas id="cv3d" tabindex="0" aria-label="3D-Modell des Fensters. Ziehen zum Drehen, Mausrad oder zwei Finger zum Zoomen, Pfeiltasten zum Drehen."></canvas>
           <div class="v3d-bar">
@@ -234,11 +272,6 @@ img{max-width:100%}[hidden]{display:none!important}
             </div>
             <p class="hint">Ziehen zum Drehen, Mausrad oder zwei Finger zum Zoomen. Blau: Lüftungsfläche an der Hauptschließkante zum maßgebenden Bauteil (Rahmen, Decke, Sturz oder Vordach), grau gestrichelt: nicht maßgebendes Maß. Grün: Seitendreiecke, grau gestrichelt: abgewählt.</p>
           </div>
-        </div>
-        <div class="angle">
-          <span class="lab">Öffnungswinkel α</span>
-          <input type="range" id="alphaR" min="0" max="90" step="0.5" aria-label="Öffnungswinkel">
-          <input type="text" id="alphaN" inputmode="decimal" aria-label="Öffnungswinkel in Grad">
         </div>
       </div>
       <div class="kpis" id="kpis"></div>
@@ -259,7 +292,7 @@ img{max-width:100%}[hidden]{display:none!important}
         <h2>Anforderung und Fensteranzahl <small>Start der Eingabe</small></h2>
         <div class="grid">
           <label class="f"><span>Gefordertes A<sub>g</sub> <b>[m²]</b></span><input id="soll" data-k="soll" type="text" inputmode="decimal" placeholder="optional"></label>
-          <label class="f"><span>Anzahl Fenster n</span><input id="n" data-k="n" type="text" inputmode="numeric"></label>
+          <label class="f"><span>Anzahl gleicher Fenster n</span><input id="n" data-k="n" type="text" inputmode="numeric"></label>
           <label class="f"><span>Abstand a zwischen Fenstern</span><input id="a" data-k="a" type="text" inputmode="decimal" placeholder="mm"></label>
           <label class="f"><span>Abzug Einbauten <b>[%]</b></span><input id="ded" data-k="ded" type="text" inputmode="decimal" placeholder="z. B. Insektenschutz"></label>
         </div>
@@ -293,10 +326,53 @@ img{max-width:100%}[hidden]{display:none!important}
           </select></label>
           <label class="f"><span>Hub</span><select id="hub" data-k="hub"></select></label>
           <label class="f"><span>Montage</span><select id="mnt" data-k="mnt"><option value="RM">Rahmenmontage</option><option value="FM">Flügelmontage</option></select></label>
+          <label class="f"><span>Lüftungsgruppe / Motorlinie</span><select id="lg" data-k="lg"><option value="1">LG 1</option><option value="2">LG 2</option><option value="3">LG 3</option><option value="4">LG 4</option><option value="5">LG 5</option><option value="6">LG 6</option><option value="7">LG 7</option><option value="8">LG 8</option><option value="9">LG 9</option></select></label>
+          <label class="f"><span>Motorkabel Kettenantrieb</span><select id="motL" data-k="motL"><option value="2">2 m (Standard)</option><option value="5">5 m</option><option value="7.5">7,5 m</option><option value="x">abweichend …</option></select></label>
+          <label class="f" id="motXL"><span>Motorkabel abweichend <b>[m]</b></span><input id="motX" data-k="motX" type="text" inputmode="decimal" placeholder="z. B. 3,5"></label>
+          <label class="f"><span>Leitung Zentrale → Fenster <b>[m]</b></span><input id="dist" data-k="dist" type="text" inputmode="decimal" placeholder="leer = ohne Angabe (Formel)"></label>
+          <label class="f"><span>Alarmgruppe</span><select id="ag" data-k="ag"><option value="1">AG 1</option><option value="2">AG 2</option><option value="3">AG 3</option><option value="4">AG 4</option><option value="5">AG 5</option><option value="6">AG 6</option><option value="7">AG 7</option><option value="8">AG 8</option><option value="9">AG 9</option></select></label>
+          <label class="f"><span>Verriegelung</span><select id="pl" data-k="pl"><option value="">ohne</option><option value="1">Power lock</option></select></label>
+          <label class="f plopt"><span>Power lock Seite (NSK)</span><select id="plSide" data-k="plSide"><option value="L">links (von innen)</option><option value="R">rechts (von innen)</option></select></label>
+          <label class="f plopt"><span>Power lock Montage</span><select id="plMnt" data-k="plMnt"><option value="RM">auf dem Rahmen</option><option value="FM">auf dem Flügel</option></select></label>
+          <label class="f plopt"><span>Kabel Power lock</span><select id="plL" data-k="plL"><option value="2">2 m (Standard)</option><option value="5">5 m</option><option value="7.5">7,5 m</option><option value="x">abweichend …</option></select></label>
+          <label class="f plopt" id="plXL"><span>Power lock abweichend <b>[m]</b></span><input id="plX" data-k="plX" type="text" inputmode="decimal" placeholder="z. B. 3,5"></label>
           <label class="f"><span>Anzahl Antriebe</span><select id="ndrv" data-k="ndrv"><option value="1">1 (Solo)</option><option value="2">2 (Syncro)</option><option value="3">3 (Syncro)</option><option value="4">4 (Syncro)</option></select></label>
+          <label class="f" id="schL"><span>Sicherheitsschere (2 Stück, nur Kippflügel)</span><select id="sch" data-k="sch"><option value="">ohne</option><option value="35">Nr. 35 · b 300–2500 mm · OW 200–700 mm</option><option value="60">Nr. 60 · b 700–2500 mm · OW 500–1200 mm</option></select></label>
+          <label class="f schopt"><span>OW-Kurve der Schere (Fangweite)</span><select id="schOW" data-k="schOW"><option value="">automatisch (nächste Kurve über OW)</option></select></label>
         </div>
+        <div id="winBox" class="winbox" hidden></div>
         <div id="drvOut"></div>
+        <div id="schOut"></div>
         <p class="hint">Grenzwerte aus dem GEZE-Katalog „Elektrische RWA- und Lüftungssysteme“: Einsatzbereich-Diagramme (Flügelgewicht über Nebenschließkante je Hub, Solo; Syncro: Gewicht × Anzahl), Platzbedarf auf Rahmen und Flügel, Überschlagbereich 0–23 mm, Antriebslänge inkl. Konsolen als Mindestflügelbreite. Die Kurvenwerte sind aus den Diagrammen abgelesen. Die Angaben des Profilsystemherstellers sind zu beachten. Bei Kippfenstern mit Kettenantrieb schreibt GEZE Sicherheitsscheren vor.</p>
+      </section>
+
+      <section class="panel" id="kpPanel">
+        <h2>Steuerung und Kabelplan <small>THZ N4 / Comfort N4 / MBZ 300</small></h2>
+        <div class="grid">
+          <label class="f"><span>Zentrale</span><select id="thz" data-k="thz"><option value="">keine Zentrale</option><option value="n4">THZ N4 (Kunststoff)</option><option value="comfort">THZ Comfort N4 (Metall)</option><option value="mbz">MBZ 300 (Größe automatisch)</option></select></label>
+          <label class="f" id="thzColL"><span>Farbe Comfort</span><select id="thzCol" data-k="thzCol"><option value="190783">orange RAL 2011</option><option value="190784">rot RAL 3001</option><option value="190786">gelb RAL 1021</option><option value="190787">grau RAL 7035</option><option value="190788">weiß RAL 9016</option></select></label>
+          
+          
+          
+          
+          
+          
+          <label class="f" id="wetL"><span>Regen / Wind (THZ)</span><select id="wet" data-k="wet"><option value="">ohne</option><option value="091529">Regen- und Windsteuerung 091529</option><option value="189313">Regensensor GC 240 RS 189313</option></select></label>
+          <label class="f" id="wmL"><span>Wettermodul WM (MBZ 300)</span><select id="wm" data-k="wm"><option value="">ohne</option><option value="rs">GC 401 RS Regensensor</option><option value="wvs">GC 402 WVS Windgeschwindigkeit</option><option value="set">GC 401 RS + 402 WVS Set</option></select></label>
+          <label class="f" id="wdsL"><span>Windrichtung (WM)</span><select id="wds" data-k="wds"><option value="">ohne</option><option value="1">GC 403 WDS (NRWG)</option></select></label>
+          <label class="f"><span>ERM-Modul (nur MBZ 300)</span><select id="erm" data-k="erm"><option value="">ohne</option><option value="1">mit – 6 Relais</option></select></label>
+          <label class="f"><span>Meldeausgänge (INFO)</span><select id="info" data-k="info"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+          
+          <label class="f"><span>Antriebsleitung</span><select id="adern" data-k="adern"><option value="4">4-adrig (Standard IQ windowdrive)</option><option value="3">3-adrig (ohne Trennung Lüftung/RWA)</option></select></label>
+        </div>
+        <p class="kpeff" id="kpEff"></p>
+        <p class="hint" id="kpBase"></p>
+        <div id="winMot" class="winbox" hidden></div>
+        <div id="agBox" class="winbox" hidden></div>
+        <div id="lgBox" class="winbox" hidden></div>
+        <div id="ermBox" class="winbox" hidden></div>
+        <div id="kpOut"></div>
+        <p class="hint">Grenzen nach Katalog: THZ N4 / Comfort N4 – 1 Alarm- und 1 Lüftungsgruppe, 4,5 A, 8 RWA-Taster, 2 Melderlinien, Klemmen 4 mm². MBZ 300 – DM 10 A, DME 20 A je Lüftungsgruppe, CM/SM je 10 RWA-Taster und 2 Melderlinien, Größe N8 bis N72 automatisch, über 72 A gekoppelte Zentralen (CAN). Querschnitt bis 10 mm² über Reihenklemmen. Jede Lüftungsgruppe erhält ein eigenes Blatt.</p>
       </section>
 
       <section class="panel">
@@ -390,7 +466,7 @@ img{max-width:100%}[hidden]{display:none!important}
         <p class="hint">Exakt: Seitlich zählt nur die Fläche außerhalb der Laibung. Sie wird von der rahmenseitigen Flügelfläche, der Linie w von der Flügelkante zum Rahmen und der Laibungskante begrenzt. Die Laibung verkleinert sowohl ihre Höhe h_red als auch ihre Breite. Die Merkblatt-Näherung ersetzt nur h durch h_red und rechnet weiter mit w. Beide Werte stehen im Rechenweg.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="outPanel">
         <h2>Zeichnung ausgeben <small>A4 quer</small></h2>
         <div class="grid">
           <label class="f"><span>Projekt</span><input id="proj" data-k="proj" type="text" class="txt" placeholder="z. B. Neubau Schule"></label>
@@ -402,7 +478,7 @@ img{max-width:100%}[hidden]{display:none!important}
           <button type="button" id="dlPdf">Als PDF</button>
           <button type="button" id="dlSvg">Als SVG (Vektor)</button>
         </div>
-        <p class="hint" id="dlState">Ausdruck und PDF haben zwei Blätter im Format A4 quer: Blatt 1 mit Vertikalschnitt im Maßstab, Eingaben, Rechenweg und Hinweisen, Blatt 2 mit dem 3D-Modell von innen, außen und seitlich. Die SVG-Datei enthält Blatt 1. Auf iPhone und iPad öffnet „Als PDF“ das Teilen-Menü zum Sichern oder Weitergeben.</p>
+        <p class="hint" id="dlState">Das PDF enthält je Fenster zwei Blätter A4 quer (Vertikalschnitt mit Eingaben und Rechenweg, 3D-Ansichten) und – bei gewählter Zentrale – den Kabelplan. Die SVG-Datei enthält den Schnitt des aktuellen Fensters.</p>
       </section>
 
       <section class="panel">
@@ -421,14 +497,20 @@ img{max-width:100%}[hidden]{display:none!important}
 </div>
 
 <footer class="foot wrap">Planungshilfe nach Merkblatt FVLR/ZVEI 33027 mit Antriebsdaten aus dem GEZE-Katalog „Elektrische RWA- und Lüftungssysteme“. Kein offizielles Werkzeug der GEZE GmbH. Die Ergebnisse ersetzen keine Fachplanung.</footer>
-<div id="printSheet" aria-hidden="true"><img id="printImg" alt=""><img id="printImg2" alt=""></div>
+<div id="printSheet" aria-hidden="true"><img id="printImg" alt=""><img id="printImg2" alt=""><img id="printImg3" alt=""></div>
 <script>
 (function(){
 const KEY='ra-fluegelsim-v1';
-const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',sf:'80',glz:'2',g1:'6',z1:'12',g2:'6',z2:'12',g3:'6',pkg:'2,0',ge:'15',secView:'full',drv:'',hub:'',mnt:'RM',ndrv:'1',ti:'150',ta:'100',c:'170',ca:'',cRef:'fok',cl:'800',soll:'1,0',n:'1',a:'',ded:''};
+const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',sf:'80',glz:'2',g1:'6',z1:'12',g2:'6',z2:'12',g3:'6',pkg:'2,0',ge:'15',secView:'full',drv:'',hub:'',mnt:'RM',ndrv:'1',ti:'150',ta:'100',c:'170',ca:'',cRef:'fok',cl:'800',soll:'1,0',thz:'',thzCol:'190783',ft:'1',ftTyp:'161282',rmN:'2',rmTyp:'112877',bmz:'0',lta:'1',wet:'',info:'0',kabL:'20',adern:'4',motL:'2',motX:'',same:true,win:[],lg:'1',pl:'',plSide:'L',plMnt:'RM',plL:'2',plX:'',dist:'20',ag:'1',sch:'',schOW:'',wm:'',wds:'',erm:'',ermR:['Alarm','Störung','Fenster AUF','Fenster ZU','Wartung fällig','frei'],n:'1',a:'',ded:''};
 let S=Object.assign({},DEF);
-try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){delete r.u;delete r.hf;delete r.gt;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';if(r.cRef!=='fok'){const d=(isNaN(num(r.ab))?60:num(r.ab))/2;['c','ca'].forEach(k=>{if(r[k]!==undefined&&!isNaN(num(r[k])))r[k]=String(Math.round(num(r[k])-d))});r.cRef='fok'}S=Object.assign({},DEF,r)}}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){if(r.motL===undefined)r.adern='4';if(!Array.isArray(r.win))r.win=[];delete r.u;delete r.hf;delete r.gt;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';if(r.cRef!=='fok'){const d=(isNaN(num(r.ab))?60:num(r.ab))/2;['c','ca'].forEach(k=>{if(r[k]!==undefined&&!isNaN(num(r[k])))r[k]=String(Math.round(num(r[k])-d))});r.cRef='fok'}S=Object.assign({},DEF,r)}}catch(e){}
+const WK=['triL','triR','side','mode','alpha','dim','fb','fh','b','h','ab','dr','df','v','r','by','bx','im','sf','glz','g1','z1','g2','z2','g3','pkg','ge','drv','hub','mnt','ndrv','ti','ta','c','ca','cRef','cl','motL','motX','n','a','lg','pl','plSide','plMnt','plL','plX','dist','ag','sch','schOW'];
+const pickW=o=>{const q={};WK.forEach(k=>q[k]=o[k]);return q};
+{const d0=S.kabL||'20';if(Array.isArray(S.wins))S.wins.forEach(w=>{if(w&&w.dist===undefined)w.dist=d0});if(S.dist===undefined||!Array.isArray(S.wins))S.dist=d0}
+if(!Array.isArray(S.wins)||!S.wins.length){S.wins=[pickW(S)];S.cur=0}else{S.cur=Math.min(Math.max(0,+S.cur||0),S.wins.length-1);Object.assign(S,pickW(Object.assign({},DEF,S.wins[S.cur])))}
+S.same=true;
+if(!S.agP||typeof S.agP!=='object')S.agP={'1':{ft:S.ft,ftTyp:S.ftTyp,rmN:S.rmN,rmTyp:S.rmTyp,bmz:S.bmz}};if(!S.ltaG||typeof S.ltaG!=='object')S.ltaG={'1':S.lta};
+const save=()=>{S.wins[S.cur]=pickW(S);try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const num=v=>{const s=String(v??'').trim().replace(/\s/g,'').replace(',','.');return s===''?NaN:Number(s)};
 const has=v=>!isNaN(num(v));
 const f3=x=>x.toLocaleString('de-DE',{minimumFractionDigits:3,maximumFractionDigits:3});
@@ -694,7 +776,7 @@ function drawDriveError(DC){const W=640,lh=22,rows=DC.failRows||[],H=Math.max(22
   s+=`<text class="e-f" x="40" y="${H-30}" fill="#5f6262" font-size="12">${DC.angleBad&&DC.failRows.length===1?`Öffnungswinkel auf max. ${f1(DC.aDrv)}° stellen oder Hub bzw. Antrieb ändern.`:'Eingaben, Hub, Antriebsanzahl oder Antrieb anpassen (Details unter „Antrieb“).'}</text></svg>`;
   return s}
 /* ---------- drawing ---------- */
-function drawSVG(P,sc,opt){opt=opt||{};if(opt.drv&&!opt.drv.ok)return drawDriveError(opt.drv);
+function drawSVG(P,sc,opt){opt=opt||{};if(opt.drv&&!opt.drv.ok)return drawDriveError(opt.drv);if(opt.sch&&!opt.sch.ok)return drawSchError(opt.sch);
   const pad=0.12;
   let minX=Math.min(sc.xi-(P.c!==null?Math.min(sc.roomD,0.9):0.35),sc.sash.reduce((m,p)=>Math.min(m,p[0]),0))-pad;
   let maxX=Math.max(sc.xa+(P.ca!==null?Math.min(P.cl,0.9):0.35),sc.sash.reduce((m,p)=>Math.max(m,p[0]),0))+pad;
@@ -739,6 +821,11 @@ function drawSVG(P,sc,opt){opt=opt||{};if(opt.drv&&!opt.drv.ok)return drawDriveE
     const ty=+Y(ly)+(G2.ys>0?-20:14),fz=DC.D.force,ext=Math.round(Math.min(DC.hubEff,2*DC.Lh*Math.sin(sc.al/2)*1000));
     s+=`<text class="t-drv" x="${X(lx)}" y="${ty.toFixed(1)}" text-anchor="end"><tspan font-weight="700">${DC.name}${DC.n>1?' ×'+DC.n:''}</tspan> · Hub ${DC.hub} mm${DC.hubEff<DC.hub?` (begrenzt ${DC.hubEff})`:''}</text>`;
     s+=`<text class="t-drv" x="${X(lx)}" y="${(ty+12).toFixed(1)}" text-anchor="end">F Zug ${fz.zug} N / Druck ${fz.druck} N · ausgefahren ${ext} mm${DC.gAtAngle?` · zul. ${Math.round(DC.gAtAngle(sc.al*180/Math.PI))} kg`:''}</text>`}
+  if(S.pl==='1'&&sc.inward){const th=(sc.bottom===sc.inward)?sc.al:-sc.al,Rt=q=>rot(q,sc.hinge,th),y0_=sc.bottom?P.h-0.48:0.05,y1_=sc.bottom?P.h-0.05:0.48;
+    let q=S.plMnt==='FM'?rect(-P.v-0.036,-P.v,y0_,y1_).map(Rt):rect(-0.036,0,y0_,y1_);s+=poly(q,'s-pl');
+    const qx=Math.min(...q.map(t=>t[0])),qy=(Math.min(...q.map(t=>t[1]))+Math.max(...q.map(t=>t[1])))/2;
+    s+=`<text class="t-pl" x="${X(qx)}" y="${Y(qy)}" text-anchor="end" dx="-4">Power lock NSK ${S.plSide==='R'?'rechts':'links'} · ${S.plMnt==='FM'?'Flügel':'Rahmen'}</text><text class="t-pl" x="${X(qx)}" y="${Y(qy)}" text-anchor="end" dx="-4" dy="12">430 × 34 × 36 mm (hinter der Schnittebene)</text>`}
+  if(opt.sch&&opt.sch.ok)s+=drawSchSVG(P,sc,opt.sch,X,Y,k,Wpx,Hpx);
   // hinge
   s+=`<circle cx="${X(sc.hinge[0])}" cy="${Y(sc.hinge[1])}" r="4" class="s-hinge"/>`;
   // w and s
@@ -777,8 +864,10 @@ function drawChart(P,curve,aMax,aCur,aReq,aDrv){
 
 /* ---------- main update ---------- */
 const $=id=>document.getElementById(id);
-var CLAMP_A=false;
-function update(){
+var CLAMP_A=false,MAXA=90;
+// keep the global selects in step with the saved state (a value the select does not offer is reset)
+function syncGlobalSel(){['thz','thzCol','wet','wm','wds','erm','info','adern'].forEach(k=>{const e=$(k);if(!e)return;const v=String(S[k]??'');if([...e.options].some(o=>o.value===v))e.value=v;else{S[k]=e.options[0]?e.options[0].value:'';e.value=S[k]}})}
+function update(){syncGlobalSel();
   document.querySelectorAll('#modes button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===S.mode)));
   {const Pq=params();$('ceilHint').textContent=isFinite(Pq.u)?`Decke und Vordach werden ab der Flügeloberkante gemessen. Die Laibungsoberkante liegt R = ${mm(Pq.pr)} mm darüber. Das ist der kleinste Wert; bei genau diesem Wert bilden Laibung und Decke eine Fläche.`:''}
   updSketch();
@@ -799,7 +888,7 @@ function update(){
   if(P.bad.length){
     const names={g1:'Scheibe 1',z1:'SZR 1',g2:'Scheibe 2',z2:'SZR 2',g3:'Scheibe 3',pkg:'Profilgewicht',ge:'Glaseinstand',b:'Lichte Breite b',h:'Lichte Höhe h',fb:'Flügelaußenbreite FB (muss größer als Ab sein)',fh:'Flügelaußenhöhe FH (muss größer als Ab sein)',ab:'Abzugswert Ab (nicht negativ)',r:'Platz auf dem Rahmen R (nicht negativ)',df:'Flügelprofiltiefe T2 (muss größer als ü sein)',dr:'Rahmenprofiltiefe T1',v:'Überschlag ü (muss größer als 0 sein, damit der Flügel auf dem Rahmen aufliegt)',ti:'Laibung innen',ta:'Laibung außen',c:`Decke (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R, sonst läge sie unter der Laibungsoberkante)`,ca:`Vordach (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R)`,a:'Abstand a'};
     $('msgs').innerHTML=`<div class="msg bad">Bitte prüfen: ${P.bad.map(k=>names[k]||k).join(', ')}.</div>`;
-    LAST=null;req3D();$('frameInfo').textContent='';$('wKpis').innerHTML='';$('wSteps').textContent='Bitte die markierten Eingaben korrigieren.';$('glzInfo').textContent='';renderDrive(null);$('kpis').innerHTML='';$('steps').textContent='';$('svgHost').innerHTML='';$('chartHost').innerHTML='';return}
+    LAST=null;req3D();$('frameInfo').textContent='';$('wKpis').innerHTML='';$('wSteps').textContent='Bitte die markierten Eingaben korrigieren.';$('glzInfo').textContent='';renderDrive(null);renderKp(null);renderWin(P,null);$('kpis').innerHTML='';$('steps').textContent='';$('svgHost').innerHTML='';$('chartHost').innerHTML='';return}
   let DC=driveCheck(P);const aDrv=DC?DC.aDrv:90;
   if(DC&&a>aDrv+1e-9){
     if(CLAMP_A){a=Math.floor(aDrv*10)/10;S.alpha=f1(a);save();if(document.activeElement!==$('alphaN'))$('alphaN').value=f1(a).replace(/,0$/,'');$('alphaR').value=a}
@@ -811,9 +900,12 @@ function update(){
   for(let x=0.5;x<=Math.min(90,aDrv)+0.0001;x+=0.5){const sc=scene(P,x);if(sc.hits.length){aMax=x-0.5;break}const r=agOf(P,sc);curve.push({a:x,Ag:r.Ag});if(isNaN(aReq)&&!isNaN(P.soll)&&r.Ag>=P.soll)aReq=x}
   // refine max angle
   if(aMax<90){let lo=aMax,hi=aMax+0.5;for(let i=0;i<20;i++){const m=(lo+hi)/2;if(scene(P,m).hits.length)hi=m;else lo=m}aMax=lo}
+  MAXA=Math.floor(Math.min(aDrv,aMax)*10)/10;{const mb=$('maxBtn');mb.firstChild.textContent=DC?'Max. Hub':'Max. Winkel';$('maxBtnV').textContent=f1(MAXA)+'°';
+    mb.title=DC?`Flügel auf den größten zulässigen Öffnungswinkel stellen (${f1(MAXA)}°, ${aMax<aDrv?'begrenzt durch Störkontur':`Hub ${DC.hubEff} mm voll ausgefahren`})`:`Flügel auf den größten Winkel ohne Kollision stellen (${f1(MAXA)}°)`}
   const sc=scene(P,a);const R=agOf(P,sc);renderWeight(P);renderDrive(DC);
+  const SCH_=schCheck(P,DC?Math.min(aDrv,aMax):a);renderSch(SCH_);
   $('frameInfo').textContent=`Lichte Öffnung b × h = ${mm(P.b)} × ${mm(P.h)} mm (Flügelaußenmaß ${mm(P.fb)} × ${mm(P.fh)} − Ab ${mm(P.ab)}). Der Flügel überdeckt den Rahmen je Seite um Ab/2 = ${mm(P.ue)} mm, oberhalb des Flügels bleiben R = ${mm(P.pr)} mm Platz auf dem Rahmen, die Rahmenansicht beträgt Ab/2 + R = ${mm(P.u)} mm. Drehachse ${mm(P.bx)} mm vor der Rahmenebene und ${mm(P.by)} mm außerhalb der Flügelkante. Abstand Flügelfläche zur Wand ${mm(Math.max(0,(sc.inward?P.ti:P.ta)-P.v))} mm.`;
-  $('svgHost').innerHTML=drawSVG(P,sc,{full:S.secView!=='edge',drv:DC});
+  $('svgHost').innerHTML=drawSVG(P,sc,{full:S.secView!=='edge',drv:DC,sch:SCH_});
   $('chartHost').innerHTML=drawChart(P,curve,aMax,a,aReq,aDrv);
   $('chartNote').textContent=(aMax<90?`max. ${f1(aMax)}° ohne Kollision`:(aDrv<90?`keine Kollision bis ${f1(aDrv)}°`:'keine Kollision bis 90°'))+(DC?` · Antrieb max. ${f1(aDrv)}°`:'');
   const limTxt=sc.limited?`<span class="limit">begrenzt durch ${esc(sc.S.name)}</span>`:`<span class="limit free">w maßgebend</span>`;
@@ -856,14 +948,22 @@ function update(){
   if(isFinite(P.im)&&(P.im+P.gt/2>P.df+1e-9||P.im-P.gt/2<-1e-9))msgs.push(['warn',`Das Glas reicht nach i ± G/2 von ${mm(P.im-P.gt/2)} bis ${mm(P.im+P.gt/2)} mm und liegt damit nicht vollständig im Flügelprofil (T2 = ${mm(P.df)} mm). Es wird ins Profil verschoben gezeichnet; bitte i-Maß, Glasstärke oder T2 prüfen. Die Berechnung ist davon nicht betroffen.`]);
   if(DC){if(DC.ok)msgs.push(['ok',`Antrieb ${DC.label}: alle geprüften Kriterien erfüllt. Öffnungswinkel durch den Hub auf ${f1(aDrv)}° begrenzt.`]);else msgs.push(['bad',`Antrieb ${DC.label}: nicht erfüllt – ${DC.fails.join(', ')}. Details im Bereich „Antrieb“.`])}
   if(!DC)msgs.push(['info','Prüfen, ob der Antrieb den Winkel mit seinem Hub erreicht und ob der Einbau weitere Störkonturen hat, die hier nicht erfasst sind (z. B. Heizkörper, Fensterbank, Sonnenschutz).']);
+  if(S.wins.length>1){let tot=0,ok=true;S.wins.forEach((_,t)=>{const d=t===S.cur?{R,sc}:winData(t);if(d.bad||d.sc.hits.length){ok=false;return}tot+=d.R.Ag});
+    $('kpis').insertAdjacentHTML('afterbegin',`<div class="kpi main"><div class="k">A_g gesamt (${S.wins.length} Fenster-Reiter)</div><div class="v">${ok?f3(tot)+' m²':'–'}</div></div>`);
+    for(let i=msgs.length-1;i>=0;i--)if(/Anforderung/.test(msgs[i][1]))msgs.splice(i,1);
+    if(!isNaN(P.soll)&&ok)msgs.unshift(tot>=P.soll?['ok',`Anforderung ${f2(P.soll)} m² mit allen Fenstern erfüllt (A_g gesamt ${f3(tot)} m², dieses Fenster ${f3(R.Ag)} m²).`]:['bad',`Anforderung ${f2(P.soll)} m² mit allen Fenstern nicht erfüllt (A_g gesamt ${f3(tot)} m²).`])}
+  if(SCH_)msgs.push(SCH_.ok?['ok',`${SCH_.label}: ${schLab(SCH_.c)}, x = ${Math.round(SCH_.x)} mm (Flügel x + ${SCH_.T.d} = ${Math.round(SCH_.x+SCH_.T.d)} mm), Flügelgewicht ${f1(SCH_.wt)} kg ≤ ${f1(SCH_.gmax)} kg.`]:['bad',`${SCH_.label}: nicht einsetzbar – ${SCH_.failRows.map(q=>q[0]).join(', ')}. Bitte korrigieren oder die Sicherheitsschere abwählen.${SCH_.hint?' '+SCH_.hint:''}`]);
+  const KP=kpCheck(P,DC);renderKp(KP);
+  renderWin(P,nWinS()>1&&S.same===false?Array.from({length:Math.min(nWinS(),20)},(_,i)=>i===0?DC:(winCfg(i).drv?driveCheckFor(P,winCfg(i)):null)):null);
+  if(KP&&!KP.ok)msgs.push(['bad',`Kabelplan: ${KP.errs.map(e_=>e_[0]).join(', ')} – Grenzen überschritten.`]);
   $('msgs').innerHTML=msgs.map(([t,m])=>`<div class="msg ${t}">${esc(m)}</div>`).join('');
-  LAST={P,sc,R,st,msgs,a,aMax,aReq,DC};req3D();
+  LAST={P,sc,R,st,msgs,a,aMax,aReq,DC,KP,SCH:SCH_};req3D();drawKp();drawOut();if($('winTabs'))renderTabs();
 }
 
 /* ---------- drawing sheet (A4 landscape) ---------- */
 let LAST=null;
 /* ---------- 3D model (own canvas renderer, works offline) ---------- */
-let VIEW='2d';try{if(localStorage.getItem(KEY+'-view')==='3d')VIEW='3d'}catch(e){}
+let VIEW='win';try{const v_=localStorage.getItem(KEY+'-view');if(v_==='kp'||v_==='out')VIEW=v_}catch(e){}
 const CAMS={drive:[Math.PI+0.25,-0.5],innen:[Math.PI+0.75,0.32],aussen:[0.75,0.32],seite:[Math.PI/2+0.06,0.06],oben:[Math.PI+0.55,1.1]};
 const CAM={yaw:CAMS.innen[0],pitch:CAMS.innen[1],zoom:1};
 function cssColor(name,fb){const v=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -928,6 +1028,10 @@ function build3D(P,sc,Cin){
       G3.links.forEach(([p0,p1],j)=>{const w=j%2?g.cw:g.cw*1.15,zw=j%2?g.cz*0.75:g.cz;solid(obox(p0,p1,w,zc-zw/2,zc+zw/2),j%2?C.sig:C.sig.map(x=>Math.round(x*0.78)),[60,30,10],false,0.04)});
       if(i===0){const mid=G3.chain[Math.floor(G3.chain.length/2)]||G3.out;drvC=[mid[0],mid[1],DCx.n>1?b/2:zc];
         const lb=mv?T([bx[0],(by[0]+by[1])/2,zc]):[bx[0],(by[0]+by[1])/2,zc];labels.push([`${DCx.name} · Hub ${DCx.hub} mm`,[lb[0]-0.08,lb[1]+G3.ys*0.05,z0+0.1],C.sig])}}}
+  if(S.pl==='1'&&sc.inward){const left=S.plSide!=='R',ya=sc.bottom?h-0.48:0.05,yb=sc.bottom?h-0.05:0.48,pc=[205,209,214],pe=[31,79,138];
+    if(S.plMnt==='FM'){const zc=left?-ue+0.022:b+ue-0.022;solid(boxFaces(L-0.036,L,ya,yb,zc-0.017,zc+0.017).map(f=>f.map(T)),pc,pe,true,0.02);labels.push(['Power lock',T([L-0.05,(ya+yb)/2,zc]),pe])}
+    else{const zc=left?-ue-Math.max(0.017,(u-ue)/2):b+ue+Math.max(0.017,(u-ue)/2);solid(boxFaces(-0.036,0,ya,yb,zc-0.017,zc+0.017),pc,pe,true,0.02);labels.push(['Power lock',[-0.05,(ya+yb)/2,zc],pe])}}
+  if(LAST&&LAST.SCH&&LAST.SCH.ok){const Gs=schSolids(P,sc,LAST.SCH,solid);labels.push([`Sicherheitsschere ${LAST.SCH.T.n} (2×)`,[Gs.J[0]-0.06,Gs.J[1]+0.04,0],[60,70,82]])}
   // ventilation area at the main closing edge (Hauptschließkante): from the sash edge to the governing contour,
   // the frame (w) or the obstacle (s: ceiling, lintel in the reveal, canopy, sill); the other one dashed
   const band=(m_,on)=>{const a=m_.p,q=m_.q;items.push({pts:[[a[0],a[1],0],[q[0],q[1],0],[q[0],q[1],b],[a[0],a[1],b]],
@@ -951,11 +1055,15 @@ function build3D(P,sc,Cin){
   const size=Math.max(hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2])*0.92;
   return{items,labels,hsk,C,blue:C.blue,target,size,drvC};
 }
-let raf3=0;function req3D(){if(VIEW!=='3d')return;if(!raf3)raf3=requestAnimationFrame(()=>{raf3=0;draw3D()})}
+let raf3=0;function req3D(){if(VIEW!=='win')return;if(!raf3)raf3=requestAnimationFrame(()=>{raf3=0;draw3D()})}
 function render3D(ctx,W,H,cam,Cin,bg,opt){opt=opt||{};const k=opt.k||1;
   if(LAST.DC&&!LAST.DC.ok){const C=Cin||themeColors3D(),DC=LAST.DC;ctx.textAlign='center';ctx.fillStyle=`rgb(${C.bad})`;ctx.font=`700 ${17*k}px "Source Sans 3",system-ui,sans-serif`;
     ctx.fillText((DC.angleBad&&DC.failRows.length===1?'Öffnungswinkel nicht erreichbar':'Antrieb nicht einsetzbar')+' – kein 3D-Modell',W/2,H/2-14*k-(DC.failRows.length*9*k));ctx.font=`${13*k}px "Source Sans 3",system-ui,sans-serif`;ctx.fillStyle=`rgb(${C.fg})`;
     DC.failRows.forEach(([l,ist,soll],i)=>ctx.fillText(`✕ ${l}: Ist ${ist}, erforderlich ${soll}`,W/2,H/2+12*k+(i-DC.failRows.length/2)*18*k+9*k));return null}
+  if(LAST.SCH&&!LAST.SCH.ok){const C=Cin||themeColors3D(),SC=LAST.SCH;ctx.textAlign='center';ctx.fillStyle=`rgb(${C.bad})`;ctx.font=`700 ${17*k}px "Source Sans 3",system-ui,sans-serif`;
+    ctx.fillText('Sicherheitsschere nicht einsetzbar – kein 3D-Modell',W/2,H/2-14*k-(SC.failRows.length*9*k));ctx.font=`${13*k}px "Source Sans 3",system-ui,sans-serif`;ctx.fillStyle=`rgb(${C.fg})`;
+    SC.failRows.forEach(([l,ist,soll],i)=>ctx.fillText(`✕ ${l}: Ist ${ist}, zulässig ${soll}`,W/2,H/2+12*k+(i-SC.failRows.length/2)*18*k+9*k));
+    ctx.fillText('Bitte korrigieren oder die Sicherheitsschere abwählen.',W/2,H/2+12*k+(SC.failRows.length/2)*18*k+18*k);return null}
   const M=build3D(LAST.P,LAST.sc,Cin);const muted=`rgb(${M.C.muted})`;
   const dist=M.size*2.1/cam.zoom,cp=Math.cos(cam.pitch);
   const tg=(cam.focus&&M.drvC)?M.drvC:M.target;
@@ -1007,9 +1115,25 @@ function draw3D(){
   render3D(ctx,W,H,CAM,null,bg,{});
 }
 function setView(v){VIEW=v;try{localStorage.setItem(KEY+'-view',v)}catch(e){}
-  $('svgHost').hidden=v!=='2d';$('host3d').hidden=v!=='3d';$('secOpts').hidden=v!=='2d';
-  document.querySelectorAll('#viewTabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===v)));if(v==='3d')draw3D()}
-$('viewTabs').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)setView(b.dataset.view)});
+  document.body.classList.toggle('view-kp',v==='kp');document.body.classList.toggle('view-out',v==='out');const w_=v==='win';
+  $('svgHost').hidden=!w_;$('host3d').hidden=!w_;$('secOpts').hidden=!w_;$('kpHost').hidden=v!=='kp';$('outHost').hidden=v!=='out';if(v==='kp')drawKp();if(v==='out')drawOut();
+  renderTabs();if(w_)draw3D()}
+function drawOut(){const h=$('outHost');if(h.hidden)return;if(!LAST){h.innerHTML='<div class="kp-empty">Bitte zuerst die markierten Eingaben im Fenster-Reiter korrigieren.</div>';return}
+  const N=nSheets();let li='';S.wins.forEach((w,i)=>{li+=`<li>Blatt ${2*i+1}: Fenster ${i+1}${(+w.n||1)>1?' ('+w.n+'×)':''} – Vertikalschnitt mit Eingaben und Rechenweg</li><li>Blatt ${2*i+2}: Fenster ${i+1} – 3D-Ansichten</li>`});
+  if(LAST.KP)kpSheetList().forEach((q,i)=>{li+=`<li>Blatt ${2*S.wins.length+i+1}: ${esc(q.name)}</li>`});
+  h.innerHTML=`<h3>Inhalt der Ausgabe – ${N} Blätter A4 quer</h3><ol>${li}</ol><figure><img alt="Vorschau Blatt ${2*S.cur+1}" src="${svgU(sheetSVG())}"><figcaption>Vorschau Blatt ${2*S.cur+1} (Fenster ${S.cur+1})</figcaption></figure>${LAST.KP?`<figure><img alt="Vorschau Kabelplan" src="${svgU(kpSheetSVG(null,N))}"><figcaption>Vorschau Kabelplan</figcaption></figure>`:''}`}
+function renderTabs(){const many=S.wins.length>1;
+  $('winTabs').innerHTML=S.wins.map((w,i)=>`<button type="button" data-tab="${i}" aria-pressed="${VIEW==='win'&&i===S.cur}">Fenster ${i+1}${(+w.n||1)>1?` <small>(${w.n}×)</small>`:''}${many?`<span class="x" data-del="${i}" role="button" aria-label="Fenster ${i+1} entfernen" title="Fenster ${i+1} entfernen">×</span>`:''}</button>`).join('')
+    +`<button type="button" id="addWin" title="Weiteres Fenster anlegen – übernimmt alle Werte des aktuellen Fensters">+ Fenster</button>`;
+  document.querySelectorAll('#viewTabs [data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===VIEW)))}
+function refreshInputs(){document.querySelectorAll('input[data-k]').forEach(i=>{i.value=S[i.dataset.k]??''})}
+function setCur(i,quiet){save();S.cur=i;Object.assign(S,pickW(Object.assign({},DEF,S.wins[i])));refreshInputs();CLAMP_A=false;update();if(!quiet){save();renderTabs()}}
+$('viewTabs').addEventListener('click',e=>{const d=e.target.closest('[data-del]');
+  if(d){e.stopPropagation();const i=+d.dataset.del;if(S.wins.length<2)return;save();S.wins.splice(i,1);const nc=Math.min(S.cur>i?S.cur-1:S.cur,S.wins.length-1);S.cur=-1;
+    S.cur=nc;Object.assign(S,pickW(Object.assign({},DEF,S.wins[nc])));refreshInputs();save();update();setView('win');return}
+  if(e.target.closest('#addWin')){save();S.wins.push(pickW(S));setCur(S.wins.length-1,true);save();setView('win');return}
+  const t=e.target.closest('[data-tab]');if(t){const i=+t.dataset.tab;if(i!==S.cur)setCur(i,true);save();setView('win');return}
+  const b=e.target.closest('[data-view]');if(b)setView(b.dataset.view)});
 $('cam3d').addEventListener('click',e=>{const b=e.target.closest('[data-cam]');if(!b)return;const c=CAMS[b.dataset.cam];CAM.yaw=c[0];CAM.pitch=c[1];CAM.focus=b.dataset.cam==='drive';CAM.zoom=CAM.focus?3.2:1;draw3D()});
 (()=>{const cv=$('cv3d');const pts=new Map();let pinch0=0,zoom0=1;
   cv.addEventListener('pointerdown',e=>{try{cv.setPointerCapture(e.pointerId)}catch(_){}pts.set(e.pointerId,[e.clientX,e.clientY]);
@@ -1031,7 +1155,7 @@ const MODES={kipp:'Kippflügel, Band unten, öffnet nach innen',klappIn:'Klappfl
 function wrapLines(lines,n){const out=[];for(const line of lines){let l=line;while(l.length>n){let i=l.lastIndexOf(' ',n);if(i<n*0.5)i=n;out.push(l.slice(0,i));l='     '+l.slice(i).trimStart()}out.push(l)}return out}
 function sheetSVG(raster){
   const {P,sc,R,st,msgs,a,aMax,aReq}=LAST;
-  const draw=drawSVG(P,sc,{full:true,drv:LAST.DC});
+  const draw=drawSVG(P,sc,{full:true,drv:LAST.DC,sch:LAST.SCH});
   const vb=draw.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);const Wpx=+vb[1],Hpx=+vb[2];
   const mw=+draw.match(/data-mw="([\d.]+)"/)[1];
   const realW=mw*1000,realH=realW*Hpx/Wpx;const AW=146,AH=140;
@@ -1044,7 +1168,8 @@ function sheetSVG(raster){
   const css=`text{font-family:Arial,Helvetica,sans-serif;fill:#18222d}
 .mono{font-family:'Courier New',Courier,monospace}
 .s-wall,.s-ceil{fill:url(#hatch);stroke:#8e98a3;stroke-width:1}.hatch-bg{fill:#d9dde2}.hatch-l{stroke:#8e98a3;stroke-width:1}
-.s-frame{fill:#aeb8c3;stroke:#5d6b7a;stroke-width:1}.s-prof{fill:#aeb8c3;stroke:#18222d;stroke-width:1.2}.s-prof.hit,.s-bead.hit{fill:#fbe4e2;stroke:#b3261e}.s-bead{fill:#aeb8c3;stroke:#18222d;stroke-width:.8}.s-pane{fill:#cfe3f3;stroke:#1f4f8a;stroke-width:.8}.s-gap{fill:#cfe3f3;fill-opacity:.35}.s-cham{fill:#ffffff;stroke:#18222d;stroke-width:.5}.s-fcham{fill:#ffffff;stroke:#5d6b7a;stroke-width:.6}.s-tb{fill:#5b6876}.s-block{fill:#5b6876}.s-spacer{fill:#5d6b7a}.s-gask{fill:#18222d}.s-drv{fill:#c6cacf;stroke:#18222d;stroke-width:.9}.s-drv-in{fill:none;stroke:#18222d;stroke-width:.5;opacity:.45}.s-cons{fill:#7d848e;stroke:#18222d;stroke-width:.6}.s-brk{fill:#9aa1aa;stroke:#18222d;stroke-width:.7}.s-link{fill:#d95d14;stroke:#18222d;stroke-width:.35}.s-link.alt{fill:#a9440c}.s-lpin{fill:#18222d}.t-drv{font-family:monospace;font-size:10px;fill:#d95d14;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}.det *{vector-effect:non-scaling-stroke}.det-bg{fill:#ffffff}.det-frame{fill:none;stroke:#18222d;stroke-width:1}.det-mark{fill:none;stroke:#18222d;stroke-width:1;stroke-dasharray:3 3}.s-sash{fill:#cfe3f3;stroke:#18222d;stroke-width:1.5}.s-sash.hit{fill:#fbe4e2;stroke:#b3261e;stroke-width:2.5}
+.s-frame{fill:#aeb8c3;stroke:#5d6b7a;stroke-width:1}.s-prof{fill:#aeb8c3;stroke:#18222d;stroke-width:1.2}.s-prof.hit,.s-bead.hit{fill:#fbe4e2;stroke:#b3261e}.s-bead{fill:#aeb8c3;stroke:#18222d;stroke-width:.8}.s-pane{fill:#cfe3f3;stroke:#1f4f8a;stroke-width:.8}.s-gap{fill:#cfe3f3;fill-opacity:.35}.s-cham{fill:#ffffff;stroke:#18222d;stroke-width:.5}.s-fcham{fill:#ffffff;stroke:#5d6b7a;stroke-width:.6}.s-tb{fill:#5b6876}.s-block{fill:#5b6876}.s-spacer{fill:#5d6b7a}.s-gask{fill:#18222d}.s-pl{fill:#1f4f8a;fill-opacity:.12;stroke:#1f4f8a;stroke-width:1;stroke-dasharray:4 2}.t-pl{font-family:monospace;font-size:10px;fill:#1f4f8a;paint-order:stroke;stroke:#fff;stroke-width:3px}.s-drv{fill:#c6cacf;stroke:#18222d;stroke-width:.9}.s-drv-in{fill:none;stroke:#18222d;stroke-width:.5;opacity:.45}.s-cons{fill:#7d848e;stroke:#18222d;stroke-width:.6}.s-brk{fill:#9aa1aa;stroke:#18222d;stroke-width:.7}.s-link{fill:#d95d14;stroke:#18222d;stroke-width:.35}.s-link.alt{fill:#a9440c}.s-lpin{fill:#18222d}.t-drv{font-family:monospace;font-size:10px;fill:#d95d14;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}.det *{vector-effect:non-scaling-stroke}.det-bg{fill:#ffffff}.det-frame{fill:none;stroke:#18222d;stroke-width:1}.det-mark{fill:none;stroke:#18222d;stroke-width:1;stroke-dasharray:3 3}.s-sash{fill:#cfe3f3;stroke:#18222d;stroke-width:1.5}.s-sash.hit{fill:#fbe4e2;stroke:#b3261e;stroke-width:2.5}
+.s-sch-brk{fill:#d6dade;stroke:#18222d;stroke-width:.7}.s-sch-a1{fill:#9aa1aa;stroke:#18222d;stroke-width:.8}.s-sch-a2{fill:#b9bfc6;stroke:#18222d;stroke-width:.8}.s-sch-slv{fill:#3a4049;stroke:#18222d;stroke-width:.6}.s-sch-pl{stroke:#8e96a0;stroke-width:.7}.s-sch-slot{fill:#ffffff;stroke:#18222d;stroke-width:.5}.s-sch-scr{fill:#eef0f2;stroke:#18222d;stroke-width:.6}.s-sch-x{stroke:#18222d;stroke-width:.5;fill:none}.s-sch-pin{fill:#5b6876;stroke:#18222d;stroke-width:.6}.s-sch-pin-i{fill:#18222d}.s-sch-dim{stroke:#3c4652;stroke-width:.7;fill:none}.s-sch-box{fill:#ffffff;fill-opacity:.94;stroke:#3c4652;stroke-width:.8}.s-sch-ctx{stroke:#5d6b7a;stroke-width:1.4}.s-sch-ctx.f{stroke-width:.6;stroke-dasharray:3 2}.s-sch-sash{fill:#aeb8c3;fill-opacity:.35;stroke:#18222d;stroke-width:.6}.t-sch{font-size:${fsDs}px;fill:#3c4652}
 .s-ghost{fill:none;stroke:#5b6876;stroke-dasharray:4 4;stroke-width:1}.s-w{stroke:#1f4f8a;stroke-width:2}.s-s{stroke:#d95d14;stroke-width:2}
 .s-plane{stroke:#5b6876;stroke-dasharray:6 4;stroke-width:1}.s-hred{stroke:#1d7a4c;stroke-width:2.5}.s-tri{fill:#e1f2e8;stroke:#1d7a4c;stroke-width:1.5}.s-tri.off{fill:#5b6876;fill-opacity:.16;stroke:#5b6876;stroke-dasharray:5 4}
 .s-hinge{fill:#d95d14}
@@ -1070,19 +1195,432 @@ function sheetSVG(raster){
   o+=`<text x="${X0}" y="${y}" font-size="2.6" fill="#5b6876">Maßgebend: ${R.capped?'lichte Öffnung n · b · h':sc.limited?E(sc.S.name)+' (s ≤ w)':'Öffnungsweite w'} · Kollisionsgrenze ${aMax<90?f1(aMax)+'°':'keine bis 90°'}</text>`;y+=8;
   o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Eingaben</text>`;y+=5;
   const v=x=>has(x)?num(x).toLocaleString('de-DE')+' mm':'–';
-  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Platz auf dem Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Verglasung',`${P.glz}-fach ${glzText(P)} = ${mm(P.gt)} mm (Glas ${P.glassMM.toLocaleString('de-DE')} mm)`],['Flügelgewicht (Richtwert)',(()=>{const W=weightOf(P);return `${f1(W.m)} kg (Profil ${f1(W.mP)} + Glas ${f1(W.mG)})`})()],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über Flügeloberkante',has(S.c)?v(S.c)+(Math.abs(num(S.c)/1000-P.pr)<1e-6?' (bündig mit Laibung)':''):'keine'],['Vordach UK über Flügel-OK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Antrieb',LAST.DC?LAST.DC.label:'ohne'],['Antriebsprüfung',LAST.DC?(LAST.DC.ok?'alle geprüften Kriterien erfüllt':'nicht erfüllt: '+LAST.DC.fails.join(', ')):'–'],['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
+  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Platz auf dem Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Verglasung',`${P.glz}-fach ${glzText(P)} = ${mm(P.gt)} mm (Glas ${P.glassMM.toLocaleString('de-DE')} mm)`],['Flügelgewicht (Richtwert)',(()=>{const W=weightOf(P);return `${f1(W.m)} kg (Profil ${f1(W.mP)} + Glas ${f1(W.mG)})`})()],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über Flügeloberkante',has(S.c)?v(S.c)+(Math.abs(num(S.c)/1000-P.pr)<1e-6?' (bündig mit Laibung)':''):'keine'],['Vordach UK über Flügel-OK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Antrieb',LAST.DC?LAST.DC.label:'ohne'],['Antriebsprüfung',LAST.DC?(LAST.DC.ok?'alle geprüften Kriterien erfüllt':'nicht erfüllt: '+LAST.DC.fails.join(', ')):'–'],['Verriegelung / Lüftungsgruppe',(S.pl==='1'?`Power lock NSK ${S.plSide==='R'?'rechts':'links'}, ${S.plMnt==='FM'?'Flügel':'Rahmen'}`:'ohne')+` · LG ${S.lg||1} · AG ${S.ag||1} · ${num(S.dist)>0?S.dist+' m':'Länge ohne Angabe'} zur Zentrale`],...(LAST.SCH?[['Sicherheitsschere',schTxt(LAST.SCH)]]:[]),['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
   rows.forEach(([k,val],i)=>{if(i%2===0)o+=`<rect x="${X0}" y="${y-2.6}" width="116" height="3.3" fill="#f2f4f6"/>`;o+=`<text x="${X0+1}" y="${y}" font-size="2.3" fill="#5b6876">${E(k)}</text><text x="${X0+50}" y="${y}" font-size="2.3">${E(val)}</text>`;y+=3.3});
   y+=4;o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Rechenweg</text>`;y+=4.5;
   for(const l of wrapLines(st,76)){if(y>152)break;o+=`<text class="mono" x="${X0}" y="${y}" font-size="2.15" xml:space="preserve">${E(l)}</text>`;y+=3}
   y+=3;o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Hinweise</text>`;y+=4.5;
   for(const l of wrapLines(msgs.map(m=>'• '+m[1]).concat(['• Berechnung nach Merkblatt FVLR/ZVEI 33027:2025-09. Ersetzt keine Fachplanung; Werte an der Ausführung prüfen.']),88)){if(y>168){o+=`<text x="${X0}" y="${y}" font-size="2.3">…</text>`;break}o+=`<text x="${X0}" y="${y}" font-size="2.3" xml:space="preserve">${E(l)}</text>`;y+=3.1}
   // title block
-  const tb=[['Projekt',S.proj||''],['Position',S.posn||''],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
+  const tb=[['Projekt',S.proj||''],['Position',posLab()],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
   o+=`<rect x="163" y="172" width="124" height="28" fill="#ffffff" stroke="#18222d" stroke-width="0.4"/>`;
-  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – freier Querschnitt</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt 1 / 2</text>`;
+  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – freier Querschnitt</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt ${pg1()} / ${pgN()}</text>`;
   tb.forEach(([k,val],i)=>{const yy=183+i*4.6;o+=`<line x1="163" y1="${yy-3.4}" x2="287" y2="${yy-3.4}" stroke="#18222d" stroke-width="0.2"/><text x="166" y="${yy}" font-size="2.3" fill="#5b6876">${k}</text><text x="186" y="${yy}" font-size="2.8">${E(val)}</text>`});
   return o+'</svg>';
 }
+
+
+
+/* ---------- windows as tabs: compute any window with its own parameter set ---------- */
+function withWin(i,fn){if(i===S.cur)return fn();const keep=pickW(S);Object.assign(S,pickW(Object.assign({},DEF,S.wins[i])));try{return fn()}finally{Object.assign(S,keep)}}
+function winData(i){return withWin(i,()=>{const P=params();if(P.bad.length)return{bad:true,P};
+  let DC=driveCheck(P);let a=num(S.alpha);if(isNaN(a))a=20;a=Math.max(0,Math.min(90,a));const aDrv=DC?DC.aDrv:90;
+  if(DC&&a>aDrv+1e-9)DC=Object.assign({},DC,{ok:false,angleBad:true,fails:[...DC.fails,'Öffnungswinkel']});
+  const sc=scene(P,a);const R=agOf(P,sc);return{P,DC,sc,R,a,c:cfgNow()}})}
+let PG=null;const pgN=()=>PG?PG.n:nSheets();const pg1=()=>PG?PG.p1:2*S.cur+1;
+const posLab=()=>(S.posn||'')+(S.wins.length>1?((S.posn?' – ':'')+'Fenster '+(S.cur+1)):'');
+const svgU=svg=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+async function allPages(W,H,status){const out=[];const cur=S.cur,nT=S.wins.length,KPon=!!(LAST&&LAST.KP),N=2*nT+(KPon?kpSheetList().length:0);
+  const toCv=async svg=>{const im=await loadImg(svgU(svg));const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');c.fillStyle='#fff';c.fillRect(0,0,W,H);c.drawImage(im,0,0,W,H);return cv};
+  try{for(let t=0;t<nT;t++){if(t!==S.cur)setCur(t,true);
+      if(!LAST)throw new Error(`Fenster ${t+1}: bitte die markierten Eingaben korrigieren`);
+      PG={p1:2*t+1,n:N};status&&status(`Fenster ${t+1}: Schnitt …`);out.push(await toCv(sheetSVG([W,H])));
+      status&&status(`Fenster ${t+1}: 3D-Ansicht …`);out.push(await sheet2Canvas(W,H))}}
+  finally{if(S.cur!==cur)setCur(cur,true);PG=null}
+  if(KPon&&LAST&&LAST.KP){const L=kpSheetList();for(let i=0;i<L.length;i++){status&&status(`${L[i].name} …`);out.push(await toCv(L[i].f([W,H],2*nT+i+1,N)))}}
+  return out}
+/* ---------- several windows with individual equipment ---------- */
+function nWinS(){return Math.max(1,Math.round(num(S.n))||1)}
+function winCfg(i){const b={drv:S.drv,hub:S.hub,ndrv:S.ndrv,mnt:S.mnt,motL:S.motL,motX:S.motX};
+  if(i===0||S.same!==false)return b;const w=Object.assign({},b,(S.win||[])[i]||{});
+  const D=DRV[w.drv];if(D&&!D.hubs.map(String).includes(String(w.hub)))w.hub=String(D.hubs[0]);return w}
+function driveCheckFor(P,cfg){const keep={drv:S.drv,hub:S.hub,ndrv:S.ndrv,mnt:S.mnt};Object.assign(S,{drv:cfg.drv,hub:cfg.hub,ndrv:cfg.ndrv,mnt:cfg.mnt});
+  try{return driveCheck(P)}finally{Object.assign(S,keep)}}
+function winSet(i,f,v){S.win=S.win||[];while(S.win.length<=i)S.win.push({});
+  if(!Object.keys(S.win[i]).length){const b=winCfg(0);S.win[i]={drv:b.drv,hub:b.hub,ndrv:b.ndrv,motL:b.motL,motX:b.motX}}
+  S.win[i][f]=v;if(f==='drv'){const D=DRV[v];if(D&&!D.hubs.map(String).includes(String(S.win[i].hub)))S.win[i].hub=String(D.hubs[0])}save();update()}
+function renderWin(P,WC){$('winBox').hidden=true;$('winMot').hidden=true;return;const n=nWinS(),box=$('winBox'),mb=$('winMot');box.hidden=n<2;mb.hidden=n<2||S.same!==false;if(n<2){box.innerHTML='';mb.innerHTML='';return}
+  const same=S.same!==false;const opt=(vals,cur,lab)=>vals.map(v=>`<option value="${v}"${String(v)===String(cur)?' selected':''}>${lab?lab(v):v}</option>`).join('');
+  let h=`<div class="wtop"><b>${n} Fenster – Ausstattung</b><button type="button" class="tog" id="sameBtn" aria-pressed="${same}">${same?'✓ ':''}Alle Fenster gleich</button></div>`;
+  if(same)h+=`<p class="hint">Alle ${n} Fenster erhalten die Ausstattung oben (Fenster 1). Zum Abweichen „Alle Fenster gleich“ ausschalten.</p>`;
+  else{h+=`<p class="hint">Fenster 1 ist das simulierte Fenster (Eingaben oben). Für die weiteren Fenster gelten dieselben Maße, Antrieb, Hub und Anzahl sind frei wählbar.</p>`;
+    for(let i=1;i<Math.min(n,20);i++){const c=winCfg(i),D=DRV[c.drv],st=WC&&WC[i];
+      const pill=!c.drv?'<span class="st bad">kein Antrieb</span>':st&&st.ok?'<span class="st ok">erfüllt</span>':`<span class="st bad" title="${esc(st?st.fails.join(', '):'')}">nicht erfüllt</span>`;
+      h+=`<div class="wrow"><span class="wn">Fenster ${i+1}</span>
+        <select data-w="${i}" data-f="drv" aria-label="Antrieb Fenster ${i+1}"><option value="">ohne</option>${opt(['slim','power'],c.drv,v=>DRV[v].name)}</select>
+        <select data-w="${i}" data-f="hub" aria-label="Hub Fenster ${i+1}"${D?'':' disabled'}>${D?opt(D.hubs,c.hub,v=>'Hub '+v):''}</select>
+        <select data-w="${i}" data-f="ndrv" aria-label="Antriebe Fenster ${i+1}">${opt([1,2,3,4],c.ndrv,v=>v===1?'1 (Solo)':v+' (Syncro)')}</select>${pill}</div>`}
+    if(n>20)h+=`<p class="hint">Ab Fenster 21 gilt die Ausstattung von Fenster 1.</p>`}
+  box.innerHTML=h;
+  if(!same){let m=`<div class="wtop"><b>Motor-Anschlusskabel je Fenster</b></div>`;
+    for(let i=1;i<Math.min(n,20);i++){const c=winCfg(i);
+      m+=`<div class="wrow mot"><span class="wn">Fenster ${i+1}</span><select data-w="${i}" data-f="motL">${opt(['2','5','7.5','x'],c.motL,v=>v==='x'?'abweichend …':v.replace('.',',')+' m'+(v==='2'?' (Standard)':''))}</select>
+        <input data-w="${i}" data-f="motX" type="text" inputmode="decimal" placeholder="Länge in m" value="${esc(c.motX||'')}"${c.motL==='x'?'':' hidden'}></div>`}
+    mb.innerHTML=m}}
+document.addEventListener('change',e=>{const t=e.target.closest('[data-w]');if(!t)return;winSet(+t.dataset.w,t.dataset.f,t.value)});
+document.addEventListener('input',e=>{const t=e.target.closest('input[data-w]');if(!t)return;const i=+t.dataset.w;S.win=S.win||[];while(S.win.length<=i)S.win.push({});S.win[i].motX=t.value;save()});
+document.addEventListener('click',e=>{if(e.target.closest('#sameBtn')){S.same=S.same===false;save();update()}});
+/* ---------- control panel THZ N4 / THZ Comfort N4 and cable plan ---------- */
+const THZ={n4:{name:'THZ N4',id:'190775',dim:'193 × 285 × 89 mm',mat:'Kunststoffgehäuse, weiß',ftInt:0,ltaInt:0},
+  comfort:{name:'THZ Comfort N4',id:null,dim:'140 × 248 × 85 mm',mat:'Aluminium-Druckguss',ftInt:1,ltaInt:1}};
+const THZ_COL={'190783':'orange RAL 2011','190784':'rot RAL 3001','190786':'gelb RAL 1021','190787':'grau RAL 7035','190788':'weiß RAL 9016'};
+const KP_IMAX=4.5,KP_FT_MAX=8,KP_RM_LINE=10,KP_LTA_LED=3;
+const DRV_I={slim:{rwa:1.1,lft:0.9},power:{rwa:1.5,lft:1.2}};
+const FT_T={'161282':'RWA-Taster FT 4 A – VdS','198925':'RWA-Taster FT 4 A Akustisch','136232':'RWA-Taster FT 4 K','198914':'FT 4 A Nebenbedienstelle'};
+const RM_T={'112877':'Rauchmelder RM 1003','112878':'Wärmemelder WM 1005','184110':'Rauchmelder GC 162 RWA','184139':'Wärmemelder GC 163 RWA'};
+const WET_T={'091529':'Regen- und Windsteuerung','189313':'Regensensor GC 240 RS'};
+function fillCount(id,max,lab){const el=$(id);const want=Array.from({length:max+1},(_,i)=>String(i));const have=[...el.options].map(o=>o.value);
+  if(want.join()!==have.join())el.innerHTML=want.map(v=>`<option value="${v}">${v}${lab?lab(+v):''}</option>`).join('');
+  if(!want.includes(String(S[id]))){S[id]=String(Math.min(max,Math.max(0,+S[id]||0)))}el.value=S[id]}
+const ERM_F=['Alarm','Störung','Fenster AUF','Fenster ZU','Lüftung aktiv','Wartung fällig','Netzausfall','Akkustörung','Regen/Wind','frei'];
+function renderErm(){const b=$('ermBox');const on=S.erm==='1'&&!!S.thz;b.hidden=!on;if(!on){b.innerHTML='';return}
+  if(!Array.isArray(S.ermR)||S.ermR.length!==6)S.ermR=DEF.ermR.slice();
+  b.innerHTML=`<div class="wtop"><b>ERM-Modul – Belegung der 6 Relais</b></div><p class="hint">Potentialfreie Wechsler, max. 42 V / 0,5 A. Die Zuordnung wird mit der MBZ-300-Software eingestellt und erscheint so im Kabelplan.</p><div class="grid">`+
+    S.ermR.map((f,i)=>`<label class="f"><span>Relais ${i+1}</span><select data-relay="${i}">${ERM_F.map(x=>`<option${x===f?' selected':''}>${x}</option>`).join('')}</select></label>`).join('')+'</div>'}
+document.addEventListener('change',e=>{const t=e.target.closest('[data-relay]');if(!t)return;S.ermR[+t.dataset.relay]=t.value;save();update()});
+const KP_IMG={"gc401":[103,151,"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"],"gc402":[128,130,"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"],"gc403":[122,131,"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"],"ft4a":[137,155,"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"],"ft4ak":[135,149,"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"],"ft4k":[128,160,"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"],"gc162":[101,93,"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"],"gc163":[99,91,"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"],"gc240":[135,89,"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"],"lta":[96,121,"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"],"power":[220,54,"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"],"rm1003":[112,105,"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"],"rws":[134,61,"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"],"slim":[220,54,"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"],"thz":[157,220,"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"],"thzc":[144,220,"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"],"wm1005":[112,105,"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"],"pl":[44,244,"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"]};
+const KP_FT_IMG={'161282':'ft4a','198925':'ft4ak','136232':'ft4k','198914':'ft4a'},KP_RM_IMG={'112877':'gc162','112878':'gc163','184110':'rm1003','184139':'wm1005'};
+function kpImg(k,x,y,w,h){const I=KP_IMG[k];if(!I)return'';const sc=Math.min(w/I[0],h/I[1]),iw=I[0]*sc,ih=I[1]*sc;
+  return `<image x="${(x+(w-iw)/2).toFixed(2)}" y="${(y+(h-ih)/2).toFixed(2)}" width="${iw.toFixed(2)}" height="${ih.toFixed(2)}" href="data:image/jpeg;base64,${I[2]}"/>`}
+function kpAll(K){const all=[];K.groups.forEach(g=>g.W.forEach((w,k)=>all.push({w,g:g.g,idx:K.W.indexOf(w)+1,first:k===0,last:k===g.W.length-1,gap:false})));return all}
+// draws windows (with chain drives / Power lock), junction boxes and the chained line of each motor line
+function kpLines(K,V,G){const E=t=>esc(String(t)).replace(/"/g,'&quot;');
+  const tx=(x,y,t,fs,extra)=>`<text x="${x}" y="${y}" font-size="${fs||2.4}"${extra?' '+extra:''}>${E(t)}</text>`;
+  const ln=(x1,y1,x2,y2)=>`<line class="c" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`,tick=(x,y)=>ln(x-1.2,y+1.2,x+1.2,y-1.2);
+  const k=Math.max(0.55,Math.min(1,G.rowH/48)),slot=(G.x1-G.x0)/G.perRow,mixT=S.wins.length>1,boxes=[];let o='';
+  V.forEach(v=>{const Wi=v.w,top=G.y0+v.r*G.rowH,xc=G.x0+slot*(v.c+0.5),ww=Math.min(28*k,slot*0.56),wh=Math.max(9*k,Math.min(G.rowH*0.44,ww*Wi.fh/Wi.fb)),wx=xc-ww/2,wy=top+2.6,topEdge=Wi.bottom;
+    const bw=11*k,bh=6*k,by0=top+G.rowH*0.71,by1=by0+bh,ym=(by0+by1)/2,yb=by0-2.2*k;
+    o+=`<rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" fill="#e9edf1" stroke="#18222d" stroke-width="0.4"/><rect x="${wx+1.4*k}" y="${wy+1.4*k}" width="${ww-2.8*k}" height="${wh-2.8*k}" fill="#dbe9f5" stroke="#18222d" stroke-width="0.3"/>`;
+    const hy=topEdge?wy+wh-1.4*k:wy+1.4*k,oy=topEdge?wy+1.4*k:wy+wh-1.4*k;
+    o+=`<path d="M${wx+1.4*k},${hy} L${xc},${oy} L${wx+ww-1.4*k},${hy}" fill="none" stroke="#5b6876" stroke-width="0.25" stroke-dasharray="1 0.8"/>`;
+    o+=tx(xc,wy+wh+2.6*k,`Fenster ${v.idx}`,2*k,'text-anchor="middle"');
+    const lab=[K.groups.length>1?`Linie ${v.g}`:'',mixT?`Typ ${Wi.tab+1}`:''].filter(Boolean).join(' · ');if(lab)o+=tx(xc,wy-0.8,lab,1.7*k,'text-anchor="middle" class="m"');
+    const nP=Math.max(1,Wi.nPer),dw=Math.min(16*k,ww*0.75/nP),dh=dw*0.28;let lead=0;
+    for(let j=0;j<Wi.nPer;j++){const dc=wx+ww*(j+0.5)/nP,dy=topEdge?wy+2*k:wy+wh-2*k-dh;
+      o+=`<rect x="${dc-dw/2}" y="${dy}" width="${dw}" height="${dh}" fill="#f4f5f6"/>`+kpImg(Wi.c.drv==='power'?'power':'slim',dc-dw/2,dy-0.5,dw,dh+1);
+      const sx=dc+dw/2,sy=dy+dh/2,fx=wx+ww+0.9+lead*0.8,ex=xc-bw/2+2*k+lead*1.5*k;lead++;
+      o+=`<polyline points="${sx},${sy} ${fx},${sy} ${fx},${yb} ${ex},${yb} ${ex},${by0}" fill="none" stroke="#d95d14" stroke-width="0.3"/>`}
+    if(Wi.nPer)o+=tx(wx+ww+1.6+lead*0.8,topEdge?wy+wh*0.42:wy+wh*0.3,`Motorkabel ${nP>1?'je ':''}${(Wi.motL||2).toLocaleString('de-DE')} m`,1.45*k,'class="s"');
+    if(Wi.pl){const left=Wi.plSide==='L',pw=2*k,ph=Math.min(wh*0.5,11*k),px=left?(Wi.plMnt==='RM'?wx+0.3:wx+1.7*k):(Wi.plMnt==='RM'?wx+ww-pw-0.3:wx+ww-pw-1.7*k),py=topEdge?wy+2.8*k:wy+wh-2.8*k-ph;
+      o+=`<rect x="${px}" y="${py}" width="${pw}" height="${ph}" fill="#f4f5f6"/>`+kpImg('pl',px,py,pw,ph);
+      const sx=left?px:px+pw,sy=py+ph/2,fx=left?wx-1:wx+ww+0.9+lead*0.8,ex=xc-bw/2+2*k+lead*1.5*k;lead++;
+      o+=`<polyline points="${sx},${sy} ${fx},${sy} ${fx},${yb} ${ex},${yb} ${ex},${by0}" fill="none" stroke="#1f4f8a" stroke-width="0.3"/>`;
+      const tlx=left?wx-1.4:wx+ww+1.6+lead*0.8,tly=topEdge?wy+wh*0.78:wy+wh*0.62,an=`text-anchor="${left?'end':'start'}" fill="#1f4f8a"`;
+      o+=tx(tlx,tly,'Power lock',1.45*k,an)+tx(tlx,tly+1.9*k,`${Wi.plMnt==='RM'?'Rahmen':'Flügel'} · ${(Wi.plLen||2).toLocaleString('de-DE')} m`,1.45*k,an)}
+    o+=`<rect x="${xc-bw/2}" y="${by0}" width="${bw}" height="${bh}" rx="0.8" fill="#f2f2ef" stroke="#18222d" stroke-width="0.45"/>`;
+    for(let q=0;q<3;q++)o+=`<rect x="${xc-bw/2+1.5*k+q*2.7*k}" y="${by0+1.7*k}" width="${1.8*k}" height="${2.3*k}" fill="#9aa1aa"/>`;
+    if(v.last){o+=`<rect x="${xc+bw/2-0.4}" y="${by0+0.8*k}" width="${5*k}" height="${bh-1.6*k}" rx="0.5" fill="#1d7a4c" stroke="#18222d" stroke-width="0.3"/>`+tx(xc+bw/2-0.4+2.5*k,by0+bh/2+0.5,G.mbz?'LEM':'EM',1.4*k,'text-anchor="middle" font-weight="bold" fill="#ffffff"');
+      o+=tx(xc,by1+2.6*k,`VD ${v.idx} · Linienende`,1.7*k,'text-anchor="middle" font-weight="bold"')+tx(xc,by1+4.6*k,G.mbz?'Leitungs-End-Modul':'Abschlussmodul',1.5*k,'text-anchor="middle" fill="#1d7a4c"')}
+    else o+=tx(xc,by1+2.6*k,`VD ${v.idx}`,1.7*k,'text-anchor="middle" font-weight="bold"');
+    boxes.push({v,x:xc,ym,by0,by1,bxL:xc-bw/2,bxR:xc+bw/2,top,r:v.r})});
+  for(let i=0;i<boxes.length-1;i++){const A=boxes[i],B=boxes[i+1];if(A.v.g!==B.v.g)continue;const g=K.groups.find(q=>q.g===A.v.g),cs=g.noL?`${g.cores}-adrig`:`${g.cores} × ${(g.Asel||1.5).toLocaleString('de-DE')} mm²`;
+    const segL=(A.v.w.fb+B.v.w.fb)/2+(A.v.w.a>0?A.v.w.a:0.5);
+    if(A.r===B.r){const x1=A.bxR,x2=B.bxL;
+      if(B.v.gap)o+=`<line x1="${x1}" y1="${A.ym}" x2="${x2}" y2="${A.ym}" stroke="#18222d" stroke-width="0.4" stroke-dasharray="1.2 1"/>`+tx((x1+x2)/2,A.ym-1.1,'…',3,'text-anchor="middle"');
+      else o+=ln(x1,A.ym,x2,A.ym)+tick((x1+x2)/2,A.ym)+tx((x1+x2)/2,A.ym-1.3,cs,1.6*k,'text-anchor="middle"')+tx((x1+x2)/2,A.ym+2.9*k,`≈ ${f1(segL)} m`,1.5*k,'text-anchor="middle" class="m"')}
+    else{const gx1=A.x+slot/2-0.8,gx2=B.x-slot/2+0.8,yg=B.top+0.6;
+      o+=`<polyline class="c" points="${A.bxR},${A.ym} ${gx1},${A.ym} ${gx1},${yg} ${gx2},${yg} ${gx2},${B.ym} ${B.bxL},${B.ym}"/>`+tx(gx2+1,yg-0.6,`${cs} ≈ ${f1(segL)} m`,1.5*k,'class="m"')}}
+  return{svg:o,boxes,slot}}
+/* ===== cable plan v2: alarm groups, ventilation groups, several coupled MBZ 300, multi-sheet output ===== */
+const MBZ_CLS=[
+  {k:'N8',id:'188034',I:8,dmI:8,dmIncl:1,slots:1,dim:'400 × 300 × 200 mm',akku:'7 Ah',small:true},
+  {k:'N10',id:'137428',I:10,dmI:10,dmIncl:1,slots:8,dim:'500 × 400 × 200 mm',akku:'12 Ah'},
+  {k:'N24',id:'137430',I:24,dmI:10,dmIncl:3,slots:18,dim:'600 × 600 × 250 mm',akku:'17 Ah'},
+  {k:'N48K',id:'137461',I:48,dmI:10,dmIncl:6,slots:5,dim:'600 × 600 × 250 mm',akku:'24 Ah'},
+  {k:'N48G',id:'137462',I:48,dmI:10,dmIncl:6,slots:13,dim:'600 × 800 × 250 mm',akku:'24 Ah'},
+  {k:'N72',id:'137463',I:72,dmI:10,dmIncl:9,slots:8,dim:'600 × 800 × 250 mm',akku:'38 Ah'}];
+const MBZ_SPECIAL={k:'Sonderausführung',id:'137453',I:72,dmI:10,dmIncl:0,slots:99,dim:'nach Konfiguration',akku:'nach Berechnung'};
+const PL_I={rwa:1.5,lft:1.5},PL_ID='147021',KP_STD=[1.5,2.5,4,6,10];
+// cable cross-section texts: with a length → computed size, without → formula with the line current and max. length per size
+const deN=(x,d=2)=>x.toLocaleString('de-DE',{maximumFractionDigits:d});
+const kpCs=g=>g.noL?`${g.cores}-adrig · A = L × ${f1(g.I)} A / 73`:`${g.cores} × ${deN(g.Asel||1.5)} mm²`;
+const kpLmax=g=>KP_STD.map(A=>`${deN(A)} mm² ≤ ${g.I>0?Math.floor(A*73/g.I):'∞'} m`).join(' · ');
+const kpFormula=g=>g.noL?`A = L × I / 73 = L × ${f1(g.I)} A / 73 = L × ${deN(g.I/73,4)} mm²/m  →  ${kpLmax(g)}`
+  :`A = L × I / 73 = ${f1(g.L)} m × ${f1(g.I)} A / 73 = ${deN(g.Areq)} mm² → ${deN(g.Asel||0)} mm², ${g.cores}-adrig`;
+const cfgNow=()=>({dist:S.dist,drv:S.drv,motL:S.motL,motX:S.motX,lg:S.lg,ag:S.ag,pl:S.pl,plSide:S.plSide,plMnt:S.plMnt,plL:S.plL,plX:S.plX});
+const AGP_DEF={ft:'1',ftTyp:'161282',rmN:'2',rmTyp:'112877',bmz:'0'};
+function agPer(a){S.agP=S.agP||{};return Object.assign({},AGP_DEF,S.agP[a]||{})}
+function ltaFor(g){S.ltaG=S.ltaG||{};const v=S.ltaG[g];return v===undefined?1:Math.max(0,+v||0)}
+function usedGroups(){const ls=new Set(),as=new Set();S.wins.forEach(w=>{if(DRV[w.drv]){ls.add(Math.max(1,Math.round(num(w.lg))||1));as.add(Math.max(1,Math.round(num(w.ag))||1))}});return{lgs:[...ls].sort((a,b)=>a-b),ags:[...as].sort((a,b)=>a-b)}}
+const WM_T={rs:['GC 401 RS – Regensensor','140226'],wvs:['GC 402 WVS – Windgeschwindigkeitssensor','140227'],set:['GC 401 RS + 402 WVS – Regen- und Windsensor Set','140229']};
+const wmEff=()=>S.wm||'';
+function kpCheck(P,DC){
+  if(!S.thz)return null;
+  const rows=[],errs=[],warns=[];const add=(l,ist,soll,st)=>{rows.push([l,ist,soll,st]);if(st==='bad')errs.push([l,ist,soll]);if(st==='warn')warns.push(l)};
+  const W=[];
+  S.wins.forEach((_,t)=>{const d=t===S.cur?{P,DC,c:cfgNow()}:winData(t);if(d.bad){W.push({bad:true,tab:t});return}
+    const pll=d.c.plL==='x'?num(d.c.plX):num(d.c.plL||'2'),ml=d.c.motL==='x'?num(d.c.motX):num(d.c.motL),I=d.DC?DRV_I[d.c.drv]:null,nPer=d.DC?d.DC.n:0,pl=d.c.pl==='1';
+    const inward=d.P.mode==='kipp'||d.P.mode==='klappIn';
+    const iCh=I?nPer*I.rwa:0,iW=Math.max(iCh,pl?PL_I.rwa:0),lW=Math.max(I?nPer*I.lft:0,pl?PL_I.lft:0);
+    for(let k=0;k<(d.P.n||1);k++)W.push({tab:t,c:d.c,DC:d.DC,nPer,I,iCh,iW,lW,pl,plSide:d.c.plSide==='R'?'R':'L',plMnt:d.c.plMnt==='FM'?'FM':'RM',inward,
+      dist:num(d.c.dist),lg:Math.max(1,Math.min(9,Math.round(num(d.c.lg))||1)),ag:Math.max(1,Math.min(9,Math.round(num(d.c.ag))||1)),plLen:pll>0?pll:NaN,plX:d.c.plL==='x',
+      motL:ml>0?ml:NaN,motX:d.c.motL==='x',fb:d.P.fb,fh:d.P.fh,bottom:d.P.mode==='kipp'||d.P.mode==='senk',mode:d.P.mode,a:d.P.a})});
+  const badT=[...new Set(W.filter(w=>w.bad).map(w=>w.tab+1))];
+  if(badT.length)add('Eingaben',`unvollständig: Fenster ${badT.join(', ')}`,'alle Fenster vollständig','bad');
+  for(let i=W.length-1;i>=0;i--)if(W[i].bad)W.splice(i,1);
+  W.sort((x,y)=>x.ag-y.ag||x.lg-y.lg||x.tab-y.tab);
+  const nWin=W.length||1,nDrv=W.reduce((m,w)=>m+w.nPer,0),nPl=W.filter(w=>w.pl).length;
+  const Irwa=W.reduce((m,w)=>m+w.iW,0),Ilft=W.reduce((m,w)=>m+w.lW,0);
+  const noDrv=[...new Set(W.filter(w=>!w.DC).map(w=>w.tab+1))];
+  if(noDrv.length)add('Antriebe',noDrv.length===S.wins.length?'kein Antrieb gewählt':`kein Antrieb: Fenster ${noDrv.join(', ')}`,'Slimchain oder Powerchain','bad');
+  {const seen=new Set();W.forEach(w=>{if(seen.has(w.tab))return;seen.add(w.tab);
+    if(S.wins.length>1&&w.tab!==S.cur&&w.DC&&!w.DC.ok)add(`Antrieb Fenster ${w.tab+1}`,w.DC.label,w.DC.fails.join(', ')+' nicht erfüllt','bad');
+    if(w.pl&&!w.inward)add(`Power lock Fenster ${w.tab+1}`,MODES[w.mode].split(',')[0],'nur für einwärts öffnende Fenster','bad')})}
+  const mixed=new Set(W.filter(w=>w.DC).map(w=>w.c.drv)).size>1;
+  if(nPl)warns.push('Ketten- und Verriegelungsantrieb laufen nie gleichzeitig: je Fenster zählt der höhere Strom (z. B. max(2 × 1,1 A; 1,5 A) = 2,2 A).');
+  // ventilation groups (motor lines)
+  const gm=new Map();W.forEach(w=>{const g=gm.get(w.lg)||{g:w.lg,W:[],I:0,Il:0,nDev:0,agS:new Set()};g.W.push(w);g.I+=w.iW;g.Il+=w.lW;g.nDev+=w.nPer+(w.pl?1:0);g.agS.add(w.ag);gm.set(w.lg,g)});
+  const groups=[...gm.values()].sort((x,y)=>x.g-y.g);
+  groups.forEach(g=>{g.ag=Math.min(...g.agS);if(g.agS.size>1)add(`Lüftungsgruppe ${g.g}`,`Fenster in Alarmgruppe ${[...g.agS].join(' und ')}`,'eine Lüftungsgruppe gehört zu genau einer Alarmgruppe','bad');
+    g.lta=ltaFor(g.g);const ds=g.W.map(w=>w.dist);g.noL=ds.some(d=>!(d>0));g.L=g.noL?NaN:Math.max(0,...ds);g.Areq=g.noL?NaN:g.L*g.I/73;g.Asel=g.noL?null:(KP_STD.find(x=>x>=g.Areq-1e-9)||null);g.cores=(S.adern==='4'||g.nDev>1)?4:3});
+  groups.sort((x,y)=>x.ag-y.ag||x.g-y.g);
+  {const bd=[...new Set(W.filter(w=>!(w.dist>0)).map(w=>w.tab+1))];if(bd.length)add('Leitung Zentrale → Fenster',`ohne Angabe (Fenster ${bd.join(', ')})`,'Querschnitt nach Formel A = L × I / 73 bestimmen','warn')}
+  // alarm groups with their peripherals
+  const AG=[...new Set(groups.map(g=>g.ag))].sort((a,b)=>a-b).map(a=>{const q=agPer(a),ft=+q.ft||0,rm=+q.rmN||0,bmz=q.bmz==='1';
+    return{a,ft,ftTyp:q.ftTyp,rm,rmTyp:q.rmTyp,bmz,lines:Math.ceil(rm/KP_RM_LINE)+(bmz?1:0),groups:groups.filter(g=>g.ag===a)}});
+  const info=+S.info||0;
+  // THZ if it fits, otherwise MBZ 300 (automatically sized, coupled centrals above 72 A)
+  const want=S.thz,T=THZ[want];let kind=T?'thz':'mbz';const why=[];
+  if(T){const a0=AG[0]||{ft:0,lines:0};
+    if(groups.length>1)why.push(`${groups.length} Lüftungsgruppen (THZ: 1)`);
+    if(AG.length>1)why.push(`${AG.length} Alarmgruppen (THZ: 1)`);
+    if(Irwa>KP_IMAX+1e-9)why.push(`Gesamtstrom ${f1(Irwa)} A (THZ: max. ${f1(KP_IMAX)} A)`);
+    if(a0.ft>KP_FT_MAX)why.push(`${a0.ft} RWA-Taster (THZ: max. ${KP_FT_MAX})`);
+    if(a0.lines>2)why.push(`${a0.lines} Meldelinien (THZ: 2)`);
+    if(groups[0]&&groups[0].Asel>4)why.push(`Querschnitt ${groups[0].Asel.toLocaleString('de-DE')} mm² (THZ-Klemmen max. 4 mm²)`);
+    if(S.erm==='1')why.push('ERM-Modul (nur MBZ 300)');
+    if(S.wm)why.push('Wettermodul WM (nur MBZ 300)');
+    if(why.length)kind='mbz'}
+  const C=[];
+  if(kind==='mbz'){
+    groups.forEach(g=>{g.mod=g.I>10+1e-9?'DME':'DM';if(g.I>20+1e-9)add(`Lüftungsgruppe ${g.g}`,`${f1(g.I)} A`,'≤ 20 A je Motorlinie (DME) – Gruppe teilen','bad')});
+    AG.forEach(a=>{if(a.ft>10)add(`RWA-Taster Alarmgruppe ${a.a}`,`${a.ft}`,'≤ 10 je CM/SM','bad');if(a.lines>2)add(`Melderlinien Alarmgruppe ${a.a}`,`${a.lines}`,'≤ 2 je CM/SM (je 10 Melder oder 1 BMZ)','bad')});
+    // allocate alarm groups and motor lines to centrals: SM before every further alarm group, new central above 72 A / 21 bus modules
+    let cur=null;
+    const slotsN72=(c,add)=>{const m=c.mods.concat(add);const n=t=>m.filter(x=>x.t===t).length;return Math.max(0,n('DM')-9)+2*n('DME')+n('SM')+n('ERM')+n('WM')+(wmEff()&&c.n===1?1:0)};
+    AG.forEach(a=>{let started=false;a.groups.forEach(g=>{const add=(started?[]:[{t:'SM'}]).concat([{t:g.mod}]);
+      if(!cur||cur.I+g.I>72+1e-9||slotsN72(cur,add)>7){cur={n:C.length+1,I:0,mods:[{t:'PS'},{t:'CM',ag:a.a}],groups:[],ags:[a.a]};C.push(cur);started=true}
+      if(!started){cur.mods.push({t:'SM',ag:a.a});cur.ags.push(a.a);started=true}
+      cur.mods.push({t:g.mod,g:g.g});cur.groups.push(g);cur.I+=g.I;g.c=cur.n});
+      a.c=(C.find(c=>c.ags.includes(a.a))||{n:1}).n;a.mod=(C.find(c=>c.n===a.c)||{mods:[]}).mods.find(m=>(m.t==='CM'||m.t==='SM')&&m.ag===a.a)?.t||'CM'});
+    if(!C.length)C.push({n:1,I:0,mods:[{t:'PS'},{t:'CM',ag:1}],groups:[],ags:[1]});
+    if(S.erm==='1'||info>1)C[0].mods.push({t:'ERM'});
+    if(wmEff())C[0].mods.push({t:'WM'});
+    if(C.length>1)C.forEach(c=>c.mods.push({t:'CAN'}));
+    C.forEach(c=>{const cnt=t=>c.mods.filter(m=>m.t===t).length;c.nDM=cnt('DM');c.nDME=cnt('DME');c.nSM=cnt('SM');c.nERM=cnt('ERM');c.nCAN=cnt('CAN');c.nWM=cnt('WM');
+      const fit=k=>c.I<=k.I+1e-9&&c.groups.every(g=>g.I<=(g.mod==='DME'?20:k.dmI)+1e-9)&&!(k.small&&(c.nSM||c.nDME||c.nCAN))&&(Math.max(0,c.nDM-k.dmIncl)+2*c.nDME+c.nSM+c.nERM+c.nCAN+c.nWM)<=k.slots;
+      c.cls=MBZ_CLS.find(fit)||MBZ_SPECIAL;c.extraDM=c.cls===MBZ_SPECIAL?c.nDM:Math.max(0,c.nDM-c.cls.dmIncl);
+      add(`Zentrale ${C.length>1?c.n:''}`.trim(),`MBZ 300 ${c.cls.k}${why.length&&c.n===1?' (automatisch)':''}`,`${f1(c.I)} A · AG ${c.ags.join(', ')} · LG ${c.groups.map(g=>g.g).join(', ')}`,'info')});
+    if(why.length)warns.push(`Automatisch auf MBZ 300 gewechselt: ${why.join(', ')}.`);
+    if(C.length>1)warns.push(`${C.length} Zentralen über den MBZ-300-CAN-Bus gekoppelt (je Zentrale ein CAN-Modul).`);
+    if(C.some(c=>c.cls===MBZ_SPECIAL))warns.push('Modulbedarf passt in keine Standardgröße: MBZ 300 Sonderausführung (konfigurierbar) anfragen.');
+    if(AG.length>1)warns.push('Jede weitere Alarmgruppe erhält ein Sensormodul SM direkt vor ihren Drive-Modulen (Modulreihenfolge = Standardkonfiguration).');
+    groups.forEach(g=>{g.amax=10;g.rk=g.mod==='DME'||(g.Asel&&g.Asel>2.5);
+      if(g.noL)add(`Linie ${g.g} (${g.mod}, AG ${g.ag})`,`${f1(g.I)} A · ${g.W.length} Fenster · Länge ohne Angabe`,`A = L × ${f1(g.I)} A / 73 → ${kpLmax(g)}${g.mod==='DME'?' · Reihenklemmen 10 mm²':''}`,'warn');
+      else add(`Linie ${g.g} (${g.mod}, AG ${g.ag})`,`${f1(g.I)} A · ${g.W.length} Fenster · ${f1(g.L)} m → ${deN(g.Areq)} mm²`,
+        g.Asel?`${g.Asel.toLocaleString('de-DE')} mm²${g.rk?' über Reihenklemmen 10 mm²':''}`:'> 10 mm² – Linie teilen',g.Asel?'ok':'bad');
+      if(g.lta>KP_LTA_LED)warns.push(`LG ${g.g}: mehr als ${KP_LTA_LED} Lüftertaster nur ohne angeschlossene LEDs.`)});
+    AG.forEach(a=>add(`Alarmgruppe ${a.a} (${a.mod}, Zentrale ${a.c})`,`${a.ft} RWA-Taster · ${a.rm} Melder${a.bmz?' · BMZ':''}`,'≤ 10 Taster · 2 Linien','ok'));
+  }else{const g=groups[0]||{I:0,L:0,Areq:0,Asel:1.5,lta:0},a=AG[0]||{ft:0,rm:0,bmz:false,lines:0};g.amax=4;
+    add('Zentrale',T.name,'1 Alarm- und 1 Lüftungsgruppe · 4,5 A','info');
+    add('Gesamtstrom RWA',W.filter(w=>w.DC).map(w=>f1(w.iW)).join(' + ')+` = ${f1(Irwa)} A`,`≤ ${f1(KP_IMAX)} A`,'ok');
+    add('RWA-Taster',`${a.ft}${T.ftInt?' + 1 integriert':''}`,`≤ ${KP_FT_MAX} extern`,a.ft+T.ftInt<1?'warn':'ok');
+    add('Melderlinien',`${a.rm} Melder${a.bmz?' + BMZ':''} → ${a.lines} Linie${a.lines===1?'':'n'}`,'≤ 2 (je 10 Melder oder 1 BMZ)','ok');
+    add('Lüftertaster LTA-24-AZ',`${g.lta}${T.ltaInt?' + 1 integriert':''}`,`≤ ${KP_LTA_LED} mit LED`,g.lta>KP_LTA_LED?'warn':'ok');
+    if(groups[0])add('Querschnitt Antriebsleitung',g.noL?`Länge ohne Angabe: A = L × ${f1(g.I)} A / 73`:`${f1(g.L)} m × ${f1(g.I)} A / 73 = ${deN(g.Areq)} mm²`,g.noL?`${kpLmax(g).split(' · ').slice(0,3).join(' · ')} (THZ max. 4 mm²)`:`${(g.Asel||0).toLocaleString('de-DE')} mm² (max. 4)`,g.noL?'warn':'ok')}
+  if(AG.some(a=>a.ft+(kind==='thz'&&T.ftInt?1:0)<1))warns.push('Ohne RWA-Taster keine manuelle Auslösung: je Alarmgruppe ist mindestens ein RWA-Taster üblich und meist bauaufsichtlich gefordert.');
+  if(groups.some(g=>g.nDev>1))warns.push('Verteilerdose je Fenster, Dosen je Motorlinie in Reihe: Leitungsüberwachung bis zur letzten Dose durchschleifen (4-adrig).');
+  {const bp=[...new Set(W.filter(w=>w.pl&&!(w.plLen>0)).map(w=>w.tab+1))],op=[...new Set(W.filter(w=>w.pl&&w.plX&&w.plLen>0).map(w=>w.tab+1))];
+    if(bp.length)add('Kabel Power lock',`keine gültige Länge (Fenster ${bp.join(', ')})`,'Länge in m eingeben','bad');
+    if(op.length)warns.push(`Abweichende Kabellänge Power lock (Fenster ${op.join(', ')}): Sonderlängen laut Katalog 5 m und 7,5 m.`)}
+  const badMot=[...new Set(W.filter(w=>!(w.motL>0)).map(w=>w.tab+1))],odd=[...new Set(W.filter(w=>w.motX&&w.motL>0).map(w=>w.tab+1))];
+  if(badMot.length)add('Motor-Anschlusskabel',`keine gültige Länge (Fenster ${badMot.join(', ')})`,'Länge in m eingeben','bad');
+  if(odd.length)warns.push(`Abweichende Motor-Anschlusskabellänge (Fenster ${odd.join(', ')}): Lieferbarkeit bei GEZE anfragen (Standard 2 m, 5 m, 7,5 m).`);
+  warns.push(kind==='mbz'?'In der letzten Verteilerdose jeder Motorlinie das Leitungs-End-Modul (LEM) setzen.':'In der letzten Verteilerdose das Abschlussmodul der Leitungsüberwachung setzen (Typ laut Anschlussplan der Zentrale).');
+  const wm=kind==='mbz'?wmEff():'',wds=kind==='mbz'&&S.wds==='1'&&(wm==='wvs'||wm==='set');
+  if(kind==='mbz'&&S.wds==='1'&&!wds)warns.push('Windrichtungssensor GC 403 WDS nur in Kombination mit dem Windgeschwindigkeitssensor GC 402 WVS.');
+  if(kind==='mbz'&&S.wm&&S.wet)warns.push(`Wettermodul WM gewählt – ${WET_T[S.wet]} am CM wird nicht zusätzlich eingeplant.`);
+  if(wm)warns.push('Wettersensorik über das Wettermodul WM: Klemmdose nahe den Sensoren, Anschlussvarianten siehe Montageanleitung 135930, Einstellung per MBZ-300-Software.');
+  const ermOn=kind==='mbz'&&C.some(c=>c.nERM);if(ermOn)add('ERM-Modul','6 Relais: '+(S.ermR||[]).filter(f=>f!=='frei').join(', '),'potentialfrei, max. 42 V / 0,5 A','info');
+  const g0=groups[0]||{Areq:0,Asel:1.5,cores:3,L:0};
+  return{wm,wds,ermOn,ermR:(S.ermR||DEF.ermR).slice(0,6),kind,why,C,AG,T:T||THZ.n4,groups,W,mixed,nWin,nDrv,nPl,Irwa,Ilft,info,wet:S.wet,L:g0.L,Areq:g0.Areq,Asel:g0.Asel||null,cores:g0.cores,DC,rows,errs,warns,ok:!errs.length,
+    thzId:T?(T.id||S.thzCol):'',thzCol:want==='comfort'?THZ_COL[S.thzCol]:'weiß RAL 9016',wet:(kind==='thz'||!wmEff())?S.wet:'',
+    title:kind==='mbz'?(C.length>1?`${C.length} × MBZ 300 (gekoppelt)`:`MBZ 300 ${C[0].cls.k}`):T.name}}
+function kpBom(K){const L=[];const add=(n,name,id,note)=>{if(n>0)L.push([n,name,id,note])};
+  if(K.kind==='mbz'){K.C.forEach(c=>{const z=K.C.length>1?`Zentrale ${c.n}: `:'';
+      add(1,`MBZ 300 ${c.cls.k}`,c.cls.id,`${z}Schaltschrank ${c.cls.dim}, Akku ${c.cls.akku}`);
+      add(c.extraDM,'DM-Modul (Motorlinie 10 A)','134317',z+'zusätzliche Lüftungsgruppen');add(c.nDME,'DME-Modul (Motorlinie 20 A)','145790',z+'je DME 1 Reihenklemmen-Set');
+      add(c.nSM,'SM-Modul (Sensormodul)','134318',z+'je weitere Alarmgruppe');add(c.nERM,'ERM-Modul (6 Relais)','149081',z+'Belegung R1–R6 siehe Kabelplan');add(c.nCAN,'CAN-Modul','134319',z+'Kopplung der Zentralen');add(c.nWM,'WM-Modul (Wettermodul)','134332',z+'Wettersensorik, Programmierung per Software')});
+    if(K.wm)add(1,WM_T[K.wm][0],WM_T[K.wm][1],'am Wettermodul WM');if(K.wds)add(1,'GC 403 WDS – Windrichtungssensor','140228','am Wettermodul WM (NRWG)');
+    add(K.groups.filter(g=>g.rk).length,'Reihenklemmen Set 10 mm²','150328','für DME bzw. Querschnitt > 2,5 mm²');
+    add(K.groups.length,'Leitungs-End-Modul (LEM)','166090','je Motorlinie in der letzten VD')}
+  else{add(1,K.T.name+(S.thz==='comfort'?` (${K.thzCol})`:''),K.thzId,'inkl. Akku 2 × 12 V');add(1,'Abschlussmodul Leitungsüberwachung','','Motorlinie, letzte VD · Typ laut Anschlussplan')}
+  {const g=new Map();K.W.forEach(w=>{if(!w.DC)return;const k=`${w.DC.name} Hub ${w.DC.hub} mm, Kabel ${(w.motL||2).toLocaleString('de-DE')} m`;const e=g.get(k)||{n:0,f:0,t:new Set(),eff:new Set()};e.n+=w.nPer;e.f++;e.t.add(w.tab+1);e.eff.add(w.DC.hubEff);g.set(k,e)});
+    g.forEach((e,k)=>add(e.n,k,'',`${e.f} Fenster${S.wins.length>1?' (Typ '+[...e.t].join(', ')+')':''} · Hub eingestellt ${[...e.eff].join('/')} mm`))}
+  if(K.nPl){const g=new Map();K.W.filter(w=>w.pl).forEach(w=>{const k=(w.plLen||2).toLocaleString('de-DE');const e=g.get(k)||{n:0,rm:0,fm:0};e.n++;e[w.plMnt==='RM'?'rm':'fm']++;g.set(k,e)});
+    g.forEach((e,k)=>add(e.n,`Power lock weiß RAL 9016, Kabel ${k} m`,PL_ID,`${e.rm} × Rahmen, ${e.fm} × Flügel · Montageset nach Profil`))}
+  {const f=new Map(),m=new Map();K.AG.forEach(a=>{if(a.ft)f.set(a.ftTyp,(f.get(a.ftTyp)||{n:0,a:[]}));if(a.ft){const e=f.get(a.ftTyp);e.n+=a.ft;e.a.push(a.a)}if(a.rm){const e=m.get(a.rmTyp)||{n:0,a:[]};e.n+=a.rm;e.a.push(a.a);m.set(a.rmTyp,e)}});
+    f.forEach((e,t)=>add(e.n,FT_T[t],t,`Alarmgruppe ${e.a.join(', ')}`));m.forEach((e,t)=>add(e.n,RM_T[t],t,`Alarmgruppe ${e.a.join(', ')}`))}
+  add(K.groups.reduce((s,g)=>s+g.lta,0),'Lüftertaster LTA-24-AZ','129393',K.groups.filter(g=>g.lta).map(g=>`LG ${g.g}: ${g.lta}`).join(', '));
+  if(K.wet)add(1,WET_T[K.wet],K.wet,K.wet==='091529'?'Wetterstation + Auswerteelektronik, potentialfreier Kontakt':'potentialfreier Kontakt');
+  return L}
+/* ---------- sheets ---------- */
+const KP_STYLE='<style>svg.kpsheet text{font-family:Arial,Helvetica,sans-serif;fill:#18222d}svg.kpsheet .c{stroke:#18222d;stroke-width:.35;fill:none}svg.kpsheet .b{fill:#fff;stroke:#18222d;stroke-width:.35}svg.kpsheet text.m{fill:#5b6876}svg.kpsheet text.s{fill:#d95d14}</style>';
+const kpE=t=>esc(String(t)).replace(/"/g,'&quot;');
+const kpTx=(x,y,t,fs,extra)=>`<text x="${x}" y="${y}" font-size="${fs||2.4}"${extra?' '+extra:''}>${kpE(t)}</text>`;
+const kpLn=(x1,y1,x2,y2)=>`<line class="c" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`,kpTick=(x,y)=>kpLn(x-1.2,y+1.2,x+1.2,y-1.2);
+function kpOpen(raster,title,sub){return `<svg xmlns="http://www.w3.org/2000/svg" width="${raster?raster[0]:'297mm'}" height="${raster?raster[1]:'210mm'}" viewBox="0 0 297 210" class="kpsheet">${KP_STYLE}<rect width="297" height="210" fill="#fff"/><rect x="10" y="10" width="277" height="190" fill="none" stroke="#18222d" stroke-width="0.5"/>`+kpTx(14,17,title,4,'font-weight="bold"')+(sub?kpTx(14,22.5,sub,2.5,'class="m"'):'')}
+function kpClose(head,pNo,N){const tb=[['Projekt',S.proj||''],['Position',S.posn||''],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
+  let q=`<rect x="163" y="172" width="124" height="28" fill="#ffffff" stroke="#18222d" stroke-width="0.4"/><text x="166" y="177.5" font-size="3.2" font-weight="bold">${kpE(head)}</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt ${pNo} / ${N}</text>`;
+  tb.forEach(([kk,val],i)=>{const yy=183+i*4.6;q+=`<line x1="163" y1="${yy-3.4}" x2="287" y2="${yy-3.4}" stroke="#18222d" stroke-width="0.2"/><text x="166" y="${yy}" font-size="2.3" fill="#5b6876">${kk}</text><text x="186" y="${yy}" font-size="2.8">${kpE(val)}</text>`});
+  return q+`<text x="148" y="203.5" font-size="1.9" text-anchor="middle" fill="#5b6876">Planungshilfe – kein offizielles Dokument der GEZE GmbH. Produktabbildungen aus dem GEZE-Katalog. Angaben ohne Gewähr, maßgebend sind die Unterlagen des Herstellers.</text></svg>`}
+// list of cable-plan sheets: overview, one (or more) per ventilation group, parts list
+function kpSheetList(){const K=LAST&&LAST.KP;if(!K)return[];
+  if(!K.ok)return[{name:'Kabelplan – Prüfung',f:(r,p,N)=>kpErrSVG(r,p,N)}];
+  const L=[{name:`Kabelplan – Übersicht ${K.title}`,f:(r,p,N)=>kpOverviewSVG(r,p,N)}];
+  const lp=kpLgPages(K);
+  K.groups.forEach(g=>{const n=Math.max(1,Math.ceil(g.W.length/lp));for(let part=0;part<n;part++)L.push({name:`Kabelplan – Lüftungsgruppe ${g.g}${n>1?` (Teil ${part+1}/${n})`:''}`,f:(r,p,N)=>kpLgSVG(r,p,N,g,part,n,lp)})});
+  L.push({name:'Kabelplan – Stückliste und Hinweise',f:(r,p,N)=>kpBomSVG(r,p,N)});return L}
+const kpLgPages=K=>24;
+function kpErrSVG(raster,pNo,N){const K=LAST.KP;let o=kpOpen(raster,'Kabelplan – Prüfung',K.title);
+  o+=`<rect x="18" y="40" width="250" height="${30+K.errs.length*9}" rx="2" fill="#fbe4e2" stroke="#b3261e" stroke-width="0.5"/>`+kpTx(24,52,'Kabelplan nicht erstellbar – Grenzen überschritten',4.2,'font-weight="bold" fill="#b3261e"');
+  K.errs.forEach(([l,ist,soll],i)=>{o+=kpTx(24,62+i*9,'✕ '+l,3,'font-weight="bold"')+kpTx(30,66+i*9,`Ist ${ist} · zulässig ${soll}`,2.6)});return o+kpClose('Kabelplan – Prüfung',pNo,N)}
+function kpPageOfLg(g){const base=2*S.wins.length+1;const L=kpSheetList();const i=L.findIndex(x=>x.name.startsWith(`Kabelplan – Lüftungsgruppe ${g}`));return i<0?'':base+i}
+// peripheral block of one alarm group (left column of the overview)
+// one row per signal line: RWA push buttons (line 1), detectors line 2 / 3, BMZ – each with its own cable, devices connected in series
+function kpAgRows(a,mbz){const R=[];
+  if(a.ft)R.push({t:'ft',n:a.ft,lab:`Alarmlinie 1: ${FT_T[a.ftTyp]} × ${a.ft}`,cab:`4 × 2 × 0,8 mit Schirm · max. 400 m · max. ${mbz?10:8} in Linie`});
+  let rm=a.rm,ln=2;while(rm>0){const n=Math.min(10,rm);R.push({t:'rm',n,lab:`Alarmlinie ${ln}: ${RM_T[a.rmTyp]} × ${n}`,cab:'2 × 0,8 mit Schirm · max. 400 m · max. 10 in Linie'});rm-=n;ln++}
+  if(a.bmz)R.push({t:'bmz',n:1,lab:`Alarmlinie ${ln}: Fernauslösung BMZ`,cab:'2 × 0,8 mit Schirm · max. 400 m · Schließkontakt'});
+  return R}
+function kpAgLayout(a,w,s){const R=kpAgRows(a,true);return{h:5+R.reduce((m,q)=>m+(q.t==='ft'?9.5*s:q.t==='rm'?7*s:3)+4.6,0)+(a.ft?0:4)+1}}
+function kpAgBlock(a,x,y,w,s,mbz,T,pts){let o='';const R=kpAgRows(a,mbz),xe=x+w+2;
+  o+=kpTx(x,y+3,`Alarmgruppe ${a.a}${mbz?` · ${a.mod} Zentrale ${a.c}`:''}`,2.5,'font-weight="bold"');let yy=y+5;
+  if(!a.ft)o+=kpTx(x,yy+3,!mbz&&T&&T.ftInt?'RWA-Taster in der Zentrale integriert':'kein RWA-Taster',1.9,'class="m"'),yy+=4;
+  R.forEach(q=>{const ih=q.t==='ft'?8*s:q.t==='rm'?5.6*s:0,iw=q.t==='ft'?8*s:6.6*s,step=q.t==='ft'?7.6*s:7*s;
+    o+=kpTx(x,yy+2.2,q.lab,1.8,'font-weight="bold"');yy+=3.2;const ym=q.t==='bmz'?yy+2.1:yy+ih/2;
+    if(q.t==='bmz'){o+=`<rect class="b" x="${x}" y="${yy+0.3}" width="10" height="3.6"/>`+kpTx(x+5,yy+2.8,'BMZ',1.7,'text-anchor="middle" font-weight="bold"');o+=kpLn(x+10,ym,xe,ym)}
+    else{for(let i=0;i<q.n;i++){const ix=x+i*step;if(i)o+=kpLn(ix-step+iw*0.82,ym,ix+iw*0.18,ym);o+=kpImg(q.t==='ft'?KP_FT_IMG[a.ftTyp]:KP_RM_IMG[a.rmTyp],ix,yy,iw,ih)}
+      o+=kpLn(x+(q.n-1)*step+iw*0.82,ym,xe,ym)}
+    o+=kpTick(xe-4,ym);pts.push([xe,ym,a,q]);yy+=Math.max(ih,4.2)+0.4;o+=kpTx(x,yy+1.6,q.cab,1.55,'class="m"');yy+=2.6});
+  return o}
+function kpOverviewSVG(raster,pNo,N){const K=LAST.KP,mbz=K.kind==='mbz';
+  let o=kpOpen(raster,mbz?'Kabelplan RWA-Zentrale MBZ 300 – Übersicht':'Kabelplan Treppenhauszentrale – Übersicht',
+    `${K.title}${K.why.length?' (automatisch gewählt)':''} · ${K.nWin} Fenster · ${K.nDrv} Kettenantriebe${K.nPl?` + ${K.nPl} Power lock`:''} · ${K.groups.length} Lüftungs-, ${K.AG.length} Alarmgruppe${K.AG.length===1?'':'n'} · ${f1(K.Irwa)} A`);
+  // alarm-group peripherals on the left
+  const agX=14,agW=80,avail=(K.wet||K.wm)?104:134;let sAg=1;for(let t=0;t<12;t++){const tot=K.AG.reduce((m_,a)=>m_+kpAgLayout(a,agW-4,sAg).h+3,0);if(tot<=avail)break;sAg*=0.88}
+  const agPts=[];let agY=29;K.AG.forEach(a=>{const h=kpAgLayout(a,agW-4,sAg).h;o+=`<rect x="${agX-1}" y="${agY-0.5}" width="${agW}" height="${h+1}" fill="none" stroke="#c9ced6" stroke-width="0.3" rx="1"/>`+kpAgBlock(a,agX+1,agY,agW-4,sAg,mbz,K.T,agPts);agY+=h+3});const agBottom=agY;
+  if(!mbz){// THZ tank
+    const cx0=130,cx1=196,cy0=70,cy1=122,xm=(cx0+cx1)/2;
+    o+=`<path class="b" stroke-width="0.6" d="M${cx0},${cy0+6} Q${xm},${cy0-6} ${cx1},${cy0+6} V${cy1-6} Q${xm},${cy1+6} ${cx0},${cy1-6} Z"/>`+kpImg(S.thz==='comfort'?'thzc':'thz',xm-10,cy0+2,20,18);
+    o+=kpTx(xm,cy0+26,K.T.name+' 24 V DC',3,'text-anchor="middle" font-weight="bold"')+kpTx(xm,cy0+30.5,'B×H×T '+K.T.dim,2,'text-anchor="middle"')+kpTx(xm,cy0+34.5,K.T.mat+(S.thz==='comfort'?' · '+K.thzCol:''),2,'text-anchor="middle" class="m"')+kpTx(xm,cy0+38.5,`1 Alarm-/1 Lüftungsgruppe · max. ${f1(KP_IMAX)} A`,2,'text-anchor="middle"');
+    agPts.forEach(([x,y],k)=>{const cx_=cx0-6-k*1.6,ey=cy0+16+k*3;o+=`<polyline class="c" points="${x},${y} ${cx_},${y} ${cx_},${ey} ${cx0+(ey<cy0+8?4:0)},${ey}"/>`});
+    const g=K.groups[0];if(g){o+=kpLn(xm,cy0,xm,40)+`<circle class="b" cx="${xm}" cy="46" r="1.8"/>`+kpTx(xm,46.8,'1',2,'text-anchor="middle"')+kpTx(xm+3,40,`Motorlinie → Blatt ${kpPageOfLg(g.g)}: ${g.W.length} Fenster · ${f1(g.I)} A`,2.3,'font-weight="bold"')+kpTx(xm+3,43.5,g.noL?`${kpCs(g)} · L ohne Angabe`:`${kpCs(g)} · L ≈ ${f1(g.L)} m`,2.1,'class="s"')}
+    kpRight(cx1,cy0+8);o+=kpLn(xm,cy1+4.5,xm,150)+kpTick(xm,140)+kpTx(xm+2,139,'3 × 1,5 mm² mit GN/YE · 16 A',2.1)+kpTx(xm,154,'Netz 230 V AC / 50 Hz',2.4,'text-anchor="middle"');
+    if(K.wet)kpWeather(14,Math.min(150,agBottom+2),cx0,cy0+19+agPts.length*3+3)}
+  else{// stacked MBZ 300 centrals with their module rows
+    const x0=104,x1=K.ermOn?232:270,nC=K.C.length,ch=Math.min(44,136/nC);let firstCM=null;
+    K.C.forEach((c,ci)=>{const y=30+ci*ch,bh=Math.min(22,ch-16),by=y+8,mw=(x1-x0)/c.mods.length;
+      o+=kpTx(x0,y+3.6,`${nC>1?`Zentrale ${c.n}: `:''}MBZ 300 ${c.cls.k} · ${c.cls.dim} · ${f1(c.I)} A · Akku ${c.cls.akku}`,2.3,'font-weight="bold"');
+      o+=`<rect x="${x0}" y="${by}" width="${x1-x0}" height="${bh}" fill="#f2f3f4" stroke="#18222d" stroke-width="0.55"/>`;
+      c.mods.forEach((m,i)=>{const x=x0+i*mw,xc=x+mw/2,fs=Math.min(2.6,mw*0.28);if(i)o+=kpLn(x,by,x,by+bh);
+        const nm={PS:'Netzteil',CM:'CM',SM:'SM',DM:'DM',DME:'DME',ERM:'ERM',CAN:'CAN',WM:'WM'}[m.t];o+=kpTx(xc,by+bh*0.35,nm,fs+0.4,'text-anchor="middle" font-weight="bold"');
+        if(m.t==='CM'||m.t==='SM'){o+=kpTx(xc,by+bh*0.62,`AG ${m.ag}`,fs*0.8,'text-anchor="middle" class="m"');const aps=agPts.filter(q=>q[2].a===m.ag&&q[2].c===c.n);
+          aps.forEach((ap,j)=>{const k=agPts.indexOf(ap),yb=by+bh+8+k*1.3,ex=xc-(aps.length-1)*0.7+j*1.4,cxx=x0-3-k*1.2;o+=`<polyline class="c" points="${ap[0]},${ap[1]} ${cxx},${ap[1]} ${cxx},${yb} ${ex},${yb} ${ex},${by+bh}"/>`})
+          if(m.t==='CM'&&!firstCM)firstCM=[xc,by,bh,mw]}
+        if(m.t==='DM'||m.t==='DME'){const g=K.groups.find(q=>q.g===m.g);o+=kpTx(xc,by+bh*0.62,`LG ${m.g}`,fs*0.8,'text-anchor="middle"')+kpTx(xc,by+bh*0.85,`${f1(g.I)} A`,fs*0.72,'text-anchor="middle" class="m"');
+          o+=kpLn(xc,by+bh,xc,by+bh+3.4)+`<path d="M${xc-0.9},${by+bh+2.6} L${xc},${by+bh+4.2} L${xc+0.9},${by+bh+2.6} Z" fill="#18222d"/>`+kpTx(xc,by+bh+6.6,`→ Blatt ${kpPageOfLg(m.g)}`,1.8,'text-anchor="middle" class="s" font-weight="bold"')}
+        if(m.t==='PS')o+=kpLn(xc,by+bh,xc,by+bh+3.5)+kpTx(xc+1,by+bh+3.3,'230 V · 3 × 1,5/2,5 mm²',1.6,'class="m"');
+        if(m.t==='ERM')c.ermX=[x+mw,by+bh/2];if(m.t==='WM'){c.wmX=[xc,by+bh];o+=kpTx(xc,by+bh*0.62,'Wetter',fs*0.8,'text-anchor="middle" class="m"')}});
+      if(ci>0)o+=`<line x1="${x0-1.5}" y1="${by-ch+bh/2}" x2="${x0-1.5}" y2="${by+bh/2}" stroke="#1f4f8a" stroke-width="0.5" stroke-dasharray="1.5 1"/>`+kpTx(x0-2.4,by-ch/2+bh/2,'CAN',1.7,'text-anchor="end" fill="#1f4f8a"')});
+    if(K.ermOn){const c=K.C.find(q=>q.nERM),y0=30+8;K.ermR.forEach((f,i)=>{const yy=y0+i*5.2;o+=`<polyline class="c" points="${x1},${c.ermX?c.ermX[1]:y0} ${x1+3},${c.ermX?c.ermX[1]:y0} ${x1+3},${yy} ${x1+6},${yy}"/>`+`<rect class="b" x="${x1+6}" y="${yy-2.2}" width="22" height="4.4"/>`+kpTx(x1+7,yy+0.8,`R${i+1}`,1.7,'font-weight="bold"')+kpTx(x1+11.5,yy+0.8,f,1.6)});
+      o+=kpTx(x1+6,y0+6*5.2+0.8,'max. 42 V / 0,5 A',1.6,'class="m"')}
+    {const c1=K.C[0];if(!K.wm&&K.wet&&firstCM)kpWeather(14,Math.min(150,agBottom+3),firstCM[0]+firstCM[3]*0.32+3,firstCM[1]+firstCM[2]+3);
+     if(K.wm&&c1.wmX){const wy=Math.min(150,agBottom+3);o+=`<g>`;kpWm(14,wy,c1.wmX[0],c1.wmX[1]+16);o+=kpLn(c1.wmX[0],c1.wmX[1],c1.wmX[0],c1.wmX[1]+16)+'</g>'}}
+    if(K.info&&firstCM){const y=Math.min(168,30+K.C.length*ch+4);o+=kpTx(x0,y,`Meldekontakt CM (potentialfrei, max. 0,5 A / 30 V): ${Math.min(K.info,1)} × INFO`,2,'class="m"')}}
+  // legend / note
+  o+=kpTx(14,172,mbz?'Motorlinien je Lüftungsgruppe auf den folgenden Blättern (Bl.).':'Motorlinie mit allen Fenstern auf dem folgenden Blatt.',2.2)+kpTx(14,176,'Leitungsquerschnitte je Linie: L bis zum entferntesten Fenster × Strom / 73.',2.2,'class="m"');
+  return o+kpClose(`Kabelplan – Übersicht`,pNo,N);
+  function kpWeather(x,y,tx_,ty_){if(y>150)return;
+    if(K.wet==='091529'){o+=kpTx(x,y+2.5,'Regen- und Windsteuerung 091529',2.1,'font-weight="bold"')+kpImg('rws',x,y+4,16,10)+kpTx(x+17,y+7,'Wetterstation',1.8);
+      o+=kpLn(x+8,y+14,x+8,y+20)+kpTick(x+8,y+17)+kpTx(x+10,y+17.6,'2 × 2 × 0,8 · max. 30 m',1.7)+`<rect class="b" x="${x}" y="${y+20}" width="18" height="7"/>`+kpTx(x+9,y+23.2,'Auswerte-',1.7,'text-anchor="middle"')+kpTx(x+9,y+25.8,'elektronik',1.7,'text-anchor="middle"');
+      o+=kpLn(x+4,y+27,x+4,y+32)+kpTx(x+5,y+31.5,'Netz 230 V · 3 × 1,5 mm²',1.6,'class="m"');
+      o+=`<polyline class="c" points="${x+18},${y+23.5} ${tx_-3},${y+23.5} ${tx_-3},${ty_-3} ${tx_},${ty_-3}"/>`+kpTick(x+24,y+23.5)+kpTx(x+26,y+22.4,'2 × 2 × 0,8',1.7)}
+    else{o+=kpTx(x,y+2.5,'Regensensor GC 240 RS 189313',2.1,'font-weight="bold"')+kpImg('gc240',x,y+4,16,11);
+      o+=`<polyline class="c" points="${x+17},${y+10} ${tx_-3},${y+10} ${tx_-3},${ty_-3} ${tx_},${ty_-3}"/>`+kpTick(x+24,y+10)+kpTx(x+26,y+9,'2 × 2 × 0,8 mit Schirm · max. 200 m',1.7)}}
+  function kpWm(x,y,tx_,ty_){if(y>150)return;const im=K.wm==='rs'?['gc401']:K.wm==='wvs'?['gc402']:['gc401','gc402'];if(K.wds)im.push('gc403');
+    o+=kpTx(x,y+2.5,'Wettersensorik am Wettermodul WM',2.1,'font-weight="bold"');im.forEach((k_,i)=>o+=kpImg(k_,x+i*12,y+4,11,11));
+    o+=kpTx(x,y+26,[WM_T[K.wm][0]].concat(K.wds?['GC 403 WDS']:[]).join(' · '),1.6,'class="m"');
+    const kx=x+im.length*12+3;im.forEach((k_,i)=>o+=kpLn(x+i*12+5.5,y+15,x+i*12+5.5,y+20.5));o+=kpLn(x+5.5,y+20.5,kx,y+20.5);
+    o+=`<rect class="b" x="${kx}" y="${y+17.5}" width="14" height="6"/>`+kpTx(kx+7,y+21.4,'Klemmdose',1.6,'text-anchor="middle"');
+    o+=`<polyline class="c" points="${kx+14},${y+20.5} ${tx_-6},${y+20.5} ${tx_-6},${ty_} ${tx_},${ty_}"/>`+kpTick(kx+20,y+20.5)+kpTx(kx+16,y+19.4,'3 × 2 × 0,8 · max. 200 m',1.7);
+    o+=kpTx(x,y+29,'Anschlussvarianten (z. B. 4 × 1,5 mm², max. 200 m) siehe Montageanleitung 135930.',1.6,'class="m"')}
+  function kpRight(x,y){let yy=y;for(let i=0;i<K.info;i++){o+=kpLn(x,yy,x+22,yy)+kpTick(x+8,yy)+kpTx(x+10,yy-0.8,'3 × 0,75 mm²',1.7)+`<rect class="b" x="${x+22}" y="${yy-2.4}" width="12" height="4.8"/>`+kpTx(x+28,yy+0.8,'INFO',1.9,'text-anchor="middle"');yy+=6.5}
+    if(K.info)o+=kpTx(x+2,yy,'potentialfreie Wechsler, max. 0,5 A / 30 V',1.7,'class="m"')}
+}
+function kpLgSVG(raster,pNo,N,g,part,nParts,per){const K=LAST.KP,mbz=K.kind==='mbz',c=mbz?K.C.find(q=>q.n===g.c):null;
+  const src=mbz?`${g.mod} · Zentrale ${g.c}`:K.T.name;
+  let o=kpOpen(raster,`Kabelplan – Lüftungsgruppe ${g.g}${nParts>1?` (Teil ${part+1}/${nParts})`:''}`,`${src} · Alarmgruppe ${g.ag} · ${g.W.length} Fenster · ${f1(g.I)} A (RWA) · Leitung ${kpCs(g)}${g.noL?', L ohne Angabe':`, L ≈ ${f1(g.L)} m`}`);
+  const all=kpAll(K).filter(v=>v.g===g.g),sl=all.slice(part*per,(part+1)*per),pr=Math.max(4,Math.min(8,sl.length)),V=sl.map((v,i)=>Object.assign({},v,{r:Math.floor(i/pr),c:i%pr}));
+  const rows=Math.ceil(V.length/pr),R=kpLines(K,V,{x0:52,x1:284,y0:28,rowH:rows===1?66:Math.min(48,138/rows),perRow:pr,mbz});o+=R.svg;
+  const fb=R.boxes[0];
+  // source (control panel / drive module)
+  const sy=fb?fb.ym:60;o+=`<rect x="14" y="${sy-10}" width="28" height="20" fill="#f2f3f4" stroke="#18222d" stroke-width="0.55"/>`+kpTx(28,sy-4.5,part?'von Blatt '+(pNo-1):(mbz?g.mod:K.T.name),2.4,'text-anchor="middle" font-weight="bold"')+kpTx(28,sy-1,part?`Linie ${g.g}`:(mbz?`Zentrale ${g.c}`:'Antriebsausgang'),1.9,'text-anchor="middle" class="m"')+kpTx(28,sy+2.5,`LG ${g.g} · ${f1(g.I)} A`,1.9,'text-anchor="middle"');
+  if(fb){o+=kpLn(42,sy,fb.bxL,sy)+`<circle class="b" cx="46" cy="${sy}" r="1.7"/>`+kpTx(46,sy+0.75,'1',2,'text-anchor="middle"')+kpTick(49,sy)}
+  if(part<nParts-1)o+=kpTx(284,R.boxes[R.boxes.length-1].ym+6,'weiter auf Blatt '+(pNo+1)+' →',2,'text-anchor="end" font-weight="bold"');
+  // fan push buttons of this group
+  if(!part&&g.lta){const y=sy+30;o+=kpLn(28,sy+10,28,y)+kpTick(28,y-9)+kpTx(30,y-8.6,'4 × 2 × 0,8 mit Schirm',1.8)+kpTx(30,y-5.8,'Lüftertaster-Leitung',1.6,'class="m"');
+    for(let i=0;i<Math.min(g.lta,3);i++)o+=kpImg('lta',16+i*9,y+1,9,9);o+=kpTx(14,y+14,`Lüftertaster LTA-24-AZ × ${g.lta}`,2.2,'font-weight="bold"')+kpTx(14,y+17.2,g.lta>KP_LTA_LED?'mehr als 3: LEDs nicht anschließen':'max. 3 mit LED je Lüftungsgruppe',1.8,'class="m"')}
+  // line calculation
+  const dy=g.noL?3.6:0;
+  o+=`<rect x="14" y="166" width="140" height="${30+dy}" fill="none" stroke="#18222d" stroke-width="0.3"/>`+kpTx(16,171,`Leitung ① Lüftungsgruppe ${g.g} (min. 1,5 mm²)${g.noL?' – Länge ohne Angabe':''}`,2.6,'font-weight="bold"');
+  if(g.noL)o+=kpTx(16,176,`A = L × I / 73 = L × ${f1(g.I)} A / 73 = L × ${deN(g.I/73,4)} mm²/m   (L = Leitungslänge bis zum entferntesten Fenster)`,2.4,'font-weight="bold" class="s"')+kpTx(16,179.6,`max. Länge: ${kpLmax(g)}`,2.1,'class="s"');
+  else o+=kpTx(16,176,kpFormula(g),2.4,'font-weight="bold" class="s"');
+  o+=kpTx(16,180.5+dy,g.noL?(mbz?'bis 2,5 mm² direkt am DM, darüber Reihenklemmen-Set 10 mm² (150328).':'Anschluss direkt an der Zentrale (max. 4 mm²).'):g.rk?'Anschluss über Reihenklemmen-Set 10 mm² (150328).':(mbz?'Anschluss direkt am DM (max. 2,5 mm²).':'Anschluss direkt an der Zentrale (max. 4 mm²).'),2.1);
+  o+=kpTx(16,184.5+dy,'Je Fenster zählt max(Kettenantriebe; Power lock) – beide laufen nie gleichzeitig.',2,'class="m"')+kpTx(16,188.5+dy,`Letzte VD: ${mbz?'Leitungs-End-Modul (LEM 166090)':'Abschlussmodul Leitungsüberwachung'}.`,2,'class="m"')+kpTx(16,192.5+dy,'Kabeltyp / Funktionserhalt (E30/E90) mit der Abnahmebehörde festlegen.',2,'class="m"');
+  return o+kpClose(`Kabelplan – LG ${g.g}`,pNo,N)}
+function kpBomSVG(raster,pNo,N){const K=LAST.KP,B=kpBom(K);let o=kpOpen(raster,'Kabelplan – Stückliste und Hinweise',K.title);
+  const fs=B.length>22?1.9:2.3,step=B.length>22?5:6.2;let y=32;
+  o+=kpTx(14,y-4,'Pos.',2.2,'font-weight="bold"')+kpTx(26,y-4,'Menge',2.2,'font-weight="bold"')+kpTx(42,y-4,'Bezeichnung',2.2,'font-weight="bold"')+kpTx(140,y-4,'Id.Nr.',2.2,'font-weight="bold"')+kpTx(160,y-4,'Bemerkung',2.2,'font-weight="bold"')+`<line x1="14" y1="${y-2.6}" x2="284" y2="${y-2.6}" stroke="#18222d" stroke-width="0.3"/>`;
+  B.forEach(([n,name,id,note],i)=>{o+=kpTx(14,y+1,i+1,fs)+kpTx(26,y+1,n+' ×',fs,'font-weight="bold"')+kpTx(42,y+1,name,fs)+kpTx(140,y+1,id||'–',fs)+kpTx(160,y+1,note||'',fs*0.85,'class="m"')+`<line x1="14" y1="${y+2.6}" x2="284" y2="${y+2.6}" stroke="#d3d9e0" stroke-width="0.2"/>`;y+=step});
+  y+=4;if(y<160){o+=kpTx(14,y,'Zu beachten',2.6,'font-weight="bold" fill="#9a5b00"');y+=4.5;
+    K.warns.forEach(w=>wrapLines([w],120).forEach(l=>{if(y<168){o+=kpTx(14,y,l.trim(),2,'fill="#9a5b00"');y+=3.2}}))}
+  o+=kpTx(14,176,'Hinweise: Verlegung und Anschluss nur durch eine zugelassene Elektrofachkraft. VDE 0833/0815 beachten.',2.1)+kpTx(14,180,'Zentrale vor Baustaub und Spritzwasser schützen. Leitungsquerschnitt in Abhängigkeit der Leitungslänge berechnen.',2.1);
+  return o+kpClose('Kabelplan – Stückliste',pNo,N)}
+// kept for older call sites
+function kpSheetSVG(raster,N){const L=kpSheetList();return L.length?L[0].f(raster,2*S.wins.length+1,N||nSheets()):kpOpen(raster,'Kabelplan','Keine Zentrale gewählt.')+'</svg>'}
+const kpExtra=()=>false;
+/* ---------- per alarm group / ventilation group inputs ---------- */
+function renderPer(){const ab=$('agBox'),lb=$('lgBox');if(!S.thz){ab.hidden=true;lb.hidden=true;return}
+  const {lgs,ags}=usedGroups();ab.hidden=!ags.length;lb.hidden=!lgs.length;
+  const opt=(vals,cur,lab)=>vals.map(v=>`<option value="${v}"${String(v)===String(cur)?' selected':''}>${lab?lab(v):v}</option>`).join('');
+  ab.innerHTML=`<div class="wtop"><b>Peripherie je Alarmgruppe</b><small class="hint">Alarmgruppe wird je Fenster im Bereich „Antrieb“ gewählt</small></div>`+ags.map(a=>{const q=agPer(a);
+    return `<div class="wrow per"><span class="wn">AG ${a}</span>
+      <label>RWA-Taster<select data-agp="${a}:ftTyp">${opt(Object.keys(FT_T),q.ftTyp,v=>FT_T[v].replace('RWA-Taster ',''))}</select></label>
+      <label>Anzahl<select data-agp="${a}:ft">${opt([...Array(11).keys()],q.ft)}</select></label>
+      <span></span><label>Melder<select data-agp="${a}:rmTyp">${opt(Object.keys(RM_T),q.rmTyp,v=>RM_T[v])}</select></label>
+      <label>Anzahl<select data-agp="${a}:rmN">${opt([...Array(21).keys()],q.rmN)}</select></label>
+      <span></span><label>Fernauslösung BMZ<select data-agp="${a}:bmz">${opt(['0','1'],q.bmz,v=>v==='1'?'ja':'nein')}</select></label></div>`}).join('');
+  lb.innerHTML=`<div class="wtop"><b>Lüftertaster je Lüftungsgruppe</b><small class="hint">LTA-24-AZ, max. 3 mit LED je Gruppe</small></div><div class="grid">`+lgs.map(g=>`<label class="f"><span>LG ${g}</span><select data-ltag="${g}">${opt([0,1,2,3,4,5,6],ltaFor(g),v=>v>3?v+' (ohne LED)':v)}</select></label>`).join('')+'</div>'}
+document.addEventListener('change',e=>{const a=e.target.closest('[data-agp]');if(a){const [g,f]=a.dataset.agp.split(':');S.agP=S.agP||{};S.agP[g]=Object.assign({},agPer(g),{[f]:a.value});save();update();return}
+  const l=e.target.closest('[data-ltag]');if(l){S.ltaG=S.ltaG||{};S.ltaG[l.dataset.ltag]=l.value;save();update()}});
+function renderKp(K){const el=$('kpOut');renderErm();renderPer();
+  {const tot=S.wins.reduce((m,w)=>m+(Math.max(1,Math.round(num(w.n))||1)),0);$('kpBase').textContent=S.wins.some(w=>DRV[w.drv])?`Grundlage: ${tot} Fenster aus ${S.wins.length} Reiter${S.wins.length>1?'n':''}. Maße, Antrieb, Lüftungs- und Alarmgruppe, Kabellängen und Entfernung zur Zentrale werden in den Fenster-Reitern festgelegt.`:'Zuerst in einem Fenster-Reiter einen Antrieb wählen (Bereich „Antrieb“).'}
+  $('thzColL').hidden=S.thz!=='comfort';{const isM=K?K.kind==='mbz':S.thz==='mbz';$('wetL').hidden=false;$('wetL').firstChild.textContent=isM?'Regen / Wind am CM (ohne WM)':'Regen / Wind (THZ)';$('wmL').hidden=!isM;$('wdsL').hidden=!isM||!S.wm;
+    const e=$('kpEff');if(!S.thz){e.textContent='';e.className='kpeff'}else if(!K){e.textContent='';}else{e.className='kpeff'+(K.why.length?' auto':'');e.textContent=K.kind==='mbz'?(K.why.length?`Automatisch: ${K.title} statt ${THZ[S.thz].name} – ${K.why.join(', ')}`:`Gewählt: ${K.title}`):`Gewählt: ${K.title}`}}
+  document.querySelectorAll('#kpPanel select,#kpPanel input').forEach(e=>{if(e.id!=='thz')e.disabled=!S.thz});
+  if(!K){el.innerHTML='';return}
+  const pill={ok:'erfüllt',bad:'nicht erfüllt',warn:'prüfen',info:'Info'};
+  let h=`<div class="chk"><div class="h">Kriterium</div><div class="h">Ist</div><div class="h">Grenze</div><div class="h"></div>`;
+  for(const [l,ist,soll,st] of K.rows)h+=`<div>${esc(l)}</div><div class="v">${esc(ist)}</div><div class="v">${esc(soll)}</div><span class="st ${st}">${pill[st]}</span>`;
+  K.warns.filter(w=>w.length>40).forEach(t=>h+=`<div class="note">${esc(t)}</div>`);
+  el.innerHTML=h+'</div>'}
+
+function drawKp(){const h=$('kpHost');if(h.hidden)return;
+  if(!S.thz){h.innerHTML='<div class="kp-empty">Für den Kabelplan im Bereich „Steuerung und Kabelplan“ eine Zentrale wählen (THZ N4, THZ Comfort N4 oder MBZ 300). Reicht die THZ nicht aus, wird automatisch auf die MBZ 300 gewechselt.</div>';return}
+  if(!LAST){h.innerHTML='<div class="kp-empty">Bitte zuerst die markierten Eingaben korrigieren.</div>';return}
+  const L=kpSheetList(),N=nSheets(),b=2*S.wins.length;h.innerHTML=L.map((q,i)=>q.f(null,b+i+1,N).replace(/width="297mm" height="210mm"/,'')).join('<div style="height:10px"></div>')}
+const nSheets=()=>2*S.wins.length+(LAST&&LAST.KP?kpSheetList().length:0);
 /* ---------- sheet 2: 3D views (A4 landscape) ---------- */
 const SHEET2_VIEWS=[['innen',14,29,176,141,'Von innen'],['aussen',194,29,89,68,'Von außen'],['seite',194,103,89,67,'Seitlich']];
 function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('Zeichnung konnte nicht gerendert werden'));i.src=src})}
@@ -1099,9 +1637,9 @@ function sheet2SVG(raster){
   y+=6;
   const lg=[['#1f4f8a',0.45,false,'Lüftungsfläche an der Hauptschließkante zum maßgebenden Bauteil'],['#1d7a4c',0.45,false,'Seitendreiecke außerhalb der Laibung'],['#5b6876',0.15,true,'abgewählt bzw. nicht maßgebend']];
   lg.forEach(([c,op,dash,t],i)=>{const yy=y+i*4.4;o+=`<rect x="14" y="${yy-2.5}" width="6" height="3" fill="${c}" fill-opacity="${op}" stroke="${c}" stroke-width="0.3"${dash?' stroke-dasharray="0.8 0.6"':''}/><text x="22" y="${yy}" font-size="2.5">${E(t)}</text>`});
-  const tb=[['Projekt',S.proj||''],['Position',S.posn||''],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
+  const tb=[['Projekt',S.proj||''],['Position',posLab()],['Bearbeiter',S.bearb||''],['Datum',new Date().toLocaleDateString('de-DE')]];
   o+=`<rect x="163" y="172" width="124" height="28" fill="#ffffff" stroke="#18222d" stroke-width="0.4"/>`;
-  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – 3D-Ansicht</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt 2 / 2</text>`;
+  o+=`<text x="166" y="177.5" font-size="3.2" font-weight="bold">Öffnung zur Rauchableitung – 3D-Ansicht</text><text x="284" y="177.5" font-size="2.3" text-anchor="end" fill="#5b6876">Blatt ${pg1()+1} / ${pgN()}</text>`;
   tb.forEach(([kk,val],i)=>{const yy=183+i*4.6;o+=`<line x1="163" y1="${yy-3.4}" x2="287" y2="${yy-3.4}" stroke="#18222d" stroke-width="0.2"/><text x="166" y="${yy}" font-size="2.3" fill="#5b6876">${kk}</text><text x="186" y="${yy}" font-size="2.8">${E(val)}</text>`});
   return o+'</svg>';
 }
@@ -1144,18 +1682,16 @@ const svgUrl=svg=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 $('dlSvg').addEventListener('click',async()=>{if(!guard())return;
   const blob=new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+sheetSVG()],{type:'image/svg+xml'});$('dlState').textContent=await saveFile(fileBase()+'.svg',blob)});
 $('dlPdf').addEventListener('click',async()=>{if(!guard())return;const btn=$('dlPdf');btn.disabled=true;$('dlState').textContent='Zeichnung wird erstellt …';
-  try{const W=3508,H=2480;const img=new Image();
-    await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(new Error('Zeichnung konnte nicht gerendert werden'));img.src=svgUrl(sheetSVG([W,H]))});
-    const cv=document.createElement('canvas');cv.width=W;cv.height=H;const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,W,H);cx.drawImage(img,0,0,W,H);
+  try{const W=3508,H=2480;const cvs=await allPages(W,H,t=>$('dlState').textContent=t);
     const toJ=async c=>new Uint8Array(await (await new Promise(r=>c.toBlob(r,'image/jpeg',0.92))).arrayBuffer());
-    $('dlState').textContent='3D-Ansicht wird erstellt …';const cv2=await sheet2Canvas(W,H);
-    $('dlState').textContent=await saveFile(fileBase()+'.pdf',makePdf([{jpeg:await toJ(cv),w:W,h:H},{jpeg:await toJ(cv2),w:W,h:H}],fileBase()));
+    const pages=[];for(const cv of cvs)pages.push({jpeg:await toJ(cv),w:W,h:H});
+    $('dlState').textContent=await saveFile(fileBase()+'.pdf',makePdf(pages,fileBase()));
   }catch(e){$('dlState').textContent='PDF konnte nicht erstellt werden: '+(e.message||e)}finally{btn.disabled=false}});
 const setSrc=(img,src)=>new Promise((res,rej)=>{img.onload=()=>res();img.onerror=()=>rej(new Error('Bild konnte nicht geladen werden'));img.src=src});
 $('dlPrint').addEventListener('click',async()=>{if(!guard())return;const btn=$('dlPrint');btn.disabled=true;$('dlState').textContent='Druckansicht wird erstellt …';
-  try{const c2=await sheet2Canvas(2339,1654);
-    await Promise.all([setSrc($('printImg'),svgUrl(sheetSVG())),setSrc($('printImg2'),c2.toDataURL('image/jpeg',0.92))]);
-    $('dlState').textContent='Druckansicht mit 2 Blättern geöffnet.';setTimeout(()=>window.print(),50)}
+  try{const cvs=await allPages(2339,1654,t=>$('dlState').textContent=t);const ps=$('printSheet');ps.innerHTML='';
+    for(const cv of cvs){const im=document.createElement('img');im.alt='';ps.appendChild(im);await setSrc(im,cv.toDataURL('image/jpeg',0.92))}
+    $('dlState').textContent=`Druckansicht mit ${cvs.length} Blättern geöffnet.`;setTimeout(()=>window.print(),50)}
   catch(e){$('dlState').textContent='Druckansicht konnte nicht erstellt werden: '+(e.message||e)}finally{btn.disabled=false}});
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
@@ -1165,6 +1701,7 @@ document.querySelectorAll('input[data-k]').forEach(i=>{i.value=S[i.dataset.k]??'
 $('alphaR').addEventListener('input',e=>{S.alpha=e.target.value;$('alphaN').value=String(e.target.value).replace('.',',');save();update()});
 $('alphaN').addEventListener('input',e=>{S.alpha=e.target.value;save();update()});
 $('alphaN').addEventListener('blur',update);
+$('maxBtn').addEventListener('click',()=>{const v=MAXA;S.alpha=f1(v);$('alphaN').value=f1(v).replace(/,0$/,'');save();update()});
 $('modes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(!b)return;S.mode=b.dataset.mode;save();update()});
 $('dimMode').addEventListener('click',e=>{const b=e.target.closest('[data-dim]');if(!b)return;const to=b.dataset.dim,cur=S.dim==='licht'?'licht':'fa';if(to===cur)return;
   const P=params();if(!P.bad.length){if(to==='licht'){S.b=String(Math.round(P.b*1000));S.h=String(Math.round(P.h*1000))}else{S.fb=String(Math.round(P.fb*1000));S.fh=String(Math.round(P.fh*1000))}}
@@ -1226,6 +1763,161 @@ function curveAt(pts,x){if(!pts||!pts.length)return{none:true};
   if(x>=last[0]){if(last[1]>=200||pts.length===1)return{y:last[1]};return x<=last[0]+1e-9?{y:last[1]}:{above:true,max:last[0],y:last[1]}}
   for(let i=0;i<pts.length-1;i++){const [x0,y0]=pts[i],[x1,y1]=pts[i+1];if(x>=x0&&x<=x1)return{y:y0+(y1-y0)*(x-x0)/(x1-x0)}}
   return{none:true}}
+/* ---------- Sicherheitsschere Nr. 35 / Nr. 60 (Kippflügel) ----------
+   Werte aus den Montageanleitungen (Diagramme x über b je Öffnungsweite OW, max. Flügelgewicht über b je OW).
+   b = Flügelhöhe, x = Abstand Flügeloberkante → Drehpunkt Rahmenteil, Flügelteil bei x + 45 (Nr. 35) bzw. x + 56 (Nr. 60).
+   FP > OW: die Schere fängt erst jenseits der Antriebsöffnung. */
+const SCH={
+  '35':{n:'Nr. 35',d:45,L1:194,L2:150,ext0:11,ext1:24,w1:18,w2:12,cz:0.008,holes:[-18,18],bmin:300,bmax:2500,len:253.5,
+    X:[{ow:200,lab:'200…300',p:[[300,45],[2500,45]]},{ow:400,p:[[400,63.6],[2500,561.1]]},{ow:500,p:[[500,166],[2500,911.3]]},{ow:600,p:[[600,259],[2500,1161.6]]},{ow:700,p:[[700,357.1],[2500,1341.6]]}],
+    G:{200:[[300,39],[400,60.2],[1400,269.8],[2500,269.8]],400:[[400,50.5],[2000,250.3],[2500,250.3]],500:[[500,29.6],[600,45],[2000,171],[2500,171]],600:[[600,26.8],[2000,119.9],[2500,119.9]],700:[[700,24.7],[1800,79.7],[2500,79.7]]}},
+  '60':{n:'Nr. 60',d:56,L1:330.5,L2:274.5,ext0:12,ext1:33,w1:18,w2:14,cz:0.011,holes:[-33,-15,15,33],bmin:700,bmax:2500,len:406,
+    X:[{ow:500,lab:'500',p:[[700,65],[2500,65]]},{ow:600,p:[[700,65],[1413,64.6],[2500,159.8]],fpLow:[1413,500]},{ow:700,p:[[700,109.8],[2500,470.5]]},{ow:800,p:[[800,205.5],[2500,710.6]]},
+       {ow:900,p:[[900,308.3],[2500,901.2]]},{ow:1000,p:[[1000,400.4],[2500,1051.2]]},{ow:1200,p:[[1200,603.5],[2500,1281.5]]}],
+    G:{500:[[600,79.9],[1600,240],[2500,240]],600:[[600,79.9],[1600,240],[2500,240]],700:[[700,77],[1800,220],[2500,220]],800:[[800,69.9],[2100,200],[2500,200]],900:[[900,59.8],[2500,179.9]],1000:[[1000,54.4],[2500,145]],1200:[[1200,44],[2500,95]]}}};
+const schLab=c=>`OW ${c.lab||c.ow} mm`;
+function schLerp(p,b){if(b<p[0][0]-1e-6||b>p[p.length-1][0]+1e-6)return NaN;for(let i=1;i<p.length;i++)if(b<=p[i][0]+1e-9){const[a0,v0]=p[i-1],[a1,v1]=p[i];return v0+(v1-v0)*(b-a0)/((a1-a0)||1)}return p[p.length-1][1]}
+// catch width of a curve at sash height b (conservative lower value of a range)
+const schFP=(c,b)=>c.fpLow&&b<c.fpLow[0]?c.fpLow[1]:c.ow;
+const schOn=()=>S.mode==='kipp'&&!!SCH[S.sch];
+function schEval(T,b,ow,wt,pick){const R={T,b,ow,wt,rows:[],failRows:[]};const mm_=v=>Math.round(v).toLocaleString('de-DE');
+  const fail=(l,ist,soll)=>{R.rows.push([l,ist,soll,'bad']);R.failRows.push([l,ist,soll])};
+  if(b<T.bmin-1e-6||b>T.bmax+1e-6){fail('Flügelhöhe b',`${mm_(b)} mm`,`${T.bmin}–${T.bmax} mm`);R.ok=false;return R}else R.rows.push(['Flügelhöhe b',`${mm_(b)} mm`,`${T.bmin}–${T.bmax} mm`,'ok']);
+  R.rows.push(['Öffnungsweite OW (Antrieb, Flügeloberkante)',`${mm_(ow)} mm`,'Sehne 2 · b · sin(α/2)','info']);
+  const inB=c=>b>=c.p[0][0]-1e-6&&b<=c.p[c.p.length-1][0]+1e-6;
+  let c=null;
+  if(pick){c=T.X.find(q=>String(q.ow)===String(pick))||null}
+  if(!c){c=T.X.find(q=>inB(q)&&schFP(q,b)>ow+1e-6)||null;R.auto=true}
+  if(!c){const big=T.X[T.X.length-1];fail('Fangweite FP > OW',`OW ${mm_(ow)} mm`,`< ${big.ow} mm (größte Kurve ${T.n}${inB(big)?'':`, ab b ${big.p[0][0]} mm`})`);R.ok=false;return R}
+  R.c=c;R.fp=schFP(c,b);
+  if(!inB(c))fail(`Kurve ${schLab(c)}`,`b ${mm_(b)} mm`,`b ≥ ${c.p[0][0]} mm`);
+  else if(R.fp<=ow+1e-6)fail('Fangweite FP > OW',`${schLab(c)}: FP ${R.fp} mm`,`> OW ${mm_(ow)} mm (Schere würde die Antriebsöffnung begrenzen)`);
+  else R.rows.push(['Fangweite FP > OW',`${schLab(c)}${R.auto?' (automatisch)':''}`,`> OW ${mm_(ow)} mm`,'ok']);
+  R.x=schLerp(c.p,b);R.gmax=schLerp(T.G[c.ow],b);
+  if(isFinite(R.x)){R.rows.push(['x-Maß Rahmenteil (ab Flügeloberkante)',`${mm_(R.x)} mm`,`Diagramm b / ${schLab(c)}`,'info']);R.rows.push([`Flügelteil x + ${T.d}`,`${mm_(R.x+T.d)} mm`,'entlang der Flügelkante','info'])}
+  if(isFinite(R.gmax)){if(wt>R.gmax+1e-9)fail('Flügelgewicht',`${f1(wt)} kg`,`≤ ${f1(R.gmax)} kg (b ${mm_(b)} mm, ${schLab(c)})`);else R.rows.push(['Flügelgewicht',`${f1(wt)} kg`,`≤ ${f1(R.gmax)} kg (b ${mm_(b)} mm, ${schLab(c)})`,'ok'])}
+  R.ok=!R.failRows.length;return R}
+function schCheck(P,aOpen){if(P.mode!=='kipp')return null;const T=SCH[S.sch];if(!T)return null;
+  const b=P.fh*1000,ow=2*b*Math.sin(Math.max(0,aOpen)*Math.PI/360),wt=weightOf(P).m;
+  const R=schEval(T,b,ow,wt,S.schOW||'');R.label=`Sicherheitsschere ${T.n} (2 Stück)`;R.aOpen=aOpen;
+  R.notes=['Je Flügel immer 2 Scheren (links und rechts), nur für Kippflügel. Nicht in Feuchträumen und nicht bei Dachflächenfenstern.','Rahmenteil bei x ab Flügeloberkante, Flügelteil bei x + '+T.d+' mm; x nach dem Diagramm der Montageanleitung für b und die gewählte OW-Kurve.'];
+  if(!R.ok){const o=SCH[S.sch==='35'?'60':'35'],A=schEval(o,b,ow,wt,'');
+    R.hint=A.ok?`Alternative: Sicherheitsschere ${o.n} mit ${schLab(A.c)}, x = ${Math.round(A.x)} mm, zul. ${f1(A.gmax)} kg.`:''}
+  return R}
+// geometry in the section plane (metres): frame pin F, joint J, sash pin P (P0 = sash pin in the closed sash)
+function schGeo(P,sc,SC){const T=SC.T,k_=1e-3,yTop=P.h+P.ue,th=(sc.bottom===sc.inward)?sc.al:-sc.al,Rt=q=>rot(q,sc.hinge,th);
+  const xp=0.012,F=[xp,yTop-SC.x*k_],P0=[xp,yTop-(SC.x+T.d)*k_],Pp=Rt(P0);
+  const L1=T.L1*k_,L2=T.L2*k_,dx=Pp[0]-F[0],dy=Pp[1]-F[1],d=Math.hypot(dx,dy)||1e-9,ux=dx/d,uy=dy/d;
+  const dd=Math.min(Math.max(d,Math.abs(L1-L2)+1e-7),L1+L2-1e-7),a_=(L1*L1-L2*L2+dd*dd)/(2*dd),hh=Math.sqrt(Math.max(0,L1*L1-a_*a_));
+  const bx=F[0]+a_*ux,by=F[1]+a_*uy,J=[bx-hh*uy,by+hh*ux]; // branch that starts folded along the frame and swings into the room
+  return{F,J,P:Pp,P0,Rt,yTop,xp,stretched:d>L1+L2+1e-6,d}}
+const schCap=(A,B,w,e0,e1,n)=>{const dx=B[0]-A[0],dy=B[1]-A[1],l=Math.hypot(dx,dy)||1e-9,ux=dx/l,uy=dy/l,r=w/2,o=[],N=n||8;
+  const S0=[A[0]-ux*e0,A[1]-uy*e0],S1=[B[0]+ux*e1,B[1]+uy*e1],ang=Math.atan2(uy,ux);
+  // straight sides with rounded caps (radius w/2) at both ends
+  for(let i=0;i<=N;i++){const t=ang-Math.PI/2+Math.PI*i/N;o.push([S1[0]-ux*r+r*Math.cos(t),S1[1]-uy*r+r*Math.sin(t)])}
+  for(let i=0;i<=N;i++){const t=ang+Math.PI/2+Math.PI*i/N;o.push([S0[0]+ux*r+r*Math.cos(t),S0[1]+uy*r+r*Math.sin(t)])}
+  return o};
+/* scissor error: no drawing, list of failed criteria and how to correct it */
+function drawSchError(SC){const W=640,lh=22,rows=SC.failRows||[],H=Math.max(250,180+rows.length*(lh*2+6)+(SC.hint?22:0));
+  const e=t=>esc(String(t));let y=58;
+  let s=`<svg data-mw="0.6400" data-err="1" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sicherheitsschere nicht einsetzbar">`;
+  s+=`<rect class="e-bg" x="8" y="8" width="${W-16}" height="${H-16}" rx="4" fill="#fbe4e2" stroke="#b3261e" stroke-width="1.5"/>`;
+  s+=`<path class="e-ic" d="M40 ${y-24} l14 24 h-28 z" fill="none" stroke="#b3261e" stroke-width="2.2" stroke-linejoin="round"/><text class="e-ic-t" x="40" y="${y-4}" text-anchor="middle" fill="#b3261e" font-size="15" font-weight="700">!</text>`;
+  s+=`<text class="e-h" x="64" y="${y}" fill="#b3261e" font-size="19" font-weight="700">Sicherheitsschere nicht einsetzbar – keine Zeichnung</text>`;y+=26;
+  s+=`<text class="e-sub" x="64" y="${y}" fill="#18222d" font-size="13">${e(SC.label)} · b = ${Math.round(SC.b)} mm · OW = ${Math.round(SC.ow)} mm · ${f1(SC.wt)} kg</text>`;y+=34;
+  rows.forEach(([l,ist,soll])=>{s+=`<text class="e-l" x="40" y="${y}" fill="#18222d" font-size="14" font-weight="700">✕  ${e(l)}</text>`;y+=lh;
+    s+=`<text class="e-v" x="64" y="${y}" fill="#18222d" font-size="13" font-family="IBM Plex Mono,monospace">Ist ${e(ist)}   ·   zulässig ${e(soll)}</text>`;y+=lh+6});
+  if(SC.hint)s+=`<text class="e-f" x="40" y="${H-58}" fill="#1d7a4c" font-size="12.5" font-weight="700">${e(SC.hint)}</text>`;
+  s+=`<text class="e-f" x="40" y="${H-34}" fill="#5f6262" font-size="12">Bitte korrigieren (Hub bzw. Öffnungswinkel, Flügelhöhe, Glas/Flügelgewicht,</text><text class="e-f" x="40" y="${H-18}" fill="#5f6262" font-size="12">Scherentyp oder OW-Kurve) oder die Sicherheitsschere abwählen.</text></svg>`;
+  return s}
+// detailed side view: arms, brackets, screws, pins (scissors sit at the sash sides, behind the section plane)
+function schParts(G,SC,X,Y,k,detail){const T=SC.T,m=1e-3,pt=q=>X(q[0])+','+Y(q[1]);
+  const pg=(q,c)=>`<polygon class="${c}" points="${q.map(pt).join(' ')}"/>`;let s='';
+  const screw=(c,r)=>`<circle class="s-sch-scr" cx="${X(c[0])}" cy="${Y(c[1])}" r="${Math.max(0.6,r*k).toFixed(2)}"/>`+(r*k>=2?`<path class="s-sch-x" d="M${(+X(c[0])-r*k*0.6).toFixed(1)} ${Y(c[1])}h${(r*k*1.2).toFixed(1)}M${X(c[0])} ${(+Y(c[1])-r*k*0.6).toFixed(1)}v${(r*k*1.2).toFixed(1)}"/>`:'');
+  const plate=(C,f)=>{const ext=Math.max(...T.holes.map(Math.abs))+9,q=rrect(C[0]-9*m,C[0]+9*m,C[1]-ext*m,C[1]+ext*m,8*m).map(f);let o=pg(q,'s-sch-brk');
+    T.holes.forEach(hy=>o+=screw(f([C[0],C[1]+hy*m]),3.6*m));return o};
+  const dimV=(A,B,lab,side,off)=>{const dx=B[0]-A[0],dy=B[1]-A[1],l=Math.hypot(dx,dy)||1,nx=-dy/l*side,ny=dx/l*side,o_=off;
+    const a=[A[0]+nx*o_,A[1]+ny*o_],b=[B[0]+nx*o_,B[1]+ny*o_],mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    let o=`<line class="s-sch-dim" x1="${X(A[0])}" y1="${Y(A[1])}" x2="${X(a[0])}" y2="${Y(a[1])}"/><line class="s-sch-dim" x1="${X(B[0])}" y1="${Y(B[1])}" x2="${X(b[0])}" y2="${Y(b[1])}"/>`;
+    o+=`<line class="s-sch-dim" x1="${X(a[0])}" y1="${Y(a[1])}" x2="${X(b[0])}" y2="${Y(b[1])}" marker-start="url(#schA)" marker-end="url(#schA)"/>`;
+    const ang=Math.atan2(-(b[1]-a[1]),b[0]-a[0])*180/Math.PI,rot_=ang>90||ang<-90?ang+180:ang;
+    return o+`<text class="t-sch" x="${X(mid[0])}" y="${Y(mid[1])}" dy="-3" text-anchor="middle" transform="rotate(${rot_.toFixed(1)} ${X(mid[0])} ${Y(mid[1])})">${lab}</text>`};
+  if(detail){s+=dimV([G.xp+0.004,G.yTop],[G.xp+0.004,G.F[1]],`x = ${Math.round(SC.x)}`,-1,0.03);
+    s+=dimV(G.Rt([G.xp-0.004,G.yTop]),G.Rt([G.xp-0.004,G.P0[1]]),`x + ${T.d} = ${Math.round(SC.x+T.d)}`,1,0.03)}
+  s+=plate(G.F,q=>q)+plate(G.P0,G.Rt);
+  // arm 2: flat steel arm (sash side) with slot near the joint
+  s+=pg(schCap(G.J,G.P,T.w2*m,8*m,8*m),'s-sch-a2');
+  {const dx=G.P[0]-G.J[0],dy=G.P[1]-G.J[1],l=Math.hypot(dx,dy)||1,u=[dx/l,dy/l],a=[G.J[0]+u[0]*0.028,G.J[1]+u[1]*0.028],b=[G.J[0]+u[0]*0.05,G.J[1]+u[1]*0.05];
+    s+=pg(schCap(a,b,3*m,0,0,4),'s-sch-slot')}
+  // arm 1: long arm with corrugated sleeve (frame side), extension beyond the joint with the stop slot
+  s+=pg(schCap(G.F,G.J,T.w1*m,T.ext0*m,T.ext1*m),'s-sch-a1');
+  {const dx=G.J[0]-G.F[0],dy=G.J[1]-G.F[1],l=Math.hypot(dx,dy)||1,u=[dx/l,dy/l],nv=[-u[1],u[0]],hw=T.w1*m*0.54,pitch=(SC.T.d===56?9:8)*m;
+    const t0=0.016,t1=l-0.016,n=Math.max(2,Math.floor((t1-t0)/pitch)),at=(t,o)=>[G.F[0]+u[0]*t+nv[0]*o,G.F[1]+u[1]*t+nv[1]*o];
+    s+=pg([at(t0,hw),at(t1,hw),at(t1,-hw),at(t0,-hw)],'s-sch-slv');
+    if(pitch*k>=1.6){let zz=[];for(let i=0;i<=n*2;i++){const t=t0+(t1-t0)*i/(n*2);zz.push(at(t,(i%2?1:0.82)*hw))}
+      let zz2=[];for(let i=0;i<=n*2;i++){const t=t0+(t1-t0)*i/(n*2);zz2.push(at(t,-(i%2?1:0.82)*hw))}
+      s+=`<polyline class="s-sch-pl" points="${zz.map(pt).join(' ')}"/><polyline class="s-sch-pl" points="${zz2.map(pt).join(' ')}"/>`;
+      for(let i=0;i<=n;i++){const t=t0+(t1-t0)*i/n;s+=`<line class="s-sch-pl" x1="${X(at(t,hw*0.82)[0])}" y1="${Y(at(t,hw*0.82)[1])}" x2="${X(at(t,-hw*0.82)[0])}" y2="${Y(at(t,-hw*0.82)[1])}"/>`}}
+    const a=at(l+0.007,0),b=at(l+T.ext1*m-0.007,0);s+=pg(schCap(a,b,3*m,0,0,4),'s-sch-slot')}
+  // pins Ø 6 (frame, sash) and joint rivet
+  [[G.F,4.5],[G.P,4.5],[G.J,5]].forEach(([c,r])=>s+=`<circle class="s-sch-pin" cx="${X(c[0])}" cy="${Y(c[1])}" r="${Math.max(1.4,r*m*k).toFixed(2)}"/><circle class="s-sch-pin-i" cx="${X(c[0])}" cy="${Y(c[1])}" r="${Math.max(0.6,1.8*m*k).toFixed(2)}"/>`);
+  return s}
+function drawSchSVG(P,sc,SC,X,Y,k,Wpx,Hpx){const G=schGeo(P,sc,SC),T=SC.T;
+  let s=`<g class="sch"><defs><marker id="schA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 z" fill="#3c4652"/></marker></defs>`;
+  s+=schParts(G,SC,X,Y,k,true);
+  // detail at a larger scale in the free room area (bottom left): frame face, sash edge, both arms and the x dimensions
+  const iw=Math.min(300,Wpx*0.47),ih=Math.min(250,Hpx*0.42);
+  if(Hpx>=320&&iw>=200){const pts=[G.F,G.J,G.P],x0=Math.min(...pts.map(q=>q[0]))-0.045,x1=Math.max(...pts.map(q=>q[0]))+0.04,
+      yA=Math.min(...pts.map(q=>q[1]))-0.05,yB=Math.max(...pts.map(q=>q[1]))+0.06,ki=Math.min((iw-16)/(x1-x0),(ih-40)/(yB-yA)),ox=10,oy=Hpx-ih-34;
+    const Xi=x=>(ox+8+(x-x0)*ki).toFixed(1),Yi=y=>(oy+30+(yB-y)*ki).toFixed(1);
+    s+=`<rect class="s-sch-box" x="${ox}" y="${oy}" width="${iw.toFixed(1)}" height="${ih.toFixed(1)}" rx="3"/>`;
+    s+=`<text class="t-sch" x="${ox+8}" y="${oy+14}"><tspan font-weight="700">Detail Sicherheitsschere ${T.n}</tspan> · vergrößert</text>`;
+    s+=`<clipPath id="schClip"><rect x="${ox}" y="${oy+18}" width="${iw.toFixed(1)}" height="${(ih-18).toFixed(1)}"/></clipPath><g clip-path="url(#schClip)">`;
+    // context: frame side face and sash edge (closed position dashed, open position solid)
+    const fy0=Math.min(yA,G.F[1]-0.4);s+=`<line class="s-sch-ctx" x1="${Xi(0)}" y1="${Yi(Math.max(G.yTop,yB))}" x2="${Xi(0)}" y2="${Yi(fy0)}"/>`;
+    s+=`<line class="s-sch-ctx f" x1="${Xi(G.xp)}" y1="${Yi(G.yTop)}" x2="${Xi(G.xp)}" y2="${Yi(fy0)}"/>`;
+    {const a=G.Rt([0.03,G.yTop]),b=G.Rt([0.03,fy0]),c=G.Rt([-P.v,G.yTop]),d=G.Rt([-P.v,fy0]);s+=`<polygon class="s-sch-sash" points="${[a,b,d,c].map(q=>Xi(q[0])+','+Yi(q[1])).join(' ')}"/>`}
+    s+=schParts(G,SC,Xi,Yi,ki,false)+'</g>';
+    s+=`<text class="t-sch" x="${Xi(0)}" y="${oy+28}" dx="3">Rahmen</text><text class="t-sch" x="${Xi(G.J[0])}" y="${Yi(G.J[1])}" dx="9" dy="4">Gelenk</text>`;
+    s+=`<text class="t-sch" x="${Xi(G.F[0])}" y="${Yi(G.F[1])}" dx="-9" dy="-8" text-anchor="end">Rahmenteil (x)</text><text class="t-sch" x="${Xi(G.P[0])}" y="${Yi(G.P[1])}" dx="9" dy="-6">Flügelteil (x + ${T.d})</text>`;
+    s+=`<text class="t-sch" x="${ox+8}" y="${oy+ih-8}">${schLab(SC.c)} · zul. ${f1(SC.gmax)} kg · 2 Stück (links + rechts)</text>`}
+  const lx=+X(Math.min(G.J[0],G.P[0]))-12,ly=+Y(Math.min(G.J[1],G.P[1]))+16,anc=lx>330?'end':'start',tx=anc==='end'?lx:Math.max(6,lx-150);
+  s+=`<text class="t-sch" x="${tx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}"><tspan font-weight="700">Sicherheitsschere ${T.n}</tspan> · 2 Stück, seitlich</text>`;
+  s+=`<text class="t-sch" x="${tx.toFixed(1)}" y="${ly.toFixed(1)}" dy="12" text-anchor="${anc}">x = ${Math.round(SC.x)} mm · Flügel x + ${T.d} = ${Math.round(SC.x+T.d)} mm</text>`;
+  return s+'</g>'}
+// 3D: both scissors at the sash sides (left z ≈ 0, right z ≈ b)
+const schObox=(p0,p1,w,z0,z1)=>{const dx=p1[0]-p0[0],dy=p1[1]-p0[1],l=Math.hypot(dx,dy)||1e-6,c=dx/l,s_=dy/l;
+  return boxFaces(0,l,-w/2,w/2,z0,z1).map(f=>f.map(([x,y,z])=>[p0[0]+x*c-y*s_,p0[1]+x*s_+y*c,z]))};
+function schSolids(P,sc,SC,solid){const obox=schObox;const G=schGeo(P,sc,SC),T=SC.T,m=1e-3,b=P.b;
+  const cBrk=[214,218,223],cA2=[176,182,190],cA1=[58,64,73],cSl=[88,95,105],cPin=[30,34,40],edge=[24,28,34];
+  [[1,0.0005],[-1,b-0.0005]].forEach(([sg,z0])=>{const Z=(a,c)=>{const p=z0+sg*a,q=z0+sg*c;return[Math.min(p,q),Math.max(p,q)]};
+    const ext=Math.max(...T.holes.map(Math.abs))+9;
+    // frame bracket, sash bracket (plates on the side faces)
+    solid(obox([G.F[0],G.F[1]-ext*m],[G.F[0],G.F[1]+ext*m],0.018,...Z(0,0.003)),cBrk,edge,true,0.03);
+    solid(obox(G.Rt([G.P0[0],G.P0[1]-ext*m]),G.Rt([G.P0[0],G.P0[1]+ext*m]),0.018,...Z(T.cz+0.007,T.cz+0.010)),cBrk,edge,true,0.03);
+    // arm 1 with corrugated sleeve (alternating pleats), arm 2 flat
+    const dx=G.J[0]-G.F[0],dy=G.J[1]-G.F[1],l=Math.hypot(dx,dy)||1,u=[dx/l,dy/l],at=t=>[G.F[0]+u[0]*t,G.F[1]+u[1]*t];
+    solid(obox(at(-T.ext0*m),at(l+T.ext1*m),T.w1*m,...Z(0.003,0.006)),cA2,edge,true,0.035);
+    const pitch=(T.d===56?9:8)*m,t0=0.016,t1=l-0.016,n=Math.max(2,Math.floor((t1-t0)/pitch));
+    for(let i=0;i<n;i++){const a=t0+(t1-t0)*i/n,c=t0+(t1-t0)*(i+1)/n;solid(obox(at(a),at(c),T.w1*m*(i%2?1:1.12),...Z(0.003,0.003+T.cz*(i%2?0.8:1))),i%2?cSl:cA1,edge,true,0.04)}
+    solid(obox(G.J,G.P,T.w2*m,...Z(T.cz+0.004,T.cz+0.007)),cA2,edge,true,0.045);
+    [G.F,G.J,G.P].forEach(c=>solid(obox([c[0]-0.003,c[1]],[c[0]+0.003,c[1]],0.006,...Z(0,T.cz+0.011)),cPin,edge,true,0.05))});
+  return G}
+function renderSch(SC){const el=$('schOut');if(!el)return;if(!SC){el.innerHTML='';return}
+  const pill={ok:'erfüllt',bad:'nicht erfüllt',warn:'prüfen',info:'Info'};
+  let h=`<div class="chk"><div class="h">${esc(SC.label)}</div><div class="h">Ist</div><div class="h">Grenze</div><div class="h"></div>`;
+  for(const [l,ist,soll,st] of SC.rows)h+=`<div>${esc(l)}</div><div class="v">${esc(ist)}</div><div class="v">${esc(soll)}</div><span class="st ${st}">${pill[st]}</span>`;
+  SC.notes.forEach(t=>h+=`<div class="note">${esc(t)}</div>`);
+  if(!SC.ok){if(SC.hint)h+=`<div class="note"><b>${esc(SC.hint)}</b></div>`;h+=`<div class="note"><button type="button" class="btn-max" id="schOff">Sicherheitsschere abwählen</button></div>`}
+  el.innerHTML=h+'</div>';const bo=$('schOff');if(bo)bo.onclick=()=>{S.sch='';S.schOW='';save();update()}}
+function syncSchUI(){const kipp=S.mode==='kipp',T=SCH[S.sch];$('schL').hidden=!kipp;
+  if(!SCH[S.sch])S.sch='';$('sch').value=S.sch;
+  const so=$('schOW'),want=T?['',...T.X.map(c=>String(c.ow))]:[''],have=[...so.options].map(o=>o.value);
+  if(want.join()!==have.join())so.innerHTML=want.map(v=>`<option value="${v}">${v?schLab(T.X.find(c=>String(c.ow)===v)):'automatisch (nächste Kurve über OW)'}</option>`).join('');
+  if(!want.includes(String(S.schOW||'')))S.schOW='';so.value=S.schOW||'';
+  document.querySelectorAll('.schopt').forEach(e=>e.hidden=!kipp||!T)}
+const schTxt=SC=>SC.ok?`${SC.T.n} (2×) · ${schLab(SC.c)} · x ${Math.round(SC.x)} / ${Math.round(SC.x+SC.T.d)} mm · ≤ ${Math.round(SC.gmax)} kg`:`${SC.T.n}: nicht einsetzbar`;
+
 function driveCheck(P){
   const D=DRV[S.drv];if(!D)return null;
   let hub=+S.hub;if(!D.hubs.includes(hub))hub=D.hubs[0];
@@ -1283,13 +1975,13 @@ function renderDrive(DC){const el=$('drvOut');if(!DC){el.innerHTML='';return}
   for(const [l,ist,soll,st] of DC.rows)h+=`<div>${esc(l)}</div><div class="v">${esc(ist)}</div><div class="v">${esc(soll)}</div><span class="st ${st}">${pill[st]}</span>`;
   DC.notes.forEach(t=>h+=`<div class="note">${esc(t)}</div>`);
   el.innerHTML=h+'</div>'}
-function syncDriveUI(){const D=DRV[S.drv];const hs=$('hub');
+function syncDriveUI(){const D=DRV[S.drv];const hs=$('hub');{const inw=S.mode==='kipp'||S.mode==='klappIn';$('pl').disabled=!D||!inw;if(!inw&&S.pl==='1')S.pl='';['pl','plSide','plMnt','lg','ag','motL','plL'].forEach(k=>{$(k).value=S[k]??''});$('lg').disabled=!D;$('ag').disabled=!D;$('motL').disabled=!D;document.querySelectorAll('.plopt').forEach(e=>e.hidden=S.pl!=='1'||!D);$('motXL').hidden=S.motL!=='x'||!D;$('plXL').hidden=S.pl!=='1'||S.plL!=='x'||!D}
   const want=D?D.hubs.map(String):[];const have=[...hs.options].map(o=>o.value);
   if(want.join()!==have.join()){hs.innerHTML=want.map(v=>`<option value="${v}">${v} mm</option>`).join('')}
   if(D&&!want.includes(String(S.hub)))S.hub=want[0];
   hs.disabled=!D;$('mnt').disabled=!D;$('ndrv').disabled=!D;
   const inward=S.mode==='kipp'||S.mode==='klappIn';$('mnt').querySelector('option[value="FM"]').disabled=!inward;
-  ['drv','hub','mnt','ndrv'].forEach(k=>{const e=$(k);if(e&&D!==undefined)e.value=S[k]??''});$('drv').value=S.drv||''}
+  ['drv','hub','mnt','ndrv'].forEach(k=>{const e=$(k);if(e&&D!==undefined)e.value=S[k]??''});$('drv').value=S.drv||'';syncSchUI()}
 function weightOf(P){const U=2*(P.fb+P.fh),red=2*(P.sf-P.ge),gb=P.fb-red,gh=P.fh-red,A=Math.max(0,gb)*Math.max(0,gh),qg=2.5*P.glassMM;
   const mP=P.pkg*U,mG=A*qg;return{U,red,gb,gh,A,qg,mP,mG,m:mP+mG}}
 function glzText(P){const parts_=[];P.panes.forEach((g_,i_)=>{parts_.push(g_.toLocaleString('de-DE'));if(P.gaps[i_]!==undefined)parts_.push(P.gaps[i_].toLocaleString('de-DE'))});return parts_.join(' / ')}
