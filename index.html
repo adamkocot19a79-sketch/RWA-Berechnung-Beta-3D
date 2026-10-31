@@ -16,32 +16,34 @@
 <meta name="theme-color" content="#11161c" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: section drawing + results first (sticky on desktop, left), parameter panels in a second column; one column on phones */
 :root{
-  --bg:#eef1f4; --surface:#ffffff; --surface-2:#f5f7f9; --line:#d3d9e0; --fg:#18222d; --muted:#5b6876;
-  --accent:#d95d14; --accent-soft:#fbe9dd; --blue:#1f4f8a; --blue-soft:#e3ecf7; --ok:#1d7a4c; --ok-soft:#e1f2e8; --warn:#9a5b00; --warn-soft:#fdf1d9; --bad:#b3261e; --bad-soft:#fbe4e2;
-  --wall:#c9ced4; --wall-hatch:#8e98a3; --frame:#5d6b7a; --glass:#cfe3f3; --prof:#aeb8c3;
-  --f-display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#f5f7f5; --surface:#ffffff; --surface-2:#eef0ec; --line:#d6d8d2; --fg:#0f1d3a; --muted:#5f6262;
+  --accent:#002364; --accent-soft:#fff3b8; --blue:#006ee1; --blue-soft:#e3effc; --ok:#1d7a4c; --ok-soft:#e1f2e8; --warn:#9a5b00; --warn-soft:#fdf1d9; --bad:#b3261e; --bad-soft:#fbe4e2;
+  --wall:#d4d6cf; --wall-hatch:#9da09e; --frame:#4c4d4d; --glass:#cfe3f3; --prof:#b5b9b3; --sig:#d95d14; --hl:#fddc35; --brand:#002364;
+  --f-display:"Source Sans 3","Segoe UI",Arial,sans-serif;
+  --f-body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#11161c; --surface:#1a2129; --surface-2:#212a34; --line:#2f3a46; --fg:#e6ebf0; --muted:#98a5b3;
-  --accent:#f08a4b; --accent-soft:#3a2518; --blue:#8bb4e8; --blue-soft:#1c2a3b; --ok:#5fcf93; --ok-soft:#173326; --warn:#f0bb5a; --warn-soft:#3a2d12; --bad:#ff8a80; --bad-soft:#3d1c1a;
-  --wall:#36404b; --wall-hatch:#59656f; --frame:#9aa8b6; --glass:#24405a; --prof:#5f6c7a; color-scheme:dark}}
+  --bg:#0b1428; --surface:#121f3b; --surface-2:#192a4d; --line:#2a3b61; --fg:#eef1f6; --muted:#a7b0c2;
+  --accent:#fddc35; --accent-soft:#3b3512; --blue:#5aa8ff; --blue-soft:#14284a; --ok:#5fcf93; --ok-soft:#173326; --warn:#f0bb5a; --warn-soft:#3a2d12; --bad:#ff8a80; --bad-soft:#3d1c1a;
+  --wall:#3a4560; --wall-hatch:#5b6680; --frame:#a8b0c0; --glass:#24405a; --prof:#5f6c86; --sig:#f08a4b; --hl:#fddc35; --brand:#fddc35; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#11161c; --surface:#1a2129; --surface-2:#212a34; --line:#2f3a46; --fg:#e6ebf0; --muted:#98a5b3;
-  --accent:#f08a4b; --accent-soft:#3a2518; --blue:#8bb4e8; --blue-soft:#1c2a3b; --ok:#5fcf93; --ok-soft:#173326; --warn:#f0bb5a; --warn-soft:#3a2d12; --bad:#ff8a80; --bad-soft:#3d1c1a;
-  --wall:#36404b; --wall-hatch:#59656f; --frame:#9aa8b6; --glass:#24405a; --prof:#5f6c7a; color-scheme:dark}
+  --bg:#0b1428; --surface:#121f3b; --surface-2:#192a4d; --line:#2a3b61; --fg:#eef1f6; --muted:#a7b0c2;
+  --accent:#fddc35; --accent-soft:#3b3512; --blue:#5aa8ff; --blue-soft:#14284a; --ok:#5fcf93; --ok-soft:#173326; --warn:#f0bb5a; --warn-soft:#3a2d12; --bad:#ff8a80; --bad-soft:#3d1c1a;
+  --wall:#3a4560; --wall-hatch:#5b6680; --frame:#a8b0c0; --glass:#24405a; --prof:#5f6c86; --sig:#f08a4b; --hl:#fddc35; --brand:#fddc35; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px;display:flex;flex-direction:column;gap:18px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
-h1{font-size:1.9rem;font-weight:700}
-h2{font-size:1.05rem;font-weight:600}
-.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;font-weight:700;color:var(--brand);letter-spacing:-.01em}
+h2{font-size:1.1rem;font-weight:700;color:var(--brand)}
+.eyebrow{font-family:var(--f-body);font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+header{padding-block:18px 16px;border-top:2px solid var(--brand);border-bottom:2px solid var(--brand);display:flex;flex-direction:column;gap:4px}
+.foot{font-size:.8rem;color:var(--muted);border-top:2px solid var(--brand);padding-block:12px 28px}
 .lede{color:var(--muted);max-width:68ch;margin:6px 0 0}
 .cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
 @media (max-width:900px){.cols{grid-template-columns:minmax(0,1fr)}}
@@ -50,11 +52,11 @@ h2{font-size:1.05rem;font-weight:600}
 .inputs{display:flex;flex-direction:column;gap:14px;min-width:0}
 @media (max-width:900px){.stick{position:static}}
 @media (max-width:900px){.cols{display:flex;flex-direction:column;gap:14px}.cols>.stick,.cols>.inputs{display:contents}#reqPanel{order:-1}.cols>.stick>*,.cols>.inputs>*{min-width:0;max-width:100%}}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .panel h2{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .panel h3.subh{font-size:.95rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
 .profwrap{display:flex;flex-direction:column;gap:14px}
-.profsk{margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:10px 8px 8px;display:flex;flex-direction:column;gap:6px}
+.profsk{margin:0;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:10px 8px 8px;display:flex;flex-direction:column;gap:6px}
 .profsk svg{display:block;width:100%;max-width:380px;height:auto;margin:0 auto}
 .profsk figcaption{font-size:.75rem;color:var(--muted);text-align:center}
 .sk .sk-frame{fill:url(#skh);stroke:var(--fg);stroke-width:1}
@@ -79,7 +81,7 @@ label.f .code{display:inline-block;min-width:2.1em;font-family:var(--f-mono);fon
 label.f{display:flex;flex-direction:column;gap:4px;min-width:0}
 label.f span{font-size:.8rem;color:var(--muted)}
 label.f span b{font-family:var(--f-mono);font-weight:500;color:var(--fg)}
-input,select{font:inherit;color:var(--fg);background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:8px 10px;width:100%;min-width:0}
+input,select{font:inherit;color:var(--fg);background:var(--surface-2);border:1px solid var(--line);border-radius:3px;padding:8px 10px;width:100%;min-width:0}
 input{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 input:focus,select:focus,button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 input.err{border-color:var(--bad);background:var(--bad-soft)}
@@ -87,28 +89,31 @@ input[type=range]{padding:0;background:transparent;border:none;accent-color:var(
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 button:disabled{opacity:.55;cursor:progress}
 input.txt{font-family:var(--f-body)}
-button{font:inherit;cursor:pointer;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 12px}
+button{font:inherit;cursor:pointer;border-radius:3px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 12px}
 .hint{font-size:.8rem;color:var(--muted);margin:0}
-.draw{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.draw{background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 .draw svg{display:block;width:100%;height:auto;max-height:62vh}
-.viewtabs{display:flex;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.viewtabs{display:flex;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);background:var(--surface-2)}
 .viewtabs button{border:none;border-radius:0;background:transparent;padding:10px 16px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent}
-.viewtabs button[aria-pressed="true"]{color:var(--fg);border-bottom-color:var(--accent);background:var(--surface)}
+.viewtabs button[aria-pressed="true"]{color:var(--brand);border-bottom:3px solid var(--hl);background:var(--surface)}
+.viewtabs .secopts{margin-left:auto;display:flex;gap:4px;padding:4px 8px}
+.viewtabs .secopts button{padding:4px 8px;font-size:.78rem;font-weight:500;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--muted)}
+.viewtabs .secopts button[aria-pressed="true"]{color:var(--fg);border-color:var(--accent);background:var(--accent-soft)}
 #cv3d{display:block;width:100%;touch-action:none;cursor:grab}
 #cv3d:active{cursor:grabbing}
 .v3d-bar{display:flex;flex-direction:column;gap:8px;padding:10px 16px;border-top:1px solid var(--line)}
 .v3d-bar button{padding:6px 10px;font-size:.85rem}
 .angle{display:grid;grid-template-columns:auto 1fr 96px;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);background:var(--surface-2)}
 .angle .lab{font-family:var(--f-display);font-weight:600}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 @media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .kpi{background:var(--surface);padding:10px 12px;min-width:0}
 .kpi .k{font-size:.72rem;color:var(--muted);font-family:var(--f-mono);letter-spacing:.04em}
 .kpi .v{font-family:var(--f-mono);font-size:1.15rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 .kpi.main{background:var(--accent-soft)}
 .kpi.main .v{font-size:1.4rem;color:var(--accent);font-weight:500}
-.steps{font-family:var(--f-mono);font-size:.78rem;background:var(--surface-2);border-radius:7px;padding:10px 12px;overflow-x:auto;margin:0;white-space:pre;line-height:1.6}
-.msg{font-size:.85rem;padding:8px 10px;border-radius:7px}
+.steps{font-family:var(--f-mono);font-size:.78rem;background:var(--surface-2);border-radius:3px;padding:10px 12px;overflow-x:auto;margin:0;white-space:pre;line-height:1.6}
+.msg{font-size:.85rem;padding:8px 10px;border-radius:3px}
 .msg.warn{background:var(--warn-soft);color:var(--warn)}
 .msg.info{background:var(--blue-soft);color:var(--blue)}
 .msg.bad{background:var(--bad-soft);color:var(--bad)}
@@ -129,10 +134,10 @@ svg text{font-family:var(--f-mono)}
 .s-sash.hit{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2.5}
 .s-ghost{fill:none;stroke:var(--muted);stroke-dasharray:4 4;stroke-width:1}
 .s-w{stroke:var(--blue);stroke-width:2}
-.s-s{stroke:var(--accent);stroke-width:2}
+.s-s{stroke:var(--sig);stroke-width:2}
 .s-plane{stroke:var(--muted);stroke-dasharray:6 4;stroke-width:1}
 .s-hred{stroke:var(--ok);stroke-width:2.5}
-.s-hinge{fill:var(--accent)}
+.s-hinge{fill:var(--sig)}
 .s-prof{fill:var(--prof);stroke:var(--fg);stroke-width:1.2;stroke-linejoin:round}
 .s-prof.hit,.s-bead.hit{fill:var(--bad-soft);stroke:var(--bad);stroke-width:2}
 .s-bead{fill:var(--prof);stroke:var(--fg);stroke-width:.8}
@@ -144,6 +149,20 @@ svg text{font-family:var(--f-mono)}
 .s-block{fill:var(--muted)}
 .s-spacer{fill:var(--frame)}
 .s-gask{fill:var(--fg)}
+.s-drv{fill:#c6cacf;stroke:var(--fg);stroke-width:.9}.s-drv-in{fill:none;stroke:var(--fg);stroke-width:.5;opacity:.45}
+.s-cons{fill:#7d848e;stroke:var(--fg);stroke-width:.6}.s-brk{fill:#9aa1aa;stroke:var(--fg);stroke-width:.7}
+.s-link{fill:var(--sig);stroke:var(--fg);stroke-width:.35}.s-link.alt{fill:#a9440c}.s-lpin{fill:var(--fg)}
+.t-drv{font-family:var(--f-mono);font-size:10px;fill:var(--sig);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.e-bg{fill:var(--bad-soft);stroke:var(--bad)}.e-ic{stroke:var(--bad)}.e-ic-t,.e-h{fill:var(--bad);font-family:var(--f-display)}.e-sub,.e-l{fill:var(--fg);font-family:var(--f-body)}.e-v{fill:var(--fg);font-family:var(--f-mono)}.e-f{fill:var(--muted);font-family:var(--f-body)}
+.chk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.2fr) auto;gap:6px 10px;align-items:center;font-size:.84rem;margin-top:4px}
+.chk .h{font-size:.72rem;color:var(--muted);font-family:var(--f-mono);letter-spacing:.03em}
+.chk .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;min-width:0}
+.chk .st{font-family:var(--f-mono);font-size:.7rem;padding:2px 8px;border-radius:99px;white-space:nowrap;justify-self:start}
+.chk .st.ok{background:var(--ok-soft);color:var(--ok)}.chk .st.bad{background:var(--bad-soft);color:var(--bad)}
+.chk .st.warn{background:var(--warn-soft);color:var(--warn)}.chk .st.info{background:var(--blue-soft);color:var(--blue)}
+.chk .note{grid-column:1/-1;font-size:.76rem;color:var(--muted);margin-top:-4px}
+@media (max-width:520px){.chk{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.chk .h:nth-child(n+3):nth-child(-n+4){display:none}}
+.c-drv{stroke:var(--sig);stroke-dasharray:6 3;stroke-width:1.8}
 .det *{vector-effect:non-scaling-stroke}
 .det-bg{fill:var(--surface);stroke:none}
 .det-frame{fill:none;stroke:var(--fg);stroke-width:1}
@@ -155,7 +174,7 @@ svg text{font-family:var(--f-mono)}
 .t-lab{font-size:12px;fill:var(--fg)}
 .t-mut{font-size:11px;fill:var(--muted)}
 .t-w{fill:var(--blue);font-size:12px;font-weight:500}
-.t-s{fill:var(--accent);font-size:12px;font-weight:500}
+.t-s{fill:var(--sig);font-size:12px;font-weight:500}
 .t-h{fill:var(--ok);font-size:12px;font-weight:500}
 .hatch-l{stroke:var(--wall-hatch);stroke-width:1}
 .hatch-bg{fill:var(--wall)}
@@ -163,7 +182,7 @@ svg text{font-family:var(--f-mono)}
 .c-line{fill:none;stroke:var(--blue);stroke-width:2}
 .c-area{fill:var(--blue-soft)}
 .c-target{stroke:var(--ok);stroke-dasharray:5 4;stroke-width:1.5}
-.c-cur{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.c-cur{fill:var(--sig);stroke:var(--surface);stroke-width:2}
 .c-max{stroke:var(--bad);stroke-dasharray:3 3;stroke-width:1.5}
 .c-cap{stroke:var(--fg);stroke-dasharray:8 4;stroke-width:1;opacity:.6}
 .kpi .note{font-family:var(--f-mono);font-size:.68rem;color:var(--warn);margin-top:2px}
@@ -200,6 +219,7 @@ img{max-width:100%}[hidden]{display:none!important}
         <div class="viewtabs" id="viewTabs" role="group" aria-label="Darstellung">
           <button type="button" data-view="2d" aria-pressed="true">Schnitt</button>
           <button type="button" data-view="3d" aria-pressed="false">3D-Modell</button>
+          <div class="secopts" id="secOpts"><button type="button" data-sec="full">Ganzes Element</button><button type="button" data-sec="edge">Öffnungskante</button></div>
         </div>
         <div id="svgHost"></div>
         <div id="host3d" hidden>
@@ -210,6 +230,7 @@ img{max-width:100%}[hidden]{display:none!important}
               <button type="button" data-cam="aussen">Von außen</button>
               <button type="button" data-cam="seite">Seitlich</button>
               <button type="button" data-cam="oben">Von oben</button>
+              <button type="button" data-cam="drive" id="camDrive" hidden>Antrieb</button>
             </div>
             <p class="hint">Ziehen zum Drehen, Mausrad oder zwei Finger zum Zoomen. Blau: Lüftungsfläche an der Hauptschließkante zum maßgebenden Bauteil (Rahmen, Decke, Sturz oder Vordach), grau gestrichelt: nicht maßgebendes Maß. Grün: Seitendreiecke, grau gestrichelt: abgewählt.</p>
           </div>
@@ -255,6 +276,29 @@ img{max-width:100%}[hidden]{display:none!important}
         </div>
       </section>
 
+      <section class="panel" id="drvPanel">
+        <h2>Antrieb <small>GEZE Kettenantriebe</small></h2>
+        <div class="grid">
+          <label class="f"><span>Antrieb</span><select id="drv" data-k="drv">
+            <option value="">ohne Antrieb</option>
+            <option value="slim">Slimchain (Kette, 24 V)</option>
+            <option value="power">Powerchain (Kette, 24 V)</option>
+            <optgroup label="in Vorbereitung">
+              <option value="rwa100" disabled>RWA 100 NT</option>
+              <option value="rwa110" disabled>RWA 110 NT</option>
+              <option value="rwa105" disabled>RWA 105 NT</option>
+              <option value="k600f" disabled>K 600 F</option>
+              <option value="k600g" disabled>K 600 G</option>
+            </optgroup>
+          </select></label>
+          <label class="f"><span>Hub</span><select id="hub" data-k="hub"></select></label>
+          <label class="f"><span>Montage</span><select id="mnt" data-k="mnt"><option value="RM">Rahmenmontage</option><option value="FM">Flügelmontage</option></select></label>
+          <label class="f"><span>Anzahl Antriebe</span><select id="ndrv" data-k="ndrv"><option value="1">1 (Solo)</option><option value="2">2 (Syncro)</option><option value="3">3 (Syncro)</option><option value="4">4 (Syncro)</option></select></label>
+        </div>
+        <div id="drvOut"></div>
+        <p class="hint">Grenzwerte aus dem GEZE-Katalog „Elektrische RWA- und Lüftungssysteme“: Einsatzbereich-Diagramme (Flügelgewicht über Nebenschließkante je Hub, Solo; Syncro: Gewicht × Anzahl), Platzbedarf auf Rahmen und Flügel, Überschlagbereich 0–23 mm, Antriebslänge inkl. Konsolen als Mindestflügelbreite. Die Kurvenwerte sind aus den Diagrammen abgelesen. Die Angaben des Profilsystemherstellers sind zu beachten. Bei Kippfenstern mit Kettenantrieb schreibt GEZE Sicherheitsscheren vor.</p>
+      </section>
+
       <section class="panel">
         <h2>Flügel und Profil <small>mm</small></h2>
         <div class="modes" id="dimMode">
@@ -286,10 +330,33 @@ img{max-width:100%}[hidden]{display:none!important}
             <label class="f"><span><b class="code">By</b>Band: Abstand von Flügelkante</span><input id="by" data-k="by" type="text" inputmode="decimal"></label>
             <label class="f"><span><b class="code">Bx</b>Band: Abstand von Rahmenebene</span><input id="bx" data-k="bx" type="text" inputmode="decimal"></label>
             <label class="f"><span><b class="code">i</b>i-Maß (Glasmitte)</span><input id="im" data-k="im" type="text" inputmode="decimal"></label>
-            <label class="f"><span><b class="code">G</b>Glasstärke</span><input id="gt" data-k="gt" type="text" inputmode="decimal"></label>
           </div>
         </div>
-        <p class="hint">Standardwerte (Hersteller „Individuell“): Ab 60, T1 70, T2 80, ü 10, R 50, By 10, Bx 10, i 57, G 24, S 80. Alle Werte lassen sich ändern und wirken direkt auf Berechnung und Zeichnung. Lichte Öffnung = Flügelaußenmaß − Ab. Der Flügel überdeckt den Rahmen je Seite um Ab/2 und steht um den Überschlag ü vor der Rahmenebene. R ist der Platz auf dem Rahmen oberhalb des Flügels, die Rahmenansicht ergibt sich zu Ab/2 + R. Die Drehachse liegt Bx vor der Rahmenebene und By außerhalb der Flügelkante. i-Maß und Platz auf dem Flügel gehen nicht in den Querschnitt ein. Sie bestimmen die Darstellung: S ist die Ansichtsbreite des Flügelrahmens ab der Flügelaußenkante, das i-Maß die Lage der Glasmitte ab der raumseitigen Flügelfläche. Das Glas reicht von i − G/2 bis i + G/2 (G = Glasstärke), raumseitig davor sitzt die Glasleiste.</p>
+        <p class="hint">Standardwerte (Hersteller „Individuell“): Ab 60, T1 70, T2 80, ü 10, R 50, By 10, Bx 10, i 57, S 80. Alle Werte lassen sich ändern und wirken direkt auf Berechnung und Zeichnung. Lichte Öffnung = Flügelaußenmaß − Ab. Der Flügel überdeckt den Rahmen je Seite um Ab/2 und steht um den Überschlag ü vor der Rahmenebene. R ist der Platz auf dem Rahmen oberhalb des Flügels, die Rahmenansicht ergibt sich zu Ab/2 + R. Die Drehachse liegt Bx vor der Rahmenebene und By außerhalb der Flügelkante. i-Maß und Platz auf dem Flügel gehen nicht in den Querschnitt ein. Sie bestimmen die Darstellung: S ist die Ansichtsbreite des Flügelrahmens ab der Flügelaußenkante, das i-Maß die Lage der Glasmitte ab der raumseitigen Flügelfläche. Das Glas reicht von i − G/2 bis i + G/2 (G = Gesamtstärke der Verglasung), raumseitig davor sitzt die Glasleiste.</p>
+        <h3 class="subh"><span>Verglasung</span></h3>
+        <div class="modes" id="glzMode">
+          <button type="button" data-glz="2"><b>Zweifach</b><small>Scheibe · SZR · Scheibe</small></button>
+          <button type="button" data-glz="3"><b>Dreifach</b><small>Scheibe · SZR · Scheibe · SZR · Scheibe</small></button>
+        </div>
+        <div class="grid" id="glzGrid">
+          <label class="f"><span>Scheibe 1 innen <b>[mm]</b></span><input id="g1" data-k="g1" type="text" inputmode="decimal"></label>
+          <label class="f"><span>SZR 1 <b>[mm]</b></span><input id="z1" data-k="z1" type="text" inputmode="decimal"></label>
+          <label class="f"><span id="g2lab">Scheibe 2 außen <b>[mm]</b></span><input id="g2" data-k="g2" type="text" inputmode="decimal"></label>
+          <label class="f g3only"><span>SZR 2 <b>[mm]</b></span><input id="z2" data-k="z2" type="text" inputmode="decimal"></label>
+          <label class="f g3only"><span>Scheibe 3 außen <b>[mm]</b></span><input id="g3" data-k="g3" type="text" inputmode="decimal"></label>
+        </div>
+        <div class="msg info" id="glzInfo"></div>
+      </section>
+
+      <section class="panel" id="wPanel">
+        <h2>Flügelgewicht <small>Richtwert</small></h2>
+        <div class="grid">
+          <label class="f"><span>Profilgewicht Flügel <b>[kg/m]</b></span><input id="pkg" data-k="pkg" type="text" inputmode="decimal"></label>
+          <label class="f"><span>Glaseinstand <b>[mm]</b></span><input id="ge" data-k="ge" type="text" inputmode="decimal"></label>
+        </div>
+        <div class="kpis" id="wKpis"></div>
+        <pre class="steps" id="wSteps"></pre>
+        <p class="hint">Profil: Durchschnittsgewicht je Meter (inkl. Glasleisten und Dichtungen) mal Flügelumfang 2 · (FB + FH). Glas: 2,5 kg je m² und mm Glasdicke, SZR ohne Gewicht. Glasmaß = Flügelaußenmaß − 2 · (S − Glaseinstand). Beschläge, Antrieb und Griffe sind nicht enthalten.</p>
       </section>
 
       <section class="panel">
@@ -353,13 +420,14 @@ img{max-width:100%}[hidden]{display:none!important}
   </div>
 </div>
 
+<footer class="foot wrap">Planungshilfe nach Merkblatt FVLR/ZVEI 33027 mit Antriebsdaten aus dem GEZE-Katalog „Elektrische RWA- und Lüftungssysteme“. Kein offizielles Werkzeug der GEZE GmbH. Die Ergebnisse ersetzen keine Fachplanung.</footer>
 <div id="printSheet" aria-hidden="true"><img id="printImg" alt=""><img id="printImg2" alt=""></div>
 <script>
 (function(){
 const KEY='ra-fluegelsim-v1';
-const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',gt:'24',sf:'80',ti:'150',ta:'100',c:'170',ca:'',cRef:'fok',cl:'800',soll:'1,0',n:'1',a:'',ded:''};
+const DEF={triL:true,triR:true,side:'exakt',mode:'kipp',alpha:'20',dim:'fa',fb:'1310',fh:'1560',b:'1250',h:'1500',ab:'60',dr:'70',df:'80',v:'10',r:'50',by:'10',bx:'10',im:'57',sf:'80',glz:'2',g1:'6',z1:'12',g2:'6',z2:'12',g3:'6',pkg:'2,0',ge:'15',secView:'full',drv:'',hub:'',mnt:'RM',ndrv:'1',ti:'150',ta:'100',c:'170',ca:'',cRef:'fok',cl:'800',soll:'1,0',n:'1',a:'',ded:''};
 let S=Object.assign({},DEF);
-try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){delete r.u;delete r.hf;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';if(r.cRef!=='fok'){const d=(isNaN(num(r.ab))?60:num(r.ab))/2;['c','ca'].forEach(k=>{if(r[k]!==undefined&&!isNaN(num(r[k])))r[k]=String(Math.round(num(r[k])-d))});r.cRef='fok'}S=Object.assign({},DEF,r)}}catch(e){}
+try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&typeof r==='object'){delete r.u;delete r.hf;delete r.gt;delete r.ue;delete r.pr;if(r.fb===undefined&&r.b!==undefined)r.dim='licht';if(r.cRef!=='fok'){const d=(isNaN(num(r.ab))?60:num(r.ab))/2;['c','ca'].forEach(k=>{if(r[k]!==undefined&&!isNaN(num(r[k])))r[k]=String(Math.round(num(r[k])-d))});r.cRef='fok'}S=Object.assign({},DEF,r)}}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const num=v=>{const s=String(v??'').trim().replace(/\s/g,'').replace(',','.');return s===''?NaN:Number(s)};
 const has=v=>!isNaN(num(v));
@@ -389,8 +457,13 @@ function params(){
   const m=k=>num(S[k])/1000;const bad=[];
   const req=(k,min,allowZero)=>{const v=num(S[k]);if(isNaN(v)||(allowZero?v<min:v<=min))bad.push(k);return v/1000};
   const P={mode:S.mode,df:req('df',0),dr:req('dr',0),v:req('v',0,true),ab:req('ab',0,true),r:req('r',0,true),bx:has(S.bx)?m('bx'):0,by:has(S.by)?m('by'):0,ti:req('ti',0,true),ta:req('ta',0,true)};
-  P.sf=has(S.sf)?m('sf'):0.045;P.im=has(S.im)?m('im'):NaN;P.gt=has(S.gt)?m('gt'):0.022;
-  if(!(P.gt>0))bad.push('gt');
+  P.sf=has(S.sf)?m('sf'):0.045;P.im=has(S.im)?m('im'):NaN;P.glz=S.glz==='3'?3:2;
+  {const lay=P.glz===3?['g1','z1','g2','z2','g3']:['g1','z1','g2'];
+   for(const k of lay){const v_=num(S[k]);if(isNaN(v_)||v_<0||(k[0]==='g'&&v_<=0))bad.push(k)}
+   P.panes=lay.filter(k=>k[0]==='g').map(k=>num(S[k])||0);P.gaps=lay.filter(k=>k[0]==='z').map(k=>num(S[k])||0)}
+  P.glassMM=P.panes.reduce((a_,b_)=>a_+b_,0);P.gt=(P.glassMM+P.gaps.reduce((a_,b_)=>a_+b_,0))/1000;
+  P.pkg=has(S.pkg)?num(S.pkg):2;if(!(P.pkg>=0))bad.push('pkg');
+  P.ge=has(S.ge)?m('ge'):0.015;if(!(P.ge>=0))bad.push('ge');
   P.dim=S.dim==='licht'?'licht':'fa';
   if(P.dim==='fa'){P.fb=req('fb',0);P.fh=req('fh',0);P.b=P.fb-P.ab;P.h=P.fh-P.ab;
     if(!bad.includes('fb')&&!(P.b>0))bad.push('fb');if(!bad.includes('fh')&&!(P.h>0))bad.push('fh')}
@@ -493,7 +566,11 @@ function scene(P,aDeg){
   const gy0=-ue+Sm-gr+0.002,gy1=h+ue-Sm+gr-0.002;
   const g0=xr+dI,g1=xr+dO;
   put('s-gap',rect(g0,g1,gy0,gy1));
-  if(g1-g0>=0.014){put('s-pane',rect(g0,g0+0.004,gy0,gy1));put('s-pane',rect(g1-0.004,g1,gy0,gy1))}else put('s-pane',rect(g0,g1,gy0,gy1));
+  // panes and spacers from the glazing build-up (scaled if the unit had to be fitted into the profile)
+  const lay=[];{const pn=P.panes&&P.panes.length?P.panes:[4,16,4].filter((_,i_)=>i_%2===0),gp=P.gaps&&P.gaps.length?P.gaps:[16];
+    const tot=(pn.reduce((a_,b_)=>a_+b_,0)+gp.reduce((a_,b_)=>a_+b_,0))/1000||gT,f_=(g1-g0)/tot;let d_=g0;
+    pn.forEach((t_,i_)=>{lay.push(['pane',d_,d_+t_/1000*f_]);d_+=t_/1000*f_;if(gp[i_]!==undefined){lay.push(['gap',d_,d_+gp[i_]/1000*f_]);d_+=gp[i_]/1000*f_}})}
+  lay.forEach(([t_,a_,b_])=>{if(t_==='pane')put('s-pane',rect(a_,b_,gy0,gy1))});
   // profile shells
   [clipY(closed,h+ue-Sm,true),clipY(closed,-ue+Sm,false)].forEach(q=>{if(q.length)put('s-prof',q)});
   const uw=0.0015;
@@ -512,7 +589,7 @@ function scene(P,aDeg){
     if(lip1-lip0>0.005&&Sm-gr-2*uw>0.004)add('s-cham',e,lip0+uw,lip1-uw,uw,Math.min(ue,Sm-gr)-uw); // chamber in the overlap leg
     // setting block, spacer, gaskets, bead
     add('s-block',e,dI,dO,Sm-gr,Sm-gr+0.002);
-    if(dO-dI>=0.014)add('s-spacer',e,dI+0.004,dO-0.004,Sm-gr+0.002,Sm-gr+0.008);
+    lay.forEach(([t_,a_,b_])=>{if(t_==='gap')add('s-spacer',e,a_-xr,b_-xr,Sm-gr+0.002,Sm-gr+0.008)});
     add('s-gask',e,dI-0.002,dI,Sm-gr+0.003,Sm+0.0005);
     add('s-gask',e,dO,Math.min(dO+0.002,bod1),Sm-gr+0.003,Sm+0.0005);
     add('s-bead',e,dI-bw,dI-0.002,Sm-gr,Sm);
@@ -557,8 +634,67 @@ function agOf(P,sc){
   return{Ag,raw,ex,mb,form,cap,capped};
 }
 
+/* ---------- chain drive geometry (true to scale, per GEZE mounting instructions) ----------
+   section plane x/y in m; room side is -x. RM: drive on the frame above the opening edge, chain bracket on the sash.
+   FM: drive on the sash (console between sash face and body), chain bracket on the frame. */
+function rrect(x0,x1,y0,y1,r){const a=Math.min(x0,x1),b_=Math.max(x0,x1),c=Math.min(y0,y1),d=Math.max(y0,y1),o=[];r=Math.min(r,(b_-a)/2,(d-c)/2);
+  [[b_-r,d-r,0],[a+r,d-r,90],[a+r,c+r,180],[b_-r,c+r,270]].forEach(([cx,cy,st])=>{for(let i=0;i<=3;i++){const t=(st+i*30)*Math.PI/180;o.push([cx+r*Math.cos(t),cy+r*Math.sin(t)])}});return o}
+function driveGeo(P,sc,DC){
+  const D=DC.D,g=D.geo,[dep,hgt]=D.body,ys=sc.bottom?1:-1,sr=-1;
+  // room-side edge of the sash: Aufschlag for inward sashes, the sash body (clear opening) for outward ones
+  const yl=sc.inward?(sc.bottom?P.h+P.ue:-P.ue):(sc.bottom?P.h:0);
+  const F=sc.inward?0:P.dr,sg=sc.inward?-1:1,L=F+sg*P.v,B=F-sg*(P.df-P.v);
+  const xs=Math.min(L,B),xd=Math.min(xs,0); // sash room face; drive face line (never inside the frame)
+  const th=(sc.bottom===sc.inward)?sc.al:-sc.al,Rt=q=>rot(q,sc.hinge,th),RtA=a=>a.map(Rt);
+  const o={fixed:[],moving:[],sr,ys,yl};
+  if(DC.mnt==='RM'){
+    // inward: drive above the edge on the frame; outward: drive straddles frame and sash so the chain runs at sash level
+    const gap=0.004,yc=sc.inward?yl+ys*(gap+hgt/2):yl+ys*(hgt/2-0.014),cy=sc.inward?yc:yl-ys*0.006,bx0=xd+sr*0.002,bx1=bx0+sr*dep;
+    o.body=rrect(bx0,bx1,yc-hgt/2,yc+hgt/2,0.003);o.inner=rrect(bx0+sr*0.004,bx1-sr*0.004,yc-hgt/2+0.004,yc+hgt/2-0.004,0.002);
+    o.bodyX=[Math.min(bx0,bx1),Math.max(bx0,bx1)];o.bodyY=[yc-hgt/2,yc+hgt/2];o.bodyMoves=false;
+    // console: block between frame face and drive back, cap over the drive top
+    const cons=[];if(Math.abs(bx0)>0.0015)cons.push(rect(0,bx0,yc-hgt/2,yc+hgt/2+ys*0.003));
+    cons.push(rect(bx0,bx0+sr*0.012,yc+ys*hgt/2,yc+ys*(hgt/2+0.003)));o.cons=cons;
+    o.out=[bx1,cy];
+    // chain bracket on the sash (rotates): plate on the sash face, arm, lug carrying the pin
+    const px=xd+sr*g.reach,a0=yl-ys*0.002,a1=yl-ys*0.009;
+    const brk=[rect(xs,xs+sr*0.005,yl-ys*0.032,yl),rect(xs,px+sr*0.005,a0,a1),rect(px-sr*0.006,px+sr*0.006,a1,cy+ys*0.005)];
+    o.brk=brk.map(RtA);o.brk0=brk;o.pin=Rt([px,cy]);o.pin0=[px,cy];
+  }else{
+    const yc=yl-ys*(0.004+hgt/2),bx0=xs+sr*g.fmCons,bx1=bx0+sr*dep;
+    const body=rrect(bx0,bx1,yc-hgt/2,yc+hgt/2,0.003),inner=rrect(bx0+sr*0.004,bx1-sr*0.004,yc-hgt/2+0.004,yc+hgt/2-0.004,0.002);
+    o.body=RtA(body);o.inner=RtA(inner);o.body0=body;o.bodyX=[Math.min(bx0,bx1),Math.max(bx0,bx1)];o.bodyY=[yc-hgt/2,yc+hgt/2];o.bodyMoves=true;
+    const cons=[rect(xs,bx0,yc-hgt/2+0.003,yc+hgt/2-0.003)];o.cons=cons.map(RtA);o.cons0=cons;
+    o.out=Rt([bx1,yc]);
+    // chain bracket on the frame (fixed) in the space above the sash
+    const px=bx1+sr*0.007,a0=yl+ys*0.006,a1=yl+ys*0.013;
+    o.brk=[rect(0,sr*0.005,yl+ys*0.004,yl+ys*Math.max(0.03,P.pr*0.8)),rect(0,px+sr*0.005,a0,a1),rect(px-sr*0.006,px+sr*0.006,a1,yc)];
+    o.pin=[px,yc];
+  }
+  // chain: slight bow away from the window, cut into links of the chain pitch
+  const A=o.out,Bp=o.pin,dx=Bp[0]-A[0],dy=Bp[1]-A[1],len=Math.hypot(dx,dy);o.len=len;o.links=[];o.chain=[A,Bp];
+  if(len>0.003){let nx=-dy/len,ny=dx/len;if(ny*ys<0||(Math.abs(ny)<1e-6&&nx*sr<0)){nx=-nx;ny=-ny}
+    const sag=Math.min(0.022,len*0.06),C=[(A[0]+Bp[0])/2+nx*sag*2,(A[1]+Bp[1])/2+ny*sag*2];
+    const qb=t=>[(1-t)*(1-t)*A[0]+2*(1-t)*t*C[0]+t*t*Bp[0],(1-t)*(1-t)*A[1]+2*(1-t)*t*C[1]+t*t*Bp[1]];
+    const N=200,pts=[A];let acc=0,prev=A,cum=[0];for(let i=1;i<=N;i++){const q=qb(i/N);acc+=Math.hypot(q[0]-prev[0],q[1]-prev[1]);pts.push(q);cum.push(acc);prev=q}
+    const at=d=>{let i=1;while(i<N&&cum[i]<d)i++;const f=(d-cum[i-1])/((cum[i]-cum[i-1])||1);return[pts[i-1][0]+(pts[i][0]-pts[i-1][0])*f,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*f]};
+    const nL=Math.max(1,Math.round(acc/g.pitch)),st=acc/nL;o.chain=pts;
+    for(let i=0;i<nL;i++)o.links.push([at(i*st),at((i+1)*st)]);}
+  return o}
+/* drive requirements not met: no drawing, list the failed criteria instead */
+function drawDriveError(DC){const W=640,lh=22,rows=DC.failRows||[],H=Math.max(220,150+rows.length*(lh*2+6)+20);
+  const e=t=>esc(String(t));let y=58;
+  let s=`<svg data-mw="0.6400" data-err="1" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Antrieb nicht einsetzbar">`;
+  s+=`<rect class="e-bg" x="8" y="8" width="${W-16}" height="${H-16}" rx="4" fill="#fbe4e2" stroke="#b3261e" stroke-width="1.5"/>`;
+  s+=`<path class="e-ic" d="M40 ${y-24} l14 24 h-28 z" fill="none" stroke="#b3261e" stroke-width="2.2" stroke-linejoin="round"/><text class="e-ic-t" x="40" y="${y-4}" text-anchor="middle" fill="#b3261e" font-size="15" font-weight="700">!</text>`;
+  s+=`<text class="e-h" x="64" y="${y}" fill="#b3261e" font-size="19" font-weight="700">${DC.angleBad&&DC.failRows.length===1?'Öffnungswinkel nicht erreichbar':'Antrieb nicht einsetzbar'} – keine Zeichnung</text>`;y+=26;
+  s+=`<text class="e-sub" x="64" y="${y}" fill="#18222d" font-size="13">${e(DC.label)}${DC.n>1?'':' (Solo-Betrieb)'}</text>`;y+=34;
+  rows.forEach(([l,ist,soll])=>{s+=`<text class="e-l" x="40" y="${y}" fill="#18222d" font-size="14" font-weight="700">✕  ${e(l)}</text>`;y+=lh;
+    s+=`<text class="e-v" x="64" y="${y}" fill="#18222d" font-size="13" font-family="IBM Plex Mono,monospace">Ist ${e(ist)}   ·   erforderlich ${e(soll)}</text>`;y+=lh+6});
+  s+=`<text class="e-f" x="40" y="${H-30}" fill="#5f6262" font-size="12">${DC.angleBad&&DC.failRows.length===1?`Öffnungswinkel auf max. ${f1(DC.aDrv)}° stellen oder Hub bzw. Antrieb ändern.`:'Eingaben, Hub, Antriebsanzahl oder Antrieb anpassen (Details unter „Antrieb“).'}</text></svg>`;
+  return s}
 /* ---------- drawing ---------- */
-function drawSVG(P,sc,opt){opt=opt||{};
+function drawSVG(P,sc,opt){opt=opt||{};if(opt.drv&&!opt.drv.ok)return drawDriveError(opt.drv);
   const pad=0.12;
   let minX=Math.min(sc.xi-(P.c!==null?Math.min(sc.roomD,0.9):0.35),sc.sash.reduce((m,p)=>Math.min(m,p[0]),0))-pad;
   let maxX=Math.max(sc.xa+(P.ca!==null?Math.min(P.cl,0.9):0.35),sc.sash.reduce((m,p)=>Math.max(m,p[0]),0))+pad;
@@ -591,6 +727,18 @@ function drawSVG(P,sc,opt){opt=opt||{};
     const ys=sc.tri.map(q=>q[1]);const ya=Math.min(...ys),yb=Math.max(...ys);const lx=sc.xp+(sc.inward?0.03:-0.03);
     s+=`<line class="s-hred" x1="${X(lx)}" y1="${Y(Math.max(ya,y0))}" x2="${X(lx)}" y2="${Y(Math.min(yb,y1))}"/>`;
     s+=`<text class="t-h" x="${X(lx+(sc.inward?0.02:-0.02))}" y="${Y((Math.max(ya,y0)+Math.min(yb,y1))/2)}" text-anchor="${sc.inward?'start':'end'}">h_red ${mm(sc.hred)}</text>`}
+  // drive (chain drive) and chain
+  if(opt.drv){const DC=opt.drv,G2=driveGeo(P,sc,DC),cw=DC.D.geo.cw,pk=DC.D.geo.pitch*k;
+    G2.brk.forEach(q=>s+=poly(q,'s-brk'));G2.cons.forEach(q=>s+=poly(q,'s-cons'));
+    s+=poly(G2.body,'s-drv')+poly(G2.inner,'s-drv-in');
+    G2.links.forEach(([p0,p1],i)=>{const dx=p1[0]-p0[0],dy=p1[1]-p0[1],l=Math.hypot(dx,dy)||1,nx=-dy/l*cw/2,ny=dx/l*cw/2,ov=i%2?0:0.0008,ex=dx/l*ov,ey=dy/l*ov;
+      s+=poly([[p0[0]-ex+nx,p0[1]-ey+ny],[p1[0]+ex+nx,p1[1]+ey+ny],[p1[0]+ex-nx,p1[1]+ey-ny],[p0[0]-ex-nx,p0[1]-ey-ny]],i%2?'s-link':'s-link alt')});
+    if(pk>=4)G2.links.forEach(([p0])=>s+=`<circle class="s-lpin" cx="${X(p0[0])}" cy="${Y(p0[1])}" r="${Math.min(1.6,pk*0.18).toFixed(2)}"/>`);
+    s+=`<circle class="s-hinge" cx="${X(G2.pin[0])}" cy="${Y(G2.pin[1])}" r="2.2"/>`;
+    const bb=G2.body,lx=Math.min(...bb.map(q=>q[0])),ly=G2.ys>0?Math.max(...bb.map(q=>q[1])):Math.min(...bb.map(q=>q[1]));
+    const ty=+Y(ly)+(G2.ys>0?-20:14),fz=DC.D.force,ext=Math.round(Math.min(DC.hubEff,2*DC.Lh*Math.sin(sc.al/2)*1000));
+    s+=`<text class="t-drv" x="${X(lx)}" y="${ty.toFixed(1)}" text-anchor="end"><tspan font-weight="700">${DC.name}${DC.n>1?' ×'+DC.n:''}</tspan> · Hub ${DC.hub} mm${DC.hubEff<DC.hub?` (begrenzt ${DC.hubEff})`:''}</text>`;
+    s+=`<text class="t-drv" x="${X(lx)}" y="${(ty+12).toFixed(1)}" text-anchor="end">F Zug ${fz.zug} N / Druck ${fz.druck} N · ausgefahren ${ext} mm${DC.gAtAngle?` · zul. ${Math.round(DC.gAtAngle(sc.al*180/Math.PI))} kg`:''}</text>`}
   // hinge
   s+=`<circle cx="${X(sc.hinge[0])}" cy="${Y(sc.hinge[1])}" r="4" class="s-hinge"/>`;
   // w and s
@@ -607,7 +755,7 @@ function drawSVG(P,sc,opt){opt=opt||{};
   return s+'</svg>';
 }
 
-function drawChart(P,curve,aMax,aCur,aReq){
+function drawChart(P,curve,aMax,aCur,aReq,aDrv){
   const W=600,H=220,L=46,R=12,T=12,B=30;
   const maxA=90;const vals=curve.map(c=>c.Ag);const capL=P.n*P.b*P.h*(1-P.ded/100);
   let maxY=Math.max(0.2,...vals,isNaN(P.soll)?0:P.soll,capL)*1.12;
@@ -620,6 +768,7 @@ function drawChart(P,curve,aMax,aCur,aReq){
     s+=`<polygon class="c-area" points="${X(curve[0].a)},${Y(0)} ${pts.join(' ')} ${X(curve[curve.length-1].a)},${Y(0)}"/><polyline class="c-line" points="${pts.join(' ')}"/>`}
   if(!isNaN(P.soll)&&P.soll<=maxY)s+=`<line class="c-target" x1="${L}" x2="${W-R}" y1="${Y(P.soll)}" y2="${Y(P.soll)}"/>`;
   if(aMax<90)s+=`<line class="c-max" x1="${X(aMax)}" x2="${X(aMax)}" y1="${T}" y2="${H-B}"/>`;
+  if(aDrv!==undefined&&aDrv<90)s+=`<line class="c-drv" x1="${X(aDrv)}" x2="${X(aDrv)}" y1="${T}" y2="${H-B}"/><text class="t-mut" x="${X(aDrv)+4}" y="${T+12}">Hubgrenze ${f1(aDrv)}°</text>`;
   s+=`<line class="c-cap" x1="${L}" x2="${W-R}" y1="${Y(capL)}" y2="${Y(capL)}"/><text class="t-mut" x="${W-R-4}" y="${Y(capL)-5}" text-anchor="end">Grenze lichte Öffnung ${f3(capL)} m²</text>`;
   const cur=curve.reduce((m,c)=>Math.abs(c.a-aCur)<Math.abs(m.a-aCur)?c:m,curve[0]||{a:0,Ag:0});
   if(curve.length&&aCur<=aMax+1e-9)s+=`<circle class="c-cur" cx="${X(aCur)}" cy="${Y(cur.Ag)}" r="5"/>`;
@@ -628,13 +777,19 @@ function drawChart(P,curve,aMax,aCur,aReq){
 
 /* ---------- main update ---------- */
 const $=id=>document.getElementById(id);
+var CLAMP_A=false;
 function update(){
   document.querySelectorAll('#modes button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===S.mode)));
   {const Pq=params();$('ceilHint').textContent=isFinite(Pq.u)?`Decke und Vordach werden ab der Flügeloberkante gemessen. Die Laibungsoberkante liegt R = ${mm(Pq.pr)} mm darüber. Das ist der kleinste Wert; bei genau diesem Wert bilden Laibung und Decke eine Fläche.`:''}
   updSketch();
+  {const ce=$('camDrive');if(ce)ce.hidden=!DRV[S.drv];if(!DRV[S.drv]&&CAM.focus){CAM.focus=false;CAM.zoom=1}}
+  document.querySelectorAll('#glzMode button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.glz===(S.glz==='3'?'3':'2'))));
+  document.querySelectorAll('.g3only').forEach(e=>e.hidden=S.glz!=='3');$('g2lab').firstChild.textContent=S.glz==='3'?'Scheibe 2 Mitte ':'Scheibe 2 außen ';
+  document.querySelectorAll('#secOpts button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.sec===(S.secView==='edge'?'edge':'full'))));
   document.querySelectorAll('#dimMode button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.dim===(S.dim==='licht'?'licht':'fa'))));$('gridFa').hidden=S.dim==='licht';$('gridLicht').hidden=S.dim!=='licht';
   document.querySelectorAll('#triSel button').forEach(b=>{const on=S[b.dataset.tri]!==false;b.setAttribute('aria-pressed',String(on));b.querySelector('small').textContent='Ansicht von innen · '+(on?'zählt mit':'nicht berücksichtigt')});
   document.querySelectorAll('#sides button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.side===(S.side==='merk'?'merk':'exakt'))));
+  syncDriveUI();
   const P=params();
   document.querySelectorAll('input[data-k]').forEach(i=>i.classList.toggle('err',P.bad.includes(i.dataset.k)));
   let a=num(S.alpha);if(isNaN(a))a=20;a=Math.max(0,Math.min(90,a));
@@ -642,19 +797,25 @@ function update(){
   $('alphaR').value=a;
   const msgs=[];
   if(P.bad.length){
-    const names={gt:'Glasstärke G (muss größer als 0 sein)',b:'Lichte Breite b',h:'Lichte Höhe h',fb:'Flügelaußenbreite FB (muss größer als Ab sein)',fh:'Flügelaußenhöhe FH (muss größer als Ab sein)',ab:'Abzugswert Ab (nicht negativ)',r:'Platz auf dem Rahmen R (nicht negativ)',df:'Flügelprofiltiefe T2 (muss größer als ü sein)',dr:'Rahmenprofiltiefe T1',v:'Überschlag ü (muss größer als 0 sein, damit der Flügel auf dem Rahmen aufliegt)',ti:'Laibung innen',ta:'Laibung außen',c:`Decke (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R, sonst läge sie unter der Laibungsoberkante)`,ca:`Vordach (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R)`,a:'Abstand a'};
+    const names={g1:'Scheibe 1',z1:'SZR 1',g2:'Scheibe 2',z2:'SZR 2',g3:'Scheibe 3',pkg:'Profilgewicht',ge:'Glaseinstand',b:'Lichte Breite b',h:'Lichte Höhe h',fb:'Flügelaußenbreite FB (muss größer als Ab sein)',fh:'Flügelaußenhöhe FH (muss größer als Ab sein)',ab:'Abzugswert Ab (nicht negativ)',r:'Platz auf dem Rahmen R (nicht negativ)',df:'Flügelprofiltiefe T2 (muss größer als ü sein)',dr:'Rahmenprofiltiefe T1',v:'Überschlag ü (muss größer als 0 sein, damit der Flügel auf dem Rahmen aufliegt)',ti:'Laibung innen',ta:'Laibung außen',c:`Decke (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R, sonst läge sie unter der Laibungsoberkante)`,ca:`Vordach (mindestens ${mm(P.pr)} mm = Platz auf dem Rahmen R)`,a:'Abstand a'};
     $('msgs').innerHTML=`<div class="msg bad">Bitte prüfen: ${P.bad.map(k=>names[k]||k).join(', ')}.</div>`;
-    LAST=null;req3D();$('frameInfo').textContent='';$('kpis').innerHTML='';$('steps').textContent='';$('svgHost').innerHTML='';$('chartHost').innerHTML='';return}
-  // scan angles
+    LAST=null;req3D();$('frameInfo').textContent='';$('wKpis').innerHTML='';$('wSteps').textContent='Bitte die markierten Eingaben korrigieren.';$('glzInfo').textContent='';renderDrive(null);$('kpis').innerHTML='';$('steps').textContent='';$('svgHost').innerHTML='';$('chartHost').innerHTML='';return}
+  let DC=driveCheck(P);const aDrv=DC?DC.aDrv:90;
+  if(DC&&a>aDrv+1e-9){
+    if(CLAMP_A){a=Math.floor(aDrv*10)/10;S.alpha=f1(a);save();if(document.activeElement!==$('alphaN'))$('alphaN').value=f1(a).replace(/,0$/,'');$('alphaR').value=a}
+    else{const row=['Öffnungswinkel α',`${f1(a)}°`,`≤ ${f1(aDrv)}° bei Hub ${DC.hubEff} mm`];
+      DC=Object.assign({},DC,{ok:false,angleBad:true,fails:[...DC.fails,'Öffnungswinkel'],failRows:[...DC.failRows,row],rows:[...DC.rows,[...row,'bad']]})}}
+  CLAMP_A=false;
+  // scan angles (up to the drive's stroke limit)
   let aMax=90;const curve=[];let aReq=NaN;
-  for(let x=0.5;x<=90.0001;x+=0.5){const sc=scene(P,x);if(sc.hits.length){aMax=x-0.5;break}const r=agOf(P,sc);curve.push({a:x,Ag:r.Ag});if(isNaN(aReq)&&!isNaN(P.soll)&&r.Ag>=P.soll)aReq=x}
+  for(let x=0.5;x<=Math.min(90,aDrv)+0.0001;x+=0.5){const sc=scene(P,x);if(sc.hits.length){aMax=x-0.5;break}const r=agOf(P,sc);curve.push({a:x,Ag:r.Ag});if(isNaN(aReq)&&!isNaN(P.soll)&&r.Ag>=P.soll)aReq=x}
   // refine max angle
   if(aMax<90){let lo=aMax,hi=aMax+0.5;for(let i=0;i<20;i++){const m=(lo+hi)/2;if(scene(P,m).hits.length)hi=m;else lo=m}aMax=lo}
-  const sc=scene(P,a);const R=agOf(P,sc);
+  const sc=scene(P,a);const R=agOf(P,sc);renderWeight(P);renderDrive(DC);
   $('frameInfo').textContent=`Lichte Öffnung b × h = ${mm(P.b)} × ${mm(P.h)} mm (Flügelaußenmaß ${mm(P.fb)} × ${mm(P.fh)} − Ab ${mm(P.ab)}). Der Flügel überdeckt den Rahmen je Seite um Ab/2 = ${mm(P.ue)} mm, oberhalb des Flügels bleiben R = ${mm(P.pr)} mm Platz auf dem Rahmen, die Rahmenansicht beträgt Ab/2 + R = ${mm(P.u)} mm. Drehachse ${mm(P.bx)} mm vor der Rahmenebene und ${mm(P.by)} mm außerhalb der Flügelkante. Abstand Flügelfläche zur Wand ${mm(Math.max(0,(sc.inward?P.ti:P.ta)-P.v))} mm.`;
-  $('svgHost').innerHTML=drawSVG(P,sc);
-  $('chartHost').innerHTML=drawChart(P,curve,aMax,a,aReq);
-  $('chartNote').textContent=aMax<90?`max. ${f1(aMax)}° ohne Kollision`:'keine Kollision bis 90°';
+  $('svgHost').innerHTML=drawSVG(P,sc,{full:S.secView!=='edge',drv:DC});
+  $('chartHost').innerHTML=drawChart(P,curve,aMax,a,aReq,aDrv);
+  $('chartNote').textContent=(aMax<90?`max. ${f1(aMax)}° ohne Kollision`:(aDrv<90?`keine Kollision bis ${f1(aDrv)}°`:'keine Kollision bis 90°'))+(DC?` · Antrieb max. ${f1(aDrv)}°`:'');
   const limTxt=sc.limited?`<span class="limit">begrenzt durch ${esc(sc.S.name)}</span>`:`<span class="limit free">w maßgebend</span>`;
   $('kpis').innerHTML=`
     <div class="kpi main"><div class="k">A_g</div><div class="v">${sc.hits.length?'–':f3(R.Ag)+' m²'}</div>${R.capped&&!sc.hits.length?'<div class="note">begrenzt auf lichte Öffnung</div>':''}</div>
@@ -693,16 +854,17 @@ function update(){
     else if(!isNaN(aReq))msgs.push(['warn',`Anforderung ${f2(P.soll)} m² nicht erfüllt. Erreichbar ab α ≈ ${f1(aReq)}°, Kollisionsgrenze ${f1(aMax)}°.`]);
     else{const best=curve.reduce((m,c)=>c.Ag>m.Ag?c:m,{Ag:0,a:0});msgs.push(['bad',`Anforderung ${f2(P.soll)} m² ist mit dieser Einbausituation nicht erreichbar. Maximum: ${f3(best.Ag)} m² bei ${f1(best.a)}°.`])}}
   if(isFinite(P.im)&&(P.im+P.gt/2>P.df+1e-9||P.im-P.gt/2<-1e-9))msgs.push(['warn',`Das Glas reicht nach i ± G/2 von ${mm(P.im-P.gt/2)} bis ${mm(P.im+P.gt/2)} mm und liegt damit nicht vollständig im Flügelprofil (T2 = ${mm(P.df)} mm). Es wird ins Profil verschoben gezeichnet; bitte i-Maß, Glasstärke oder T2 prüfen. Die Berechnung ist davon nicht betroffen.`]);
-  msgs.push(['info','Prüfen, ob der Antrieb den Winkel mit seinem Hub erreicht und ob der Einbau weitere Störkonturen hat, die hier nicht erfasst sind (z. B. Heizkörper, Fensterbank, Sonnenschutz).']);
+  if(DC){if(DC.ok)msgs.push(['ok',`Antrieb ${DC.label}: alle geprüften Kriterien erfüllt. Öffnungswinkel durch den Hub auf ${f1(aDrv)}° begrenzt.`]);else msgs.push(['bad',`Antrieb ${DC.label}: nicht erfüllt – ${DC.fails.join(', ')}. Details im Bereich „Antrieb“.`])}
+  if(!DC)msgs.push(['info','Prüfen, ob der Antrieb den Winkel mit seinem Hub erreicht und ob der Einbau weitere Störkonturen hat, die hier nicht erfasst sind (z. B. Heizkörper, Fensterbank, Sonnenschutz).']);
   $('msgs').innerHTML=msgs.map(([t,m])=>`<div class="msg ${t}">${esc(m)}</div>`).join('');
-  LAST={P,sc,R,st,msgs,a,aMax,aReq};req3D();
+  LAST={P,sc,R,st,msgs,a,aMax,aReq,DC};req3D();
 }
 
 /* ---------- drawing sheet (A4 landscape) ---------- */
 let LAST=null;
 /* ---------- 3D model (own canvas renderer, works offline) ---------- */
 let VIEW='2d';try{if(localStorage.getItem(KEY+'-view')==='3d')VIEW='3d'}catch(e){}
-const CAMS={innen:[Math.PI+0.75,0.32],aussen:[0.75,0.32],seite:[Math.PI/2+0.06,0.06],oben:[Math.PI+0.55,1.1]};
+const CAMS={drive:[Math.PI+0.25,-0.5],innen:[Math.PI+0.75,0.32],aussen:[0.75,0.32],seite:[Math.PI/2+0.06,0.06],oben:[Math.PI+0.55,1.1]};
 const CAM={yaw:CAMS.innen[0],pitch:CAMS.innen[1],zoom:1};
 function cssColor(name,fb){const v=getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const m=v.match(/^#([0-9a-f]{6})$/i);if(m){const n=parseInt(m[1],16);return[n>>16&255,n>>8&255,n&255]}
@@ -713,14 +875,14 @@ const sub3=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],dot3=(a,b)=>a[0]*b[0]+a[1]*b[1
   cross3=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],
   norm3=a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/l,a[1]/l,a[2]/l]};
 function themeColors3D(){
-  const C={wall:cssColor('--wall',[201,206,212]),frame:cssColor('--frame',[93,107,122]),glass:cssColor('--glass',[207,227,243]),prof:cssColor('--prof',[174,184,195]),
+  const C={wall:cssColor('--wall',[201,206,212]),frame:cssColor('--frame',[93,107,122]),glass:cssColor('--glass',[207,227,243]),prof:cssColor('--prof',[174,184,195]),sig:cssColor('--sig',[217,93,20]),
     ok:cssColor('--ok',[29,122,76]),muted:cssColor('--muted',[91,104,118]),blue:cssColor('--blue',[31,79,138]),bad:cssColor('--bad',[179,38,30]),fg:cssColor('--fg',[24,34,45])};
   const bgc=cssColor('--surface',[255,255,255]);if((bgc[0]*.3+bgc[1]*.59+bgc[2]*.11)<90){const lift=c=>c.map(x=>Math.min(255,Math.round(x*1.45+12)));C.wall=lift(C.wall);C.frame=lift(C.frame);C.prof=lift(C.prof)}
   return C}
-const PRINT3D={wall:[201,206,212],frame:[93,107,122],glass:[207,227,243],prof:[174,184,195],ok:[29,122,76],muted:[91,104,118],blue:[31,79,138],bad:[179,38,30],fg:[24,34,45]};
+const PRINT3D={wall:[201,206,212],frame:[93,107,122],glass:[207,227,243],prof:[174,184,195],sig:[217,93,20],ok:[29,122,76],muted:[91,104,118],blue:[31,79,138],bad:[179,38,30],fg:[24,34,45]};
 function build3D(P,sc,Cin){
   const C=Cin?Object.assign({},Cin):themeColors3D();
-  const items=[];const solid=(faces,col,edge)=>faces.forEach(f=>items.push({pts:f,col,solid:true,edge}));
+  const items=[];const solid=(faces,col,edge,fine,bias)=>faces.forEach(f=>items.push({pts:f,col,solid:true,edge,fine:!!fine||!!(LAST&&LAST.DC),bias:bias||0}));
   const {b,h,u,dr,ue,v,df}=P;const xi=-P.ti,xa=dr+P.ta,m=0.3;
   const Z0=-u-m,Z1=b+u+m,Yb=-u-m;let Yt=h+u+m;
   if(P.c!==null)Yt=h+P.c+0.2;if(P.ca!==null)Yt=Math.max(Yt,h+P.ca+0.16);
@@ -748,6 +910,24 @@ function build3D(P,sc,Cin){
   [G.g0,G.g1].forEach(gx=>items.push({pts:[[gx,yB1,-ue+Sm],[gx,yT0,-ue+Sm],[gx,yT0,b+ue-Sm],[gx,yB1,b+ue-Sm]].map(T),col:C.glass,alpha:.32,edge:C.blue}));
   // free cross-section: front gap along w, side triangles in the planes of the sash sides
   const labels=[['innen',[xi-0.45,Yb+0.08,b/2]],['außen',[xa+0.45,Yb+0.08,b/2]]];
+  // chain drives (body length incl. consoles, evenly spaced for Syncro)
+  const DCx=LAST&&LAST.DC;let drvC=null;
+  if(DCx){const G3=driveGeo(P,sc,DCx),g=DCx.D.geo,len=DCx.D.len[DCx.hub]/1000,dc=[198,202,207],de=[45,50,58],cc=[110,116,126],bc=[150,156,165];
+    const ext=(poly2,z0,z1,tf)=>{const xs_=poly2.map(q=>q[0]),ys_=poly2.map(q=>q[1]);return boxFaces(Math.min(...xs_),Math.max(...xs_),Math.min(...ys_),Math.max(...ys_),z0,z1).map(f=>tf?f.map(T):f)};
+    const obox=(p0,p1,w,z0,z1)=>{const dx=p1[0]-p0[0],dy=p1[1]-p0[1],l=Math.hypot(dx,dy)||1e-6,c=dx/l,s_=dy/l;
+      return boxFaces(0,l,-w/2,w/2,z0,z1).map(f=>f.map(([x,y,z])=>[p0[0]+x*c-y*s_,p0[1]+x*s_+y*c,z]))};
+    const mv=G3.bodyMoves,bx=G3.bodyX,by=G3.bodyY;
+    for(let i=0;i<DCx.n;i++){const zc=b*(i+0.5)/DCx.n,mir=DCx.n>1&&i%2===1,z0=mir?zc-(len-g.outZ):zc-g.outZ,z1=z0+len;
+      // body between the end consoles, end consoles, cable end marked
+      solid(ext([[bx[0],by[0]],[bx[1],by[1]]],z0+g.capL,z1-g.capL,mv),dc,de,true,0.03);
+      [[z0,z0+g.capL],[z1-g.capL,z1]].forEach(([a_,b_])=>solid(ext([[bx[0]-0.002,by[0]-0.002],[bx[1]+0.002,by[1]+0.002]],a_,b_,mv),cc,de,true,0.03));
+      // mounting consoles (two per drive) and chain bracket
+      [z0+g.capL+0.03,z1-g.capL-0.07].forEach(zz=>(G3.cons0||G3.cons).forEach(q=>solid(ext(q,zz,zz+0.04,!!G3.cons0),cc,de,true,0.03)));
+      (G3.brk0||G3.brk).forEach(q=>solid(ext(q,zc-g.brkZ/2,zc+g.brkZ/2,!!G3.brk0),bc,de,true,0.03));
+      // chain links (alternating inner/outer plates)
+      G3.links.forEach(([p0,p1],j)=>{const w=j%2?g.cw:g.cw*1.15,zw=j%2?g.cz*0.75:g.cz;solid(obox(p0,p1,w,zc-zw/2,zc+zw/2),j%2?C.sig:C.sig.map(x=>Math.round(x*0.78)),[60,30,10],false,0.04)});
+      if(i===0){const mid=G3.chain[Math.floor(G3.chain.length/2)]||G3.out;drvC=[mid[0],mid[1],DCx.n>1?b/2:zc];
+        const lb=mv?T([bx[0],(by[0]+by[1])/2,zc]):[bx[0],(by[0]+by[1])/2,zc];labels.push([`${DCx.name} · Hub ${DCx.hub} mm`,[lb[0]-0.08,lb[1]+G3.ys*0.05,z0+0.1],C.sig])}}}
   // ventilation area at the main closing edge (Hauptschließkante): from the sash edge to the governing contour,
   // the frame (w) or the obstacle (s: ceiling, lintel in the reveal, canopy, sill); the other one dashed
   const band=(m_,on)=>{const a=m_.p,q=m_.q;items.push({pts:[[a[0],a[1],0],[q[0],q[1],0],[q[0],q[1],b],[a[0],a[1],b]],
@@ -769,14 +949,18 @@ function build3D(P,sc,Cin){
   for(const it of items)for(const q of it.pts)for(let k=0;k<3;k++){lo[k]=Math.min(lo[k],q[k]);hi[k]=Math.max(hi[k],q[k])}
   const target=[(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2];
   const size=Math.max(hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2])*0.92;
-  return{items,labels,hsk,C,blue:C.blue,target,size};
+  return{items,labels,hsk,C,blue:C.blue,target,size,drvC};
 }
 let raf3=0;function req3D(){if(VIEW!=='3d')return;if(!raf3)raf3=requestAnimationFrame(()=>{raf3=0;draw3D()})}
 function render3D(ctx,W,H,cam,Cin,bg,opt){opt=opt||{};const k=opt.k||1;
+  if(LAST.DC&&!LAST.DC.ok){const C=Cin||themeColors3D(),DC=LAST.DC;ctx.textAlign='center';ctx.fillStyle=`rgb(${C.bad})`;ctx.font=`700 ${17*k}px "Source Sans 3",system-ui,sans-serif`;
+    ctx.fillText((DC.angleBad&&DC.failRows.length===1?'Öffnungswinkel nicht erreichbar':'Antrieb nicht einsetzbar')+' – kein 3D-Modell',W/2,H/2-14*k-(DC.failRows.length*9*k));ctx.font=`${13*k}px "Source Sans 3",system-ui,sans-serif`;ctx.fillStyle=`rgb(${C.fg})`;
+    DC.failRows.forEach(([l,ist,soll],i)=>ctx.fillText(`✕ ${l}: Ist ${ist}, erforderlich ${soll}`,W/2,H/2+12*k+(i-DC.failRows.length/2)*18*k+9*k));return null}
   const M=build3D(LAST.P,LAST.sc,Cin);const muted=`rgb(${M.C.muted})`;
   const dist=M.size*2.1/cam.zoom,cp=Math.cos(cam.pitch);
-  const eye=[M.target[0]+dist*cp*Math.cos(cam.yaw),M.target[1]+dist*Math.sin(cam.pitch),M.target[2]+dist*cp*Math.sin(cam.yaw)];
-  const fw=norm3(sub3(M.target,eye)),rt=norm3(cross3(fw,[0,1,0])),up=cross3(rt,fw);const foc=Math.min(W,H)*1.15;
+  const tg=(cam.focus&&M.drvC)?M.drvC:M.target;
+  const eye=[tg[0]+dist*cp*Math.cos(cam.yaw),tg[1]+dist*Math.sin(cam.pitch),tg[2]+dist*cp*Math.sin(cam.yaw)];
+  const fw=norm3(sub3(tg,eye)),rt=norm3(cross3(fw,[0,1,0])),up=cross3(rt,fw);const foc=Math.min(W,H)*1.15;
   const proj=q=>{const d=sub3(q,eye);const z=dot3(d,fw);return[W/2+foc*dot3(d,rt)/z,H/2-foc*dot3(d,up)/z,z]};
   const light=norm3([-0.35,0.85,0.4]);const polys=[];
   for(const it of M.items){
@@ -785,13 +969,13 @@ function render3D(ctx,W,H,cam,Cin,bg,opt){opt=opt||{};const k=opt.k||1;
       const c=it.pts.reduce((a,q)=>[a[0]+q[0]/4,a[1]+q[1]/4,a[2]+q[2]/4],[0,0,0]);if(dot3(n,sub3(eye,c))<=0)continue;
       const sh=0.62+0.38*Math.max(0,dot3(n,light));const col=it.col.map(x=>Math.round(x*sh));const ec=it.edge||null;
       const [a,bq,,d]=it.pts;const e1=sub3(bq,a),e2=sub3(d,a);
-      const ns=Math.max(1,Math.ceil(Math.hypot(...e1)/0.18)),nt=Math.max(1,Math.ceil(Math.hypot(...e2)/0.18));
+      const ns=Math.max(1,Math.ceil(Math.hypot(...e1)/(it.fine?0.04:0.18))),nt=Math.max(1,Math.ceil(Math.hypot(...e2)/(it.fine?0.04:0.18)));
       const at=(s_,t_)=>[a[0]+e1[0]*s_+e2[0]*t_,a[1]+e1[1]*s_+e2[1]*t_,a[2]+e1[2]*s_+e2[2]*t_];
       for(let i=0;i<ns;i++)for(let j=0;j<nt;j++){const s0=i/ns,s1=(i+1)/ns,t0=j/nt,t1=(j+1)/nt;
-        polys.push({q:[at(s0,t0),at(s1,t0),at(s1,t1),at(s0,t1)],col,ec,alpha:1,edges:[j===0,i===ns-1,j===nt-1,i===0]})}
+        polys.push({q:[at(s0,t0),at(s1,t0),at(s1,t1),at(s0,t1)],col,ec,alpha:1,bias:it.bias||0,edges:[j===0,i===ns-1,j===nt-1,i===0]})}
     }else polys.push({q:it.pts,col:it.col,ec:it.edge,alpha:it.alpha,edges:it.pts.map(()=>true),dash:it.dash});
   }
-  const pr=[];for(const pl of polys){const sp=pl.q.map(proj);if(sp.some(q=>q[2]<0.02))continue;pl.sp=sp;pl.z=sp.reduce((m_,q)=>m_+q[2],0)/sp.length;pr.push(pl)}
+  const pr=[];for(const pl of polys){const sp=pl.q.map(proj);if(sp.some(q=>q[2]<0.02))continue;pl.sp=sp;pl.z=sp.reduce((m_,q)=>m_+q[2],0)/sp.length-(pl.bias||0);pr.push(pl)}
   pr.sort((A,B)=>B.z-A.z);
   for(const pl of pr){
     ctx.beginPath();pl.sp.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.closePath();
@@ -823,10 +1007,10 @@ function draw3D(){
   render3D(ctx,W,H,CAM,null,bg,{});
 }
 function setView(v){VIEW=v;try{localStorage.setItem(KEY+'-view',v)}catch(e){}
-  $('svgHost').hidden=v!=='2d';$('host3d').hidden=v!=='3d';
+  $('svgHost').hidden=v!=='2d';$('host3d').hidden=v!=='3d';$('secOpts').hidden=v!=='2d';
   document.querySelectorAll('#viewTabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===v)));if(v==='3d')draw3D()}
 $('viewTabs').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)setView(b.dataset.view)});
-$('cam3d').addEventListener('click',e=>{const b=e.target.closest('[data-cam]');if(!b)return;const c=CAMS[b.dataset.cam];CAM.yaw=c[0];CAM.pitch=c[1];CAM.zoom=1;draw3D()});
+$('cam3d').addEventListener('click',e=>{const b=e.target.closest('[data-cam]');if(!b)return;const c=CAMS[b.dataset.cam];CAM.yaw=c[0];CAM.pitch=c[1];CAM.focus=b.dataset.cam==='drive';CAM.zoom=CAM.focus?3.2:1;draw3D()});
 (()=>{const cv=$('cv3d');const pts=new Map();let pinch0=0,zoom0=1;
   cv.addEventListener('pointerdown',e=>{try{cv.setPointerCapture(e.pointerId)}catch(_){}pts.set(e.pointerId,[e.clientX,e.clientY]);
     if(pts.size===2){const [a,b]=[...pts.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);zoom0=CAM.zoom}});
@@ -847,7 +1031,7 @@ const MODES={kipp:'Kippflügel, Band unten, öffnet nach innen',klappIn:'Klappfl
 function wrapLines(lines,n){const out=[];for(const line of lines){let l=line;while(l.length>n){let i=l.lastIndexOf(' ',n);if(i<n*0.5)i=n;out.push(l.slice(0,i));l='     '+l.slice(i).trimStart()}out.push(l)}return out}
 function sheetSVG(raster){
   const {P,sc,R,st,msgs,a,aMax,aReq}=LAST;
-  const draw=drawSVG(P,sc,{full:true});
+  const draw=drawSVG(P,sc,{full:true,drv:LAST.DC});
   const vb=draw.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);const Wpx=+vb[1],Hpx=+vb[2];
   const mw=+draw.match(/data-mw="([\d.]+)"/)[1];
   const realW=mw*1000,realH=realW*Hpx/Wpx;const AW=146,AH=140;
@@ -860,7 +1044,7 @@ function sheetSVG(raster){
   const css=`text{font-family:Arial,Helvetica,sans-serif;fill:#18222d}
 .mono{font-family:'Courier New',Courier,monospace}
 .s-wall,.s-ceil{fill:url(#hatch);stroke:#8e98a3;stroke-width:1}.hatch-bg{fill:#d9dde2}.hatch-l{stroke:#8e98a3;stroke-width:1}
-.s-frame{fill:#aeb8c3;stroke:#5d6b7a;stroke-width:1}.s-prof{fill:#aeb8c3;stroke:#18222d;stroke-width:1.2}.s-prof.hit,.s-bead.hit{fill:#fbe4e2;stroke:#b3261e}.s-bead{fill:#aeb8c3;stroke:#18222d;stroke-width:.8}.s-pane{fill:#cfe3f3;stroke:#1f4f8a;stroke-width:.8}.s-gap{fill:#cfe3f3;fill-opacity:.35}.s-cham{fill:#ffffff;stroke:#18222d;stroke-width:.5}.s-fcham{fill:#ffffff;stroke:#5d6b7a;stroke-width:.6}.s-tb{fill:#5b6876}.s-block{fill:#5b6876}.s-spacer{fill:#5d6b7a}.s-gask{fill:#18222d}.det *{vector-effect:non-scaling-stroke}.det-bg{fill:#ffffff}.det-frame{fill:none;stroke:#18222d;stroke-width:1}.det-mark{fill:none;stroke:#18222d;stroke-width:1;stroke-dasharray:3 3}.s-sash{fill:#cfe3f3;stroke:#18222d;stroke-width:1.5}.s-sash.hit{fill:#fbe4e2;stroke:#b3261e;stroke-width:2.5}
+.s-frame{fill:#aeb8c3;stroke:#5d6b7a;stroke-width:1}.s-prof{fill:#aeb8c3;stroke:#18222d;stroke-width:1.2}.s-prof.hit,.s-bead.hit{fill:#fbe4e2;stroke:#b3261e}.s-bead{fill:#aeb8c3;stroke:#18222d;stroke-width:.8}.s-pane{fill:#cfe3f3;stroke:#1f4f8a;stroke-width:.8}.s-gap{fill:#cfe3f3;fill-opacity:.35}.s-cham{fill:#ffffff;stroke:#18222d;stroke-width:.5}.s-fcham{fill:#ffffff;stroke:#5d6b7a;stroke-width:.6}.s-tb{fill:#5b6876}.s-block{fill:#5b6876}.s-spacer{fill:#5d6b7a}.s-gask{fill:#18222d}.s-drv{fill:#c6cacf;stroke:#18222d;stroke-width:.9}.s-drv-in{fill:none;stroke:#18222d;stroke-width:.5;opacity:.45}.s-cons{fill:#7d848e;stroke:#18222d;stroke-width:.6}.s-brk{fill:#9aa1aa;stroke:#18222d;stroke-width:.7}.s-link{fill:#d95d14;stroke:#18222d;stroke-width:.35}.s-link.alt{fill:#a9440c}.s-lpin{fill:#18222d}.t-drv{font-family:monospace;font-size:10px;fill:#d95d14;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}.det *{vector-effect:non-scaling-stroke}.det-bg{fill:#ffffff}.det-frame{fill:none;stroke:#18222d;stroke-width:1}.det-mark{fill:none;stroke:#18222d;stroke-width:1;stroke-dasharray:3 3}.s-sash{fill:#cfe3f3;stroke:#18222d;stroke-width:1.5}.s-sash.hit{fill:#fbe4e2;stroke:#b3261e;stroke-width:2.5}
 .s-ghost{fill:none;stroke:#5b6876;stroke-dasharray:4 4;stroke-width:1}.s-w{stroke:#1f4f8a;stroke-width:2}.s-s{stroke:#d95d14;stroke-width:2}
 .s-plane{stroke:#5b6876;stroke-dasharray:6 4;stroke-width:1}.s-hred{stroke:#1d7a4c;stroke-width:2.5}.s-tri{fill:#e1f2e8;stroke:#1d7a4c;stroke-width:1.5}.s-tri.off{fill:#5b6876;fill-opacity:.16;stroke:#5b6876;stroke-dasharray:5 4}
 .s-hinge{fill:#d95d14}
@@ -886,10 +1070,10 @@ function sheetSVG(raster){
   o+=`<text x="${X0}" y="${y}" font-size="2.6" fill="#5b6876">Maßgebend: ${R.capped?'lichte Öffnung n · b · h':sc.limited?E(sc.S.name)+' (s ≤ w)':'Öffnungsweite w'} · Kollisionsgrenze ${aMax<90?f1(aMax)+'°':'keine bis 90°'}</text>`;y+=8;
   o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Eingaben</text>`;y+=5;
   const v=x=>has(x)?num(x).toLocaleString('de-DE')+' mm':'–';
-  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Glasstärke G / Platz Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.gt)?v(S.gt):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über Flügeloberkante',has(S.c)?v(S.c)+(Math.abs(num(S.c)/1000-P.pr)<1e-6?' (bündig mit Laibung)':''):'keine'],['Vordach UK über Flügel-OK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
+  const rows=[['Öffnungsart',MODES[P.mode]],['Flügelaußenmaß FB × FH',`${mm(P.fb)} × ${mm(P.fh)} mm`],['Lichte Öffnung b × h',`${mm(P.b)} × ${mm(P.h)} mm (Ab ${mm(P.ab)} mm)`],['Profiltiefe Rahmen T1 / Flügel T2',`${mm(P.dr)} / ${mm(P.df)} mm`],['Überschlag ü / Platz auf Rahmen R',`${mm(P.v)} / ${mm(P.pr)} mm (Rahmenansicht ${mm(P.u)} mm)`],['Band Bx / By',`${mm(P.bx)} / ${mm(P.by)} mm`],['i-Maß / Platz auf dem Flügel S',`${has(S.im)?v(S.im):'–'} / ${has(S.sf)?v(S.sf):'–'}`],['Verglasung',`${P.glz}-fach ${glzText(P)} = ${mm(P.gt)} mm (Glas ${P.glassMM.toLocaleString('de-DE')} mm)`],['Flügelgewicht (Richtwert)',(()=>{const W=weightOf(P);return `${f1(W.m)} kg (Profil ${f1(W.mP)} + Glas ${f1(W.mG)})`})()],['Laibung innen / außen',`${v(S.ti)} / ${v(S.ta)}`],['Decke UK über Flügeloberkante',has(S.c)?v(S.c)+(Math.abs(num(S.c)/1000-P.pr)<1e-6?' (bündig mit Laibung)':''):'keine'],['Vordach UK über Flügel-OK / Auskragung',has(S.ca)?`${v(S.ca)} / ${v(S.cl)}`:'kein'],['Anzahl Fenster / Abstand a',P.n>1?`${P.n} / ${v(S.a)}`:'1'],['Seitendreiecke',P.k===2?'beide':P.k===0?'keine':(P.triL?'nur links':'nur rechts')+' (Ansicht innen)'],['Antrieb',LAST.DC?LAST.DC.label:'ohne'],['Antriebsprüfung',LAST.DC?(LAST.DC.ok?'alle geprüften Kriterien erfüllt':'nicht erfüllt: '+LAST.DC.fails.join(', ')):'–'],['Abzug Einbauten',P.ded>0?f1(P.ded)+' %':'keiner']];
   rows.forEach(([k,val],i)=>{if(i%2===0)o+=`<rect x="${X0}" y="${y-2.6}" width="116" height="3.3" fill="#f2f4f6"/>`;o+=`<text x="${X0+1}" y="${y}" font-size="2.3" fill="#5b6876">${E(k)}</text><text x="${X0+50}" y="${y}" font-size="2.3">${E(val)}</text>`;y+=3.3});
   y+=4;o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Rechenweg</text>`;y+=4.5;
-  for(const l of wrapLines(st,76)){if(y>150)break;o+=`<text class="mono" x="${X0}" y="${y}" font-size="2.15" xml:space="preserve">${E(l)}</text>`;y+=3}
+  for(const l of wrapLines(st,76)){if(y>152)break;o+=`<text class="mono" x="${X0}" y="${y}" font-size="2.15" xml:space="preserve">${E(l)}</text>`;y+=3}
   y+=3;o+=`<text x="${X0}" y="${y}" font-size="3.4" font-weight="bold">Hinweise</text>`;y+=4.5;
   for(const l of wrapLines(msgs.map(m=>'• '+m[1]).concat(['• Berechnung nach Merkblatt FVLR/ZVEI 33027:2025-09. Ersetzt keine Fachplanung; Werte an der Ausführung prüfen.']),88)){if(y>168){o+=`<text x="${X0}" y="${y}" font-size="2.3">…</text>`;break}o+=`<text x="${X0}" y="${y}" font-size="2.3" xml:space="preserve">${E(l)}</text>`;y+=3.1}
   // title block
@@ -976,6 +1160,7 @@ $('dlPrint').addEventListener('click',async()=>{if(!guard())return;const btn=$('
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
 /* ---------- wiring ---------- */
+document.querySelectorAll('select[data-k]').forEach(sel=>sel.addEventListener('change',()=>{S[sel.dataset.k]=sel.value;if(['drv','hub','mnt','ndrv'].includes(sel.dataset.k))CLAMP_A=true;save();update()}));
 document.querySelectorAll('input[data-k]').forEach(i=>{i.value=S[i.dataset.k]??'';i.addEventListener('input',()=>{S[i.dataset.k]=i.value;save();update()})});
 $('alphaR').addEventListener('input',e=>{S.alpha=e.target.value;$('alphaN').value=String(e.target.value).replace('.',',');save();update()});
 $('alphaN').addEventListener('input',e=>{S.alpha=e.target.value;save();update()});
@@ -984,14 +1169,145 @@ $('modes').addEventListener('click',e=>{const b=e.target.closest('[data-mode]');
 $('dimMode').addEventListener('click',e=>{const b=e.target.closest('[data-dim]');if(!b)return;const to=b.dataset.dim,cur=S.dim==='licht'?'licht':'fa';if(to===cur)return;
   const P=params();if(!P.bad.length){if(to==='licht'){S.b=String(Math.round(P.b*1000));S.h=String(Math.round(P.h*1000))}else{S.fb=String(Math.round(P.fb*1000));S.fh=String(Math.round(P.fh*1000))}}
   S.dim=to;['b','h','fb','fh'].forEach(k=>{const i=$(k);if(i)i.value=S[k]??''});save();update()});
-$('profDef').addEventListener('click',()=>{['ab','dr','df','v','r','by','bx','im','gt','sf'].forEach(k=>{S[k]=DEF[k];const i=$(k);if(i)i.value=DEF[k]});save();update()});
+$('glzMode').addEventListener('click',e=>{const b=e.target.closest('[data-glz]');if(!b)return;S.glz=b.dataset.glz;save();update()});
+$('secOpts').addEventListener('click',e=>{const b=e.target.closest('[data-sec]');if(!b)return;S.secView=b.dataset.sec;save();update()});
+$('profDef').addEventListener('click',()=>{['ab','dr','df','v','r','by','bx','im','sf'].forEach(k=>{S[k]=DEF[k];const i=$(k);if(i)i.value=DEF[k]});save();update()});
 function updSketch(){const val=k=>has(S[k])?num(S[k]).toLocaleString('de-DE'):'–';const set=(id,t)=>{const e=document.getElementById('sk-'+id);if(e)e.textContent=t};
-  set('v','ü = '+val('v'));set('r','R = '+val('r'));set('sf','S = '+val('sf'));set('im','i = '+val('im'));set('gt','G = '+val('gt'));set('df','T2 = '+val('df'));set('dr','T1 = '+val('dr'));
+  set('v','ü = '+val('v'));set('r','R = '+val('r'));set('sf','S = '+val('sf'));set('im','i = '+val('im'));set('gt','G = '+(S.glz==='3'?['g1','z1','g2','z2','g3']:['g1','z1','g2']).reduce((a_,k_)=>a_+(num(S[k_])||0),0).toLocaleString('de-DE'));set('df','T2 = '+val('df'));set('dr','T1 = '+val('dr'));
   set('ab','Ab/2 = '+(has(S.ab)?(num(S.ab)/2).toLocaleString('de-DE'):'–'));set('by','By = '+val('by'));set('bx','Bx = '+val('bx'))}
 function hlDim(k){document.querySelectorAll('.sk .dim').forEach(d=>d.classList.toggle('hl',!!k&&(d.dataset.dim===k||((k==='bx'||k==='by')&&d.dataset.dim==='hinge'))))}
 document.querySelectorAll('#profGrid label.f').forEach(l=>{const i=l.querySelector('input');const k=i.dataset.k;
   i.addEventListener('focus',()=>hlDim(k));i.addEventListener('blur',()=>hlDim(null));
   l.addEventListener('mouseenter',()=>hlDim(k));l.addEventListener('mouseleave',()=>{if(document.activeElement!==i)hlDim(null);else hlDim(k)})});
+/* ---------- GEZE chain drives (values read from the catalogue diagrams) ---------- */
+const DRV={
+  slim:{name:'Slimchain',hubs:[300,500,800],len:{300:560,500:660,800:810},maxKg:200,ueMax:23,body:[0.044,0.025],
+    force:{zug:300,druck:100,druckTxt:'≤ 100 N (hubabhängig)'},geo:{outZ:0.300,capL:0.026,reach:0.052,fmCons:0.016,brkZ:0.036,pitch:0.010,cw:0.008,cz:0.014},
+    space:{RMEW:[40,40],FMEW:[21,34],RMAW:[31,19]},
+    // Einsatzbereich Kippfenster (Katalog S. 18): Flügelgewicht [kg] über Nebenschließkante [mm] je eingestelltem Hub
+    kipp:{RM:{200:[[200,70],[300,125],[400,177],[430,200]],
+              300:[[300,56],[400,79],[500,100],[600,129],[700,157],[800,186],[900,200]],
+              400:[[400,57],[500,77],[600,96],[700,114],[800,132],[900,148],[1000,165],[1100,182],[1200,198],[1250,200]],
+              500:[[500,53],[600,67],[700,80],[800,93],[900,106],[1000,119],[1100,132],[1200,145],[1300,158],[1400,171],[1500,184],[1600,195],[1700,200]],
+              600:[[600,53],[700,64],[800,74],[900,84],[1000,94],[1100,102],[1200,109],[1300,117],[1400,125],[1500,134],[1600,143],[1700,152],[1800,162],[1900,173],[2000,184],[2100,197],[2150,200]],
+              700:[[700,47],[800,55],[900,63],[1000,72],[1100,80],[1200,87],[1300,95],[1400,103],[1500,112],[1600,121],[1700,129],[1800,139],[1900,149],[2000,159],[2100,170],[2200,180],[2300,190],[2400,200]],
+              800:[[800,47],[900,54],[1000,61],[1100,68],[1200,75],[1300,82],[1400,88],[1500,95],[1600,100],[1700,108],[1800,117],[1900,125],[2000,133],[2100,143],[2200,152],[2300,162],[2400,173],[2500,185]]},
+          FM:{200:[[300,45],[400,67],[500,91],[600,117],[700,142],[800,168],[900,193],[1000,200]],
+              300:[[300,45],[400,67],[500,91],[600,117],[700,142],[800,168],[900,193],[1000,200]],
+              400:[[400,35],[500,49],[600,65],[700,80],[800,95],[900,110],[1000,126],[1100,143],[1200,160],[1300,178],[1400,195],[1500,200]],
+              500:[[500,35],[600,47],[700,60],[800,71],[900,83],[1000,94],[1100,106],[1200,118],[1300,130],[1400,141],[1500,152],[1600,164],[1700,176],[1800,188],[1900,200]],
+              600:[[600,35],[700,46],[800,56],[900,63],[1000,73],[1100,82],[1200,92],[1300,101],[1400,110],[1500,120],[1600,129],[1700,140],[1800,149],[1900,159],[2000,170],[2100,181],[2200,191],[2300,200]],
+              700:[[700,32],[800,40],[900,48],[1000,56],[1100,64],[1200,73],[1300,82],[1400,91],[1500,100],[1600,110],[1700,120],[1800,128],[1900,138],[2000,148],[2100,158],[2200,167],[2300,176],[2400,184],[2500,192]],
+              800:[[800,35],[900,42],[1000,50],[1100,57],[1200,65],[1300,73],[1400,81],[1500,89],[1600,96],[1700,104],[1800,111],[1900,119],[2000,127],[2100,134],[2200,142],[2300,149],[2400,157],[2500,164]]}},
+    klapp:{AW:{hubMax:()=>150,curve:{any:[[250,48],[1000,200]]},src:'Klappfenster Rahmenmontage auswärts (Hub max. 150 mm)'},
+           EWRM:{hubMax:()=>100,curve:{any:[[250,48],[1000,200]]},src:'Klappfenster Rahmenmontage einwärts (Hub max. 100 mm)'},
+           EWFM:{hubMax:()=>100,curve:{any:[[250,48],[1000,200]]},src:'Klappfenster Flügelmontage einwärts (Hub max. 100 mm)'}}},
+  power:{name:'Powerchain',hubs:[600,800,1200],len:{600:756,800:856,1200:1056},force:{zug:600,druck:600,druckTxt:'≤ 600 N (hubabhängig)'},geo:{outZ:0.307,capL:0.033,reach:0.066,fmCons:0.033,brkZ:0.042,pitch:0.0125,cw:0.011,cz:0.020},maxKg:200,ueMax:23,body:[0.051,0.036],
+    space:{RMEW:[50,40],FMEW:[30,50],RMAW:[50,30]},
+    // Einsatzbereich Kippfenster (Katalog S. 46)
+    kipp:{RM:{500:[[600,155],[700,183],[800,200]],
+              600:[[700,152],[800,175],[900,195],[1000,200]],
+              700:[[800,136],[900,156],[1000,174],[1100,192],[1200,200]],
+              800:[[900,137],[1000,152],[1100,168],[1200,184],[1300,200]],
+              1000:[[1100,125],[1200,138],[1300,150],[1400,161],[1500,174],[1600,186],[1700,200]],
+              1200:[[1300,90],[1400,100],[1500,110],[1600,119],[1700,127],[1800,135],[1900,143],[2000,150],[2100,157],[2200,165],[2300,172],[2400,180],[2500,187]]},
+          FM:{500:[[1100,200]],600:[[1300,200]],700:[[1600,200]],800:[[1800,200]],1000:[[2300,200]]}},
+    klapp:{AW:{hubMax:()=>800,curve:{500:[[550,110],[600,121],[700,142],[800,163],[900,185],[1000,200]],
+                                     600:[[650,103],[700,112],[800,130],[900,150],[1000,168],[1100,187],[1200,200]],
+                                     800:[[900,54],[1000,61],[1100,68],[1200,75],[1300,82],[1400,88],[1500,95],[1600,102],[1700,109],[1800,116],[1900,123],[2000,129],[2100,136],[2200,143],[2300,150],[2400,157],[2500,160]],
+                                     700:[[780,72],[800,74],[900,85],[1000,94],[1100,104],[1200,113],[1300,123],[1400,132],[1500,142],[1600,150],[1700,160],[1800,170],[1900,180],[2000,190],[2100,200]]},
+               src:'Klappfenster Rahmenmontage auswärts'},
+           EWFM:{hubMax:n=>n<500?0:(n<=1800?270+(n-500)*530/1300:800),curve:{any:[[500,200]]},src:'Klappfenster Flügelmontage einwärts (Hub abhängig von der Flügelhöhe)'},
+           EWRM:null}}
+};
+function curveAt(pts,x){if(!pts||!pts.length)return{none:true};
+  if(x<pts[0][0]-1e-9)return{below:true,min:pts[0][0]};
+  const last=pts[pts.length-1];
+  if(x>=last[0]){if(last[1]>=200||pts.length===1)return{y:last[1]};return x<=last[0]+1e-9?{y:last[1]}:{above:true,max:last[0],y:last[1]}}
+  for(let i=0;i<pts.length-1;i++){const [x0,y0]=pts[i],[x1,y1]=pts[i+1];if(x>=x0&&x<=x1)return{y:y0+(y1-y0)*(x-x0)/(x1-x0)}}
+  return{none:true}}
+function driveCheck(P){
+  const D=DRV[S.drv];if(!D)return null;
+  let hub=+S.hub;if(!D.hubs.includes(hub))hub=D.hubs[0];
+  const n=Math.max(1,Math.min(4,+S.ndrv||1));
+  const inward=P.mode==='kipp'||P.mode==='klappIn',bottom=P.mode==='kipp'||P.mode==='senk';
+  const mnt=(S.mnt==='FM'&&inward)?'FM':'RM';
+  const nsk=Math.round(P.fh*1000),fb=Math.round(P.fb*1000);
+  const rows=[],fails=[],notes=[];
+  const failRows=[];const add=(l,ist,soll,st)=>{rows.push([l,ist,soll,st]);if(st==='bad'){fails.push(l);failRows.push([l,ist,soll])}};
+  let hubEff=hub,src='',byHub=null,cap=hub;const Wm=weightOf(P).m,Wd=Wm/n;
+  if(bottom){byHub=D.kipp[mnt];src=`Kippfenster ${mnt==='FM'?'Flügel':'Rahmen'}montage ${inward?'einwärts':'auswärts'}`}
+  else{const key=inward?(mnt==='FM'?'EWFM':'EWRM'):'AW',K=D.klapp[key];src=`Klappfenster ${mnt==='FM'?'Flügel':'Rahmen'}montage ${inward?'einwärts':'auswärts'}`;
+    if(K){cap=Math.min(hub,Math.floor(K.hubMax(nsk)/10)*10);if(K.curve.any){byHub={};byHub[Math.max(cap,1)]=K.curve.any}else byHub=K.curve;
+      if(cap<hub)notes.push(`${K.src}: Hub höchstens ${cap} mm.`)}}
+  const ks=byHub?Object.keys(byHub).map(Number).filter(h_=>byHub[h_]&&byHub[h_].length).sort((x,y)=>x-y):[];
+  if(!ks.length||cap<=0){add('Einsatzbereich',src,'keine Katalogangabe','bad');notes.push(`Für ${D.name} ist bei ${src} im Katalog kein Einsatzbereich angegeben, bitte bei GEZE anfragen.`)}
+  // start of a curve (minimum NSK) and weight limit for any stroke s, linear between the catalogue strokes
+  const st=h_=>byHub[h_][0][0],gAt=(h_,x)=>{const r=curveAt(byHub[h_],x);return r.below?byHub[h_][0][1]:Math.min(D.maxKg,r.y)};
+  const lerpK=(sv,f)=>{if(sv<=ks[0])return f(ks[0]);for(let i=0;i<ks.length-1;i++)if(sv<=ks[i+1]){const t=(sv-ks[i])/(ks[i+1]-ks[i]);return f(ks[i])+(f(ks[i+1])-f(ks[i]))*t}return f(ks[ks.length-1])};
+  const startAt=sv=>lerpK(sv,st),G=sv=>lerpK(sv,h_=>gAt(h_,nsk));
+  let sW=0,sN=0;
+  if(ks.length&&cap>0){
+    const sTop=Math.min(cap,ks[ks.length-1]);
+    if(nsk<st(ks[0])){add('Flügelhöhe (NSK)',`${nsk} mm`,`≥ ${st(ks[0])} mm (kleinster Diagrammwert)`,'bad')}
+    else{
+      // stroke allowed by the sash height (catalogue: e.g. Powerchain Hub = NSK − 100)
+      sN=sTop;if(startAt(sTop)>nsk){let lo=ks[0],hi=sTop;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(startAt(m)<=nsk)lo=m;else hi=m}sN=lo}
+      sN=Math.max(Math.min(ks[0],cap),Math.floor(sN/10)*10);
+      if(sN<hub)add('Flügelhöhe (NSK)',`${nsk} mm`,`Hub ≤ ${sN} mm${ks[ks.length-1]<hub&&sN===ks[ks.length-1]?' (größter Diagrammhub)':''}`,'info');
+      else add('Flügelhöhe (NSK)',`${nsk} mm`,`≥ ${Math.round(startAt(hub))} mm für Hub ${hub}`,'ok');
+      // stroke allowed by the weight per drive (weight limit falls with the stroke)
+      const g0=G(Math.min(ks[0],sN));
+      if(Wd>g0+1e-9){add('Flügelgewicht',`${f1(Wm)} kg`,`≤ ${f1(g0*n)} kg auch beim kleinsten Hub ${Math.min(ks[0],sN)} mm`,'bad')}
+      else{sW=sN;if(G(sN)<Wd){let lo=Math.min(ks[0],sN),hi=sN;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(G(m)>=Wd)lo=m;else hi=m}sW=Math.floor(lo/10)*10}
+        const gF=G(sN);
+        if(sW<sN){add('Flügelgewicht',`${f1(Wm)} kg`,`≤ ${f1(gF*n)} kg bei Hub ${sN} → Hub ≤ ${sW} mm`,'warn');
+          notes.push(`Gewichtsabhängige Hubbegrenzung: ${f1(Wm)} kg${n>1?` (${f1(Wd)} kg je Antrieb)`:''} sind bei ${nsk} mm Flügelhöhe nur bis ${sW} mm Hub zulässig. Hub am Antrieb entsprechend einstellen.`)}
+        else add('Flügelgewicht',`${f1(Wm)} kg`,`≤ ${f1(gF*n)} kg bei Hub ${sN} mm${n>1?` (${n} × ${f1(gF)})`:''}`,'ok')}
+      hubEff=Math.min(hub,sN,sW||sN)}}
+  const Lh=P.hf+P.by,sH=Math.max(0,hubEff)/1000,aDrv=sH>=2*Lh?90:Math.min(90,2*Math.asin(sH/(2*Lh))*180/Math.PI);
+  add('Hub / Öffnungswinkel',`${hubEff} mm${hubEff<hub?` (von ${hub})`:''}`,`α ≤ ${f1(aDrv)}°`,'info');
+  // weight limit at the stroke actually needed for an angle (for the drawing)
+  const gAtAngle=al=>{if(!ks.length)return null;const sv=Math.min(hubEff,2*Lh*Math.sin(al*Math.PI/360)*1000);return G(Math.max(sv,1))*n};
+  const minFb=n*D.len[hub];add('Mindestflügelbreite',`${fb} mm`,`≥ ${minFb} mm${n>1?` (${n} × ${D.len[hub]})`:''}`,fb>=minFb?'ok':'bad');
+  const sk=inward?(mnt==='FM'?'FMEW':'RMEW'):'RMAW',[rq,sq]=D.space[sk];
+  add('Platz auf dem Rahmen R',`${Math.round(P.pr*1000)} mm`,`≥ ${rq} mm`,P.pr*1000>=rq-1e-6?'ok':'bad');
+  add('Platz auf dem Flügel S',`${Math.round(P.sf*1000)} mm`,`≥ ${sq} mm`,P.sf*1000>=sq-1e-6?'ok':'bad');
+  add('Überschlag ü',`${Math.round(P.v*1000)} mm`,`0 – ${D.ueMax} mm`,P.v*1000<=D.ueMax+1e-6?'ok':'bad');
+  if(S.mnt==='FM'&&!inward)notes.push('Auswärts öffnende Flügel nur mit Rahmenmontage: es wird mit Rahmenmontage gerechnet.');
+  if(P.mode==='kipp'&&n===1)notes.push('GEZE schreibt bei Kippfenstern mit Kettenantrieb separate Sicherheitsscheren vor.');
+  return{D,name:D.name,hub,hubEff,n,mnt,inward,bottom,aDrv,rows,fails,failRows,notes,ok:!fails.length,src,Lh,Wm,gAtAngle,label:`${D.name} Hub ${hub} mm, ${mnt==='FM'?'Flügel':'Rahmen'}montage${n>1?`, ${n} × Syncro`:''}`}}
+function renderDrive(DC){const el=$('drvOut');if(!DC){el.innerHTML='';return}
+  const pill={ok:'erfüllt',bad:'nicht erfüllt',warn:'prüfen',info:'Grenze'};
+  let h=`<div class="chk"><div class="h">Kriterium</div><div class="h">Ist</div><div class="h">Grenze</div><div class="h"></div>`;
+  for(const [l,ist,soll,st] of DC.rows)h+=`<div>${esc(l)}</div><div class="v">${esc(ist)}</div><div class="v">${esc(soll)}</div><span class="st ${st}">${pill[st]}</span>`;
+  DC.notes.forEach(t=>h+=`<div class="note">${esc(t)}</div>`);
+  el.innerHTML=h+'</div>'}
+function syncDriveUI(){const D=DRV[S.drv];const hs=$('hub');
+  const want=D?D.hubs.map(String):[];const have=[...hs.options].map(o=>o.value);
+  if(want.join()!==have.join()){hs.innerHTML=want.map(v=>`<option value="${v}">${v} mm</option>`).join('')}
+  if(D&&!want.includes(String(S.hub)))S.hub=want[0];
+  hs.disabled=!D;$('mnt').disabled=!D;$('ndrv').disabled=!D;
+  const inward=S.mode==='kipp'||S.mode==='klappIn';$('mnt').querySelector('option[value="FM"]').disabled=!inward;
+  ['drv','hub','mnt','ndrv'].forEach(k=>{const e=$(k);if(e&&D!==undefined)e.value=S[k]??''});$('drv').value=S.drv||''}
+function weightOf(P){const U=2*(P.fb+P.fh),red=2*(P.sf-P.ge),gb=P.fb-red,gh=P.fh-red,A=Math.max(0,gb)*Math.max(0,gh),qg=2.5*P.glassMM;
+  const mP=P.pkg*U,mG=A*qg;return{U,red,gb,gh,A,qg,mP,mG,m:mP+mG}}
+function glzText(P){const parts_=[];P.panes.forEach((g_,i_)=>{parts_.push(g_.toLocaleString('de-DE'));if(P.gaps[i_]!==undefined)parts_.push(P.gaps[i_].toLocaleString('de-DE'))});return parts_.join(' / ')}
+function renderWeight(P){const W=weightOf(P);const kg=x=>x.toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})+' kg';
+  $('glzInfo').textContent=`${P.glz}-fach ${glzText(P)} mm: Gesamtstärke G = ${(P.gt*1000).toLocaleString('de-DE')} mm, davon Glas ${P.glassMM.toLocaleString('de-DE')} mm → ${(W.qg).toLocaleString('de-DE',{maximumFractionDigits:1})} kg/m².`;
+  $('wKpis').innerHTML=`<div class="kpi main"><div class="k">Flügelgewicht</div><div class="v">${kg(W.m)}</div></div>
+    <div class="kpi"><div class="k">Profil</div><div class="v">${kg(W.mP)}</div></div>
+    <div class="kpi"><div class="k">Glas</div><div class="v">${kg(W.mG)}</div></div>
+    <div class="kpi"><div class="k">Glasfläche</div><div class="v">${f3(W.A)} m²</div></div>`;
+  const st_=[];
+  st_.push(`Profil: ${P.pkg.toLocaleString('de-DE')} kg/m × ${f3(W.U)} m = ${kg(W.mP)}`);
+  st_.push(`  (Umfang 2 · (FB + FH) = 2 · (${mm(P.fb)} + ${mm(P.fh)}) mm)`);
+  st_.push(`Glasmaß: ${mm(W.gb)} × ${mm(W.gh)} mm = ${f3(W.A)} m²`);
+  st_.push(`  (FB bzw. FH − 2 · (S − Glaseinstand) = − 2 · (${mm(P.sf)} − ${mm(P.ge)}) mm)`);
+  st_.push(`Glas: ${W.qg.toLocaleString('de-DE',{maximumFractionDigits:1})} kg/m² × ${f3(W.A)} m² = ${kg(W.mG)}`);
+  st_.push(`  (${P.glassMM.toLocaleString('de-DE')} mm Glas × 2,5 kg je m² und mm)`);
+  st_.push(`Gesamt: ${kg(W.mP)} + ${kg(W.mG)} = ${kg(W.m)}`);
+  $('wSteps').textContent=st_.join('\n');return W}
 function flushTo(k){const P=params();if(!isFinite(P.pr))return;S[k]=String(Math.round(P.pr*1000));$(k).value=S[k];save();update()}
 $('ceilFlush').addEventListener('click',()=>flushTo('c'));
 $('ovFlush').addEventListener('click',()=>flushTo('ca'));
